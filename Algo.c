@@ -54,7 +54,7 @@ void read_db(){
     // Thinking of turning into a IO.class whose objects will be created by other objects present in the system. Let me know about this.
 }
 string input_formatting(string){
-    // Simple function that will organize input string
+    // Simple overloaded function that will organize input string
 }
 void create_objects(){
     stand stand_list[];                                              // Empty array named stand that will contain objects of stand type.
@@ -86,7 +86,7 @@ void system_boot(){
     if(read_status == -1)       // Considering usage of Try and Catch statements here instead.
     {
         println("/nError occured while loading database. The system will now exit");
-        exit(); // Or recall system_boot() to Restart the system. I don't know the consequences.
+        exit(); // Or recall system_boot() to Restart the system. I don't know the consequences. Possibly Recurision.
     }
     else {
         println("/nDatabase loaded successfully");
