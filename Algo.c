@@ -95,3 +95,27 @@ void system_boot(){
     create_objects();   // This function will create Stand, Cycle and Lock create_objects.
     create_users();     //This will create base user objects with default values ready to be activated.
 }
+
+//Stub Iterative Attempt 30 May 2020
+main(){
+    Bapi Bi;    //Creating an object of Bapi = Bi's API named Bi. Global Bi object.
+    //The following code will be encapsulated inside new menu function.
+    cout<<"Take CID or EID input";
+    cin>>credentials;
+    if(Bi.check_cred(credentials))
+    {
+        if(Bi.check_history(credentials)) //Checks pending issue status. Returns bool value.
+        {
+            deposit(credentials){
+                //This will invoke the deposit function
+            }
+        }
+        issue(credentials){
+            //This will invoke the login process.
+            Bi.notification(); //Someone logged into your account
+            Bi.setloginstatus = TRUE; //Set user status to LOGGED IN
+            session();
+        }
+    }
+    cout<<"Invalid Input"; //else condition
+}
