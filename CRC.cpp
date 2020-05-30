@@ -1,3 +1,13 @@
+/*
+Textual UML Diagram:
+- Bi HAS Stands that themselves HAVE Cycles AND Locks (has-a relationship, Composition)
+- Bi USES Database
+- Employee AND Student ARE-A User (is-a relationship, Inheritance)
+- Joker MANAGES Moderator, NOT vice-versa
+- Joker CONTROLS Bi from BOTH outside and inside
+- Moderator MANAGES User(s) and CONTROLS Bi from ONLY inside.
+*/
+
 class Cycle
 {
 private:
@@ -54,6 +64,7 @@ public:
     setstatus() //Uses key, encrypt(),decrypt(),open(),close()
     Lock()      //ctor
     ~Lock()     //dtor
+
 //Responsibilites
 };
 
@@ -83,6 +94,7 @@ public:
     updatecycles()
     Stand() //ctor
     ~Stand()    //dtor
+
 //Responsibilites:
 // Initializing Cycle objects present in it
 // Facilitating in Issuing of the cycles
@@ -96,6 +108,7 @@ class Database
 private:
 protected:
 public:
+    input_formatting()
     integritycheck()
     fetchUserData()
     fetchCID()
@@ -115,11 +128,14 @@ public:
 
 class Bi
 {
-//Bi's core reside here. It's a master class
+//Bi's core reside here. It is the Bi's Operating System
 private:
 protected:
 public:
+    Bi()
+    ~Bi() //dtor. Destroy bi's object for the session by saving all the data. Basically Logout()
     generatereport()
+
 //Responsibilites
 // The only front-end of Bi's software that will provide all the necessary API's for its usage.
 };
@@ -127,19 +143,21 @@ public:
 class User
 {
 private:
-    string firstname
-    string middlename
-    string lastname
-    string fathername
-    string mothername
-    string guardian
-    string dob
-    string phone
-    string email
-    string address
-    int login_count
+    string firstname;
+    string middlename;
+    string lastname;
+    string fathername;
+    string mothername;
+    string guardian;
+    string dob;
+    string phone;
+    string email;
+    string address;
+    bool status;
+    int login_count;
 protected:
 public:
+
 //Responsibilites
 };
 
@@ -152,6 +170,7 @@ private:
     short course_year;
 protected:
 public:
+
 //Responsibilites
 };
 
@@ -163,6 +182,7 @@ private:
     enum profile; //Job profile
 protected:
 public:
+
 //Responsibilites
 };
 
@@ -173,9 +193,11 @@ private:
     string name;
     string username;
     string password;
+    bool status:
 protected:
 public:
     deploy()
+
 //Responsibilites
 // Deploy Bi
 // Expand Bi (Add Cycles, Add Stands)
@@ -184,16 +206,22 @@ public:
 // Add Moderator
 // Remove Moderator
 // Revoke Access (Override Block/Unblock)
+// Add/Remove Users
 };
 
 class Moderator
 {
-//Should I create this class in Joker itself? Doubt.
+//Should I create this class in Joker itself? Doubt. Its a tech support class
 private:
     string name;
     string username;
     bool status; //Online or Offline
 protected:
 public:
+
 //Responsibilites
+// Resolve User Issues
+// Resolve Queries
+// Acknowledge Reports
+// Block/Unblock Users
 };
