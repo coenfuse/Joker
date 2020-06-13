@@ -119,3 +119,109 @@ main(){
     }
     cout<<"Invalid Input"; //else condition
 }
+
+//Stub Iterative Attempt 2 June 2020
+using namespace std;
+main(){
+    /*
+    KEEP WINDOW's INSTALLATION IN MIND. TO USE WINDOWS YOU NEED AN ADMINISTRATOR FIRST.
+    SOFTWARE WILL SEARCH FOR ANY PRESENT JOKERS ON ITS JOKER RECORDS
+    IF NONE EXIST
+        create_joker()
+            The system isn't configured yet. Please configure
+            Take input parameters for Joker Attributes and create an Joker Object.
+            Joker(Attributes accepted above)    //Constructor
+            Save the PERSISTANT OBJECT in JOKER RECORDS that will be used on next boot-up.
+            ~Joker()
+    ELSE IF(ADMIN_EXIST()==TRUE && NETWORK_EXIST()==FALSE)      //If Joker exists but Network Doesnt
+        Show drop_down list of Admins with number of networks in them.
+        IF (LOGIN_Joker()==TRUE)    //Checks Login Credentials for an admin
+            Create Joker Object;
+            Take inputs to deploy a new Bi network in the system
+            Joker.deployBi()
+            Save in DB
+            Logout();
+            Restart the system. exit()
+        ELSE print("INCORRECT INPUT BRUH")
+    ELSE IF(ADMIN_EXIST()==TRUE && NETWORK_EXIST()==TRUE)       //If Joker exists and a Network too
+        menu()
+
+    OR BETTER, check the Configuration Attribute of Bi. If it is set to false then create a JOKER
+    Otherwise proceed with that instance of Bi.
+
+
+    It is like a hen and an egg dilemma.
+    I am worrying about installation of Bi within Bi itself.
+    During this initial bootup, the system will create an Admin Object that will later be used to use Bi.
+
+    Check presence of any Admin account, if not present Create and Admin Object by invoking its object.
+    To invoke the Joker object, take initial details about the admin. Basically sign-up system shit.
+    The initial details will be used invoke Joker's constructor parameters. Save the information into a separate file.
+    A network can have only one Admin, and an admin can create only one network on a system and it will have multiple moderators inside it. (THIS WILL BE CHANGED LATER)
+
+    Once this is done, take input for creating a Bi's network (Number of Stands, Capacity of Cycles, Types of Users etc)
+    Invoke Joker.deploy(input parameters)
+    If Bi's database file are present
+    */
+}
+
+// Bi Stub Attempt 3, June 13 2020 - 23:20
+/*
+GLOBAL INFORMATION
+- Bi is a system or basically a small scale operating system.
+- This OS will process Issue and Deposit of bicycles in a network.
+- One could make only 1 Bi network in this OS (currently)
+- This Bi network will have AT LEAST one Admin. Can have more than one.
+- A network without an Admin is regarded 'Unconfigured Network' and will be inoperable.
+- Bi will have some function libraries that will help in managing the OS itself. Functions that cannot be used in Bi class.
+- These libraires CANNOT be accessed without a proper mechanism.
+- These libraries will be used as API for front-end software later on.
+- Libraries currently conceptualized: BiCore, BiDatabase
+- BiCore can ONLY be accessed by JOKER(admin).
+- BiDatabase will provide low handle data about the Bi OS itself. It might also provide prototypes for other DB objects.
+- During first bootup, Bi will check its configuration data and will require at least one JOKER to operate.
+- After that save that information which can be used for other regular sessions.
+- On regular bootup, Bi will provide two interface with 3 options: Login as User, Moderator and JOKER.
+
+LOCAL INFORMATION (Here Bi refers to Bi class that only JOKER can initialize)
+- Bi HAS Stands that themselves HAVE Cycles AND Locks in them (Has-A relationship, Composition)
+- Stand, Cycle and Locks have a cardinality of 1 to n.
+- Moderators will have a limited control of the Bi API and much control of the Bi Network.
+- Moderators can only be created and deleted by JOKER.
+-
+
+Consider this example. Windows is a software that is an intermediary b/w USER & HARDWARE.
+Windows provide methods (API) to the user so that he/she can use the hardware.
+In this situation there isn't any control to what degree a User can access the hardware.
+To control that, Windows maintains a requirement of creating an ADMINISTRATOR account.
+The ADMINISTRATOR account have the most complete access to HARDWARE possible. BUT not COMPLETE ACCESS.
+ADMINISTRATOR can configure the system to their needs and create instances for others.
+If every USER had control scope like ADMIN then it would create a deadlock in conflicting requests.
+It would require a consensus to mitigate a conflict but that'd be an inefficient on big system.
+ADMINISTRATOR provides a required governance in the system.
+ADMIN creates a small scale instance of Windows that uses Windows Functions to operate the system.
+Not even ADMIN can have the direct access to core system properties.
+ADMIN can CREATE or DELETE users that will have limited access (only what they need).
+If there is some problem in the Windows, then it tells Users to 'CONTACT SYSTEM ADMINISTRATOR'
+SYSTEM ADMINISTRATOR or simply the ADMIN, with help of much larger access could solve the lower issues.
+This keeps the system more operable and robust.
+Also note that there are many critical functions in Windows that are beyond the access scope of any object in the system.
+For eg; Bootstrap Program Location, Main Installation Directry, Registry Files even Login information for Users, etc.
+They are usually Kernel functions and generally immutable values that are required for normal system operation.
+
+Learning from this, Bi will work on the same principle.
+In Bi, the operable hardware is Stand, Cycle, Lock and Database Server.
+Having a direct access to any of these systems is a massive security loophole.
+The library functions will provide APIs to access there. Basically ports to operate these hardware.
+The objects in the system (Joker, Moderator, User, Bi, Cycle, Stand, etc) will have access to these APIs.
+But none of these objects will have DIRECT access to all the APIs provided. This will ensure security in the system.
+Joker will create an INSTANCE of Bi that will have Cycles, Stands, Locks etc in it.
+Joker will have the highest access to configure the CONSTRUCTED instance of Bi network.
+Moderators work under Joker but above Users. They have limited control to Bi network using Bi API.
+Users will have access to basic APIs (maybe not a single one directly).
+The Joker will have limited DIRECTED access to Bi API but Bi class will have vast access to Bi API.
+The Bi Class will work in conjunction with the Database Class that will itself use Database API.
+See, only system classes (Bi and Database) have the most access to Bi API.
+And human operated object has a very limited access to the system and thus, it increases system's security.
+
+*/

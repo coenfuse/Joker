@@ -1,9 +1,14 @@
 /*
 Textual UML Diagram:
-- Bi HAS Stands that themselves HAVE Cycles AND Locks (has-a relationship, Composition)
+- Bi HAS Stands that themselves HAVE Cycles AND Locks in them (has-a relationship, Composition)
+- Stand, Cycle and Locks have a cardinality of 1 to n.
 - Bi USES Database
+- Database will operate on LOCAL copy of Bi's database that will be updated routinely.
 - Employee AND Student ARE-A User (is-a relationship, Inheritance)
 - Joker MANAGES Moderator, NOT vice-versa
+- Joker will MANAGE the SOURCED DATA from org's Database.
+- Joker will CONVERT the IMPORTED data INTO Bi's OPERATIONAL data. (Rel.DB to Obj.Orie.DB)
+- Joker will CREATE the initial copy (or Genesis Copy) of the data on which the Bi will operate.
 - Joker CONTROLS Bi from BOTH outside and inside
 - Moderator MANAGES User(s) and CONTROLS Bi from ONLY inside.
 */
@@ -130,10 +135,15 @@ class Bi
 {
 //Bi's core reside here. It is the Bi's Operating System
 private:
+    string networkID;   //Will be used to differentiate between various networks of Bi. Basically object name.
+    bool config_status = FALSE; //An instance of Bi will be configured only if it has an Admin to control it.
+    Stand stand[]   //Number of stands in a Bi network.
 protected:
 public:
     Bi()
     ~Bi() //dtor. Destroy bi's object for the session by saving all the data. Basically Logout()
+    getConfigStatus()
+    setConfigStatus()
     generatereport()
 
 //Responsibilites
@@ -193,10 +203,17 @@ private:
     string name;
     string username;
     string password;
-    bool status:
+    bool status: //Online or Offline
 protected:
 public:
-    deploy()
+    Joker()
+    ~Joker(){
+        UpdateRecords()
+    }
+    UpdateRecords(); // This will save the data of object instance nicely somewhere
+    deployBi(){
+        Bi.deploy()   //Uses Bi's own deploy method
+    }
 
 //Responsibilites
 // Deploy Bi
@@ -215,6 +232,7 @@ class Moderator
 private:
     string name;
     string username;
+    string password;
     bool status; //Online or Offline
 protected:
 public:
