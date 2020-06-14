@@ -170,7 +170,7 @@ main(){
 Consider this example. Windows is a software that is an intermediary b/w USER & HARDWARE.
 Windows provide methods (API) to the user so that he/she can use the hardware.
 In this situation there isn't any control to what degree a User can access the hardware.
-To control that, Windows maintains a requirement of creating an ADMINISTRATOR account.
+To control that, Windows introduced a requirement of creating an ADMINISTRATOR account.
 The ADMINISTRATOR account have the most complete access to HARDWARE possible. BUT not COMPLETE ACCESS.
 ADMINISTRATOR can configure the system to their needs and create instances for others.
 If every USER had control scope like ADMIN then it would create a deadlock in conflicting requests.
@@ -221,8 +221,16 @@ GLOBAL INFORMATION
 LOCAL INFORMATION (Here Bi refers to Bi class that only JOKER can initialize)
 - Bi HAS Stands that themselves HAVE Cycles AND Locks in them (Has-A relationship, Composition)
 - Stand, Cycle and Locks have a cardinality of 1 to n.
+- Bi USES Database
+- Database will operate Database Libraries that will be updated routinely
+- Employee AND Student ARE-A User (is-a relationship, Inheritance)
+- Joker MANAGES Moderator, Not Vice-versa
 - Moderators will have a limited control of the Bi API and much control of the Bi Network.
 - Moderators can only be created and deleted by JOKER.
--
+- Joker can MANAGE the SOURCE DATA from Database API
+- Joker will CONVERT the IMPORTED data INTO Bi's OPERATIONAL data. (Rel.DB to Obj.Orie.DB)
+- Joker will CREATE the initial copy (or Genesis Copy) of the data on which the Bi will operate.
+- Joker CONTROLS Bi from BOTH outside and inside
+- Moderator MANAGES User(s) and CONTROLS Bi from ONLY inside.
 
 */
