@@ -2,6 +2,7 @@
 Consider this example. Microsoft Windows is a software that works as a middleman between the user and system hardware.
 To communicate with the Hardware, Window uses the drivers supplied by the hardware manufacturers.
 Using the drivers, Windows creates applications and API (or, Ports), that can be used by the developer or user to create or use hardware as demand.
+HARDWARE<<----->>DRIVER<<----->>OS<<----->>API<<----->>SOFTWARE<<----->><<----->>INTERFACE<<----->>USER
 The problem here is about the access to the APIs and system settings. Although usage of drivers and API curbs the uncontrolled access to the hardware, but still it isn't full proof method.
 In this method, there isn't any control to what degree a User and access the Settings and APIs.
 This access may or may not be in the favor of system owner. One could exploit the available APIs to create malicious applications that might not be in the best interest of the owner.
@@ -20,11 +21,29 @@ This keeps the system more operable and robust in varying circumstances.
 NOTE: There are many critical functions in Windows that are beyond the access scope of any user (including ADMINISTRATOR). These functions are often stored in ROM and thus can't be edited.
 For eg; Bootstrap Program Location, Windows Installation starting index, registry files and other encrypted sensitive information. etc.
 They are usually Kernel functions and generally immutable values that are required for normal system operation.
-
 ====================================================================================================
 Learning from this, Bi operates on the same principle.
 In Bi, the operable hardware is Stand, Cycle, Lock and Database Server.
 Having a direct access to any of these system is a massive security issue. Thus Bi comes in between.
 Bi will provide library functions that themselves provide necessary API to access these hardware in a controlled manner.
 Basically ports to operate these hardware.
-The real-life entities in the system (Joker, Moderator, User, The Network, Cycle, Stand, Locks and Database) will have access to these APIs.
+The real-life entities in the system (Joker(ADMIN), Moderator, User, The Network, Cycle, Stand, Locks and Database) will have access to these APIs.
+But none of these objects will have DIRECT access to ALL the APIs provided. This will ensure security in the system.
+The Joker will create an INSTANCE of Bi Network that would contain Cycles. Lock and Stands etc. in their defined hierarchy.
+Joker will have the highest access control to configure the CONSTRUCTED Bi Network.
+Moderators work under Joker but above Users. They have limited control to Bi network using the APIs.
+Users will have access to basic APIs (maybe not a single one directly) that are essential in their normal funcitoning. Login, Deposit, Feedback etc.
+The Joker will have LIMITED DIRECT ACCESS to the APIs but the instance a Joker can create will have vast access to the APIs.
+This prevents malicious attempts to harm the system to some degree and prevents Joker from editing some critical files. (Just like ADMIN in Windows doesn't have access to certain crucial functions)
+The Bi class will work in conjunction with the Database Class that will itself use a separate Database Library functions to operate.
+As we can see, only the system defined objects (Bi and Database) have the most unadulterated access to Bi's core libraries and APIs.
+Any human operated object has a limited access to the system. And even if it had one, it is layered by multiple protocols that add up to the security of the system.
+NOTE: Bi refers to complete package here that contains everything inside it. The Bi Network (instance) uses API to access it and serve to the users via frontend.
+NOTE: I tried to recreate the real world system in a single GitHub project.
+NOTE: The possible structure I've theorized.
+DATABASE(Hardware)<<----->>DRIVERS(Omitted)<<----->>Bi(OS)<<----->>API<<----->>Bi Network and Database Instance(Software)<<----->>Frontend(INTERFACE)<<----->>USERS(Joker,Moderator,Student,Employee,Guest)
+====================================================================================================
+DRAWING BOARD
+====================================================================================================
+GLOBAL INFO:
+- 
