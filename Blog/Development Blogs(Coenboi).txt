@@ -2,7 +2,7 @@
 Consider this example. Microsoft Windows is a software that works as a middleman between the user and system hardware.
 To communicate with the Hardware, Window uses the drivers supplied by the hardware manufacturers.
 Using the drivers, Windows creates applications and API (or, Ports), that can be used by the developer or user to create or use hardware as demand.
-HARDWARE<<----->>DRIVER<<----->>OS<<----->>API<<----->>SOFTWARE<<----->><<----->>INTERFACE<<----->>USER
+HARDWARE<<----->>DRIVER<<----->>OS<<----->>APIs<<----->>SOFTWARE<<----->><<----->>INTERFACE<<----->>USER
 The problem here is about the access to the APIs and system settings. Although usage of drivers and API curbs the uncontrolled access to the hardware, but still it isn't full proof method.
 In this method, there isn't any control to what degree a User and access the Settings and APIs.
 This access may or may not be in the favor of system owner. One could exploit the available APIs to create malicious applications that might not be in the best interest of the owner.
@@ -46,4 +46,4 @@ DATABASE(Hardware)<<----->>DRIVERS(Omitted)<<----->>Bi(OS)<<----->>API<<----->>B
 DRAWING BOARD
 ====================================================================================================
 GLOBAL INFO:
-- 
+-

@@ -165,42 +165,6 @@ main(){
     */
 }
 
-// Bi Stub Attempt 3, June 13 2020 - 23:20
-/*
-Consider this example. Windows is a software that is an intermediary b/w USER & HARDWARE.
-Windows provide methods (API) to the user so that he/she can use the hardware.
-In this situation there isn't any control to what degree a User can access the hardware.
-To control that, Windows introduced a requirement of creating an ADMINISTRATOR account.
-The ADMINISTRATOR account have the most complete access to HARDWARE possible. BUT not COMPLETE ACCESS.
-ADMINISTRATOR can configure the system to their needs and create instances for others.
-If every USER had control scope like ADMIN then it would create a deadlock in conflicting requests.
-It would require a consensus to mitigate a conflict but that'd be an inefficient on big system.
-ADMINISTRATOR provides a required governance in the system.
-ADMIN creates a small scale instance of Windows that uses Windows Functions to operate the system.
-Not even ADMIN can have the direct access to core system properties.
-ADMIN can CREATE or DELETE users that will have limited access (only what they need).
-If there is some problem in the Windows, then it tells Users to 'CONTACT SYSTEM ADMINISTRATOR'
-SYSTEM ADMINISTRATOR or simply the ADMIN, with help of much larger access could solve the lower issues.
-This keeps the system more operable and robust.
-Also note that there are many critical functions in Windows that are beyond the access scope of any object in the system.
-For eg; Bootstrap Program Location, Main Installation Directry, Registry Files even Login information for Users, etc.
-They are usually Kernel functions and generally immutable values that are required for normal system operation.
-=================================================================
-Learning from this, Bi will work on the same principle.
-In Bi, the operable hardware is Stand, Cycle, Lock and Database Server.
-Having a direct access to any of these systems is a massive security loophole.
-The library functions will provide APIs to access there. Basically ports to operate these hardware.
-The objects in the system (Joker, Moderator, User, Bi, Cycle, Stand, etc) will have access to these APIs.
-But none of these objects will have DIRECT access to all the APIs provided. This will ensure security in the system.
-Joker will create an INSTANCE of Bi that will have Cycles, Stands, Locks etc in it.
-Joker will have the highest access to configure the CONSTRUCTED instance of Bi network.
-Moderators work under Joker but above Users. They have limited control to Bi network using Bi API.
-Users will have access to basic APIs (maybe not a single one directly).
-The Joker will have limited DIRECTED access to Bi API but Bi class will have vast access to Bi API.
-The Bi Class will work in conjunction with the Database Class that will itself use Database API.
-See, only system classes (Bi and Database) have the most access to Bi API.
-And human operated object has a very limited access to the system and thus, it increases system's security.
-
 
 GLOBAL INFORMATION
 - Bi is a system or basically a small scale operating system.
