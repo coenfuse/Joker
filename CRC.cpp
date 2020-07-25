@@ -5,11 +5,11 @@ Textual UML Diagram:
 - Bi USES Database
 - Database will operate on LOCAL copy of Bi's database that will be updated routinely.
 - Employee AND Student ARE-A User (is-a relationship, Inheritance)
-- Joker MANAGES Moderator, NOT vice-versa
-- Joker will MANAGE the SOURCED DATA from org's Database.
-- Joker will CONVERT the IMPORTED data INTO Bi's OPERATIONAL data. (Rel.DB to Obj.Orie.DB)
-- Joker will CREATE the initial copy (or Genesis Copy) of the data on which the Bi will operate.
-- Joker CONTROLS Bi from BOTH outside and inside
+- Admin MANAGES Moderator, NOT vice-versa
+- Admin will MANAGE the SOURCED DATA from org's Database.
+- Admin will CONVERT the IMPORTED data INTO Bi's OPERATIONAL data. (Rel.DB to Obj.Orie.DB)
+- Admin will CREATE the initial copy (or Genesis Copy) of the data on which the Bi will operate.
+- Admin CONTROLS Bi from BOTH outside and inside
 - Moderator MANAGES User(s) and CONTROLS Bi from ONLY inside.
 */
 
@@ -137,6 +137,7 @@ class Bi
 private:
     string networkID;   //Will be used to differentiate between various networks of Bi. Basically object name.
     bool config_status = FALSE; //An instance of Bi will be configured only if it has an Admin to control it.
+    Admin admin;    //The admin object who will manage this network.
     Stand stand[]   //Number of stands in a Bi network.
 protected:
 public:
@@ -147,7 +148,7 @@ public:
     generatereport()
 
 //Responsibilites
-// The only front-end of Bi's software that will provide all the necessary API's for its usage.
+// The only front-end of Bi's software that will use the API's for its functioning.
 };
 
 class User
@@ -196,23 +197,20 @@ public:
 //Responsibilites
 };
 
-class Joker
+class Admin : private User
 {
 //SuperUser of Bi network
 private:
-    string name;
     string username;
     string password;
-    bool status: //Online or Offline
 protected:
 public:
-    Joker()
-    ~Joker(){
-        UpdateRecords()
+    Admin()
+    ~Admin(){
+        //UpdateRecords()
     }
     UpdateRecords(); // This will save the data of object instance nicely somewhere
-    deployBi(){
-        Bi.deploy()   //Uses Bi's own deploy method
+    deployBi()
     }
 
 //Responsibilites

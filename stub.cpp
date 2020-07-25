@@ -3,8 +3,8 @@
 //Functions defs for BiCore library (BiCore is the available API for Bi users)
 bool checkBiInstallation();
 void installBi();
-bool checkJoker();
-void createJoker();
+bool checkAdmin();
+void createAdmin();
 bool checkBiConfig();
 void configureBi();
 int biFrontEnd();
@@ -22,10 +22,10 @@ void updateBiKernel();
 //Functions defs for Database Library (Database stores global data about the System)
 bool checkBiData();
 void saveBiData();
-bool checkJokerRecord();
-void updateJokerRecord();
-void updateJokerData();
-void checkJokerData();
+bool checkAdminRecord();
+void updateAdminRecord();
+void updateAdminData();
+void checkAdminData();
 void updateBiConfig();
 
 //Main program
@@ -61,37 +61,37 @@ void installBi(){
     void saveBiData();
     cout<<"Bi installed Successfully";
     cout<<"Want to create a system Admin? [Y/N]";
-    createJoker();
+    createAdmin();
     cout<<"Want to configure a Bi network? [Y/N]";
     configureBi();
 }
-bool checkJoker(){
+bool checkAdmin(){
     //This function will check presence of any existing ADMINS in the system.
-    if(checkJokerRecord()){
+    if(checkAdminRecord()){
         return TRUE;
     }
     else return FALSE;
 }
-void createJoker(){
+void createAdmin(){
     //This function will create the first admin of the system.
     //This function will take input from user to INITIALIZE a new JOKER object.
     cout<<"Enter Desired Username";
     cout<<"Enter Desired Password";
-    Joker admin("Admin", "password"); // And some other parameter values
+    Admin admin("Admin", "password"); // And some other parameter values
     cout<<"Admin named" + admin.getname() + "created. Please wait while we save the information";
-    updateJokerRecord(admin); // This record saves the LOG of ADMIN(s) present in the system in a list.
-    updateJokerData(admin);  // This will save data about an individual data securely in the system Database.
+    updateAdminRecord(Admin); // This record saves the LOG of ADMIN(s) present in the system in a list.
+    updateAdminData(Admin);  // This will save data about an individual data securely in the system Database.
     cout<<"Information saved successfully";
 }
-bool checkBiConfig(Joker){
+bool checkBiConfig(Admin){
     //This function checks whether a particular Admin has a configured network underneath him/her.
     //i.e.; an operable Bi network instance that knows its Name, Admin and Attributes in it (no. of cycles, stands, etc)
-    if(checkJokerData()){
+    if(checkAdminData()){
         return TRUE;
     }
     else return FALSE;
 }
-void configureBi(Joker){
+void configureBi(Admin){
     // This function will configure the Bi network in the system.
     cout<<"Welcome to Bi's configuration screen. Here you'll configure the attributes of your own Bi network";
     cout<<"Enter name of your Network"; cin>>a;
@@ -99,11 +99,11 @@ void configureBi(Joker){
     cout<<"Enter capacity of each stand"; cin>>c;
     cout<<"Number of moderators (if any?)"; cin>>d;
     //And some other attributes
-    updateBiConfig(Joker,a,b,c,d=0);
+    updateBiConfig(Admin,a,b,c,d=0);
     cout<<"Your Bi network is configured";
 }
-int biFrontEnd(Joker){
-    cout<<"Welcome to Bi Network" + Joker.getBiName();
+int biFrontEnd(Admin){
+    cout<<"Welcome to Bi Network" + Admin.getBiName();
     cout<<"Proceed as:";
     cout<<"To login as Admin: Press 1";
     cout<<"To login as Moderator: Press 2";
@@ -133,7 +133,7 @@ int biFrontEnd(Joker){
             cin>>credentials;
             if(Bi.check_cred(credentials))
             {
-                if(Bi.check_history(credentials)) //Checks pending issue status. Returns bool value.
+                if(Bi.check_pending(credentials)) //Checks pending issue status. Returns bool value.
                 {
                     Bi.deposit(credentials){
                         //This will invoke the deposit function
@@ -178,27 +178,27 @@ void saveBiData(){
     cout<<"Updating Registery Files";
     updateBiKernel();
 }
-bool checkJokerRecord(){
+bool checkAdminRecord(){
     //This function will check read the files in system for presence of ADMIN
     return TRUE;
 }
-void updateJokerRecord(Joker){
-    string name = Joker.getname();
+void updateAdminRecord(Admin){
+    string name = Admin.getname();
     // Some datahandling updating method, that will add the 'name' into JokerRecords.dat
 }
-void updateJokerData(Joker){
-    string name = Joker.getname();
-    string password = Joker.getpassword();
+void updateAdminData(Admin){
+    string name = Admin.getname();
+    string password = Admin.getpassword();
     //Create a new file if not present and save this attribute data in possibly encrypted data.
 }
-void checkJokerData(Joker){
+void checkAdminData(Admin){
     //Possibly an overloaded function that serves many needs. Requires revison.
-    if(Joker.getConfigStatus()){
+    if(Admin.getConfigStatus()){
         return TRUE;
     }
     else FALSE;
 }
-void updateBiConfig(Joker,string,int,int,int){
+void updateBiConfig(Admin,string,int,int,int){
     //Some update procedure Here
-    Joker.setConfigStatus(TRUE);
+    Admin.setConfigStatus(TRUE);
 }
