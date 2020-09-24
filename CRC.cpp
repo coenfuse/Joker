@@ -23,7 +23,7 @@ private:
     string issuer;
     static issue_count;
     bool health;
-    string location;
+    string currentLocation;
 protected:
 public:
     getid()
