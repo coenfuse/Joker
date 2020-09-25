@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -20,8 +21,11 @@
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option projectCompilerOptionsRelation="0" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++14" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,19 +36,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="cycle.cpp" />
-		<Unit filename="cycle.h" />
-		<Unit filename="employee.cpp" />
-		<Unit filename="employee.h" />
-		<Unit filename="lock.cpp" />
-		<Unit filename="lock.h" />
-		<Unit filename="main.cpp" />
-		<Unit filename="stand.cpp" />
-		<Unit filename="stand.h" />
-		<Unit filename="student.cpp" />
-		<Unit filename="student.h" />
-		<Unit filename="user.cpp" />
-		<Unit filename="user.h" />
+		<Unit filename="include/module.cpp" />
+		<Unit filename="include/module.h">
+			<Option link="1" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="src/main.cpp">
+			<Option target="Release" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />
