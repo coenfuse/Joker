@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = obj/main.o obj/module.o obj/test.o
-LINKOBJ  = obj/main.o obj/module.o obj/test.o
+OBJ      = obj/main.o obj/modules.o obj/test.o obj/back.o obj/bidata.o obj/dio.o obj/graphics.o obj/bapi.o obj/bnetwork.o obj/buser.o obj/fnetwork.o obj/fuser.o obj/JSON.o
+LINKOBJ  = obj/main.o obj/modules.o obj/test.o obj/back.o obj/bidata.o obj/dio.o obj/graphics.o obj/bapi.o obj/bnetwork.o obj/buser.o obj/fnetwork.o obj/fuser.o obj/JSON.o
 LIBS     = -L"C:/TDM-GCC-64/lib" -static-libgcc -L"F:/Works/Sarthak's Workplace/Creation/App Dev/Bi/Joker/deps"
 INCS     = -I"C:/TDM-GCC-64/include" -I"C:/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include" -I"F:/Works/Sarthak's Workplace/Creation/App Dev/Bi/Joker/include"
 CXXINCS  = -I"C:/TDM-GCC-64/include" -I"C:/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include" -I"C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++" -I"F:/Works/Sarthak's Workplace/Creation/App Dev/Bi/Joker/include"
@@ -27,8 +27,38 @@ $(BIN): $(OBJ)
 obj/main.o: src/main.cpp
 	$(CPP) -c src/main.cpp -o obj/main.o $(CXXFLAGS)
 
-obj/module.o: src/Front/module.cpp
-	$(CPP) -c src/Front/module.cpp -o obj/module.o $(CXXFLAGS)
+obj/modules.o: src/Front/modules.cpp
+	$(CPP) -c src/Front/modules.cpp -o obj/modules.o $(CXXFLAGS)
 
 obj/test.o: test/test.cpp
 	$(CPP) -c test/test.cpp -o obj/test.o $(CXXFLAGS)
+
+obj/back.o: src/back/back.cpp
+	$(CPP) -c src/back/back.cpp -o obj/back.o $(CXXFLAGS)
+
+obj/bidata.o: src/back/bidata.cpp
+	$(CPP) -c src/back/bidata.cpp -o obj/bidata.o $(CXXFLAGS)
+
+obj/dio.o: src/res/dio.cpp
+	$(CPP) -c src/res/dio.cpp -o obj/dio.o $(CXXFLAGS)
+
+obj/graphics.o: src/front/graphics.cpp
+	$(CPP) -c src/front/graphics.cpp -o obj/graphics.o $(CXXFLAGS)
+
+obj/bapi.o: src/middle/bapi.cpp
+	$(CPP) -c src/middle/bapi.cpp -o obj/bapi.o $(CXXFLAGS)
+
+obj/bnetwork.o: src/classes/bnetwork.cpp
+	$(CPP) -c src/classes/bnetwork.cpp -o obj/bnetwork.o $(CXXFLAGS)
+
+obj/buser.o: src/classes/buser.cpp
+	$(CPP) -c src/classes/buser.cpp -o obj/buser.o $(CXXFLAGS)
+
+obj/fnetwork.o: src/classes/fnetwork.cpp
+	$(CPP) -c src/classes/fnetwork.cpp -o obj/fnetwork.o $(CXXFLAGS)
+
+obj/fuser.o: src/classes/fuser.cpp
+	$(CPP) -c src/classes/fuser.cpp -o obj/fuser.o $(CXXFLAGS)
+
+obj/JSON.o: src/classes/JSON.cpp
+	$(CPP) -c src/classes/JSON.cpp -o obj/JSON.o $(CXXFLAGS)
