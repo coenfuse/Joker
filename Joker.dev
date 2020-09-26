@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=22
+UnitCount=23
 
 [VersionInfo]
 Major=1
@@ -80,27 +80,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit4]
-FileName=test\test.cpp
-CompileCpp=1
-Folder=test
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit5]
-FileName=include\graphics.h
-CompileCpp=1
-Folder=head
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit6]
 FileName=include\classes\fuser.h
 CompileCpp=1
 Folder=head/Classes
@@ -110,7 +90,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit7]
+[Unit6]
 FileName=include\classes\fnetwork.h
 CompileCpp=1
 Folder=head/Classes
@@ -120,7 +100,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit8]
+[Unit7]
 FileName=include\bapi.h
 CompileCpp=1
 Folder=head
@@ -130,7 +110,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit9]
+[Unit8]
 FileName=include\back.h
 CompileCpp=1
 Folder=head
@@ -140,7 +120,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit10]
+[Unit9]
 FileName=include\bidata.h
 CompileCpp=1
 Folder=head
@@ -150,7 +130,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit11]
+[Unit10]
 FileName=include\classes\buser.h
 CompileCpp=1
 Folder=head/Classes
@@ -160,7 +140,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit12]
+[Unit11]
 FileName=include\classes\bnetwork.h
 CompileCpp=1
 Folder=head/Classes
@@ -170,7 +150,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit13]
+[Unit12]
 FileName=include\dio.h
 CompileCpp=1
 Folder=head
@@ -180,7 +160,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit14]
+[Unit13]
 FileName=src\back\back.cpp
 CompileCpp=1
 Folder=src/back
@@ -190,7 +170,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit15]
+[Unit14]
 FileName=src\back\bidata.cpp
 CompileCpp=1
 Folder=src/back
@@ -200,7 +180,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit16]
+[Unit15]
 FileName=src\res\dio.cpp
 CompileCpp=1
 Folder=src/res
@@ -210,7 +190,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit17]
+[Unit16]
 FileName=src\front\graphics.cpp
 CompileCpp=1
 Folder=src/front
@@ -220,7 +200,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit18]
+[Unit17]
 FileName=src\middle\bapi.cpp
 CompileCpp=1
 Folder=src/middle
@@ -230,7 +210,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit19]
+[Unit18]
 FileName=src\classes\bnetwork.cpp
 CompileCpp=1
 Folder=src/_classes
@@ -240,7 +220,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit20]
+[Unit19]
 FileName=src\classes\buser.cpp
 CompileCpp=1
 Folder=src/_classes
@@ -250,7 +230,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit21]
+[Unit20]
 FileName=src\classes\fnetwork.cpp
 CompileCpp=1
 Folder=src/_classes
@@ -260,10 +240,50 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit22]
+[Unit21]
 FileName=src\classes\fuser.cpp
 CompileCpp=1
 Folder=src/_classes
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit22]
+FileName=include\classes\JSON.h
+CompileCpp=1
+Folder=head/Classes
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit24]
+FileName=src\classes\JSON.cpp
+CompileCpp=1
+Folder=src/_classes
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit23]
+FileName=src\classes\JSON.cpp
+CompileCpp=1
+Folder=src/_classes
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit4]
+FileName=include\graphics.h
+CompileCpp=1
+Folder=head
 Compile=1
 Link=1
 Priority=1000

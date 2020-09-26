@@ -1,8 +1,7 @@
 #ifndef JSON_H
 #define JSON_H
 
-class JSON
-{
+class JSON{
 	private:
 		// Attributes Unique to User
 		string BID = "xxxxx";				//BID for the user
