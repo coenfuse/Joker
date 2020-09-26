@@ -131,8 +131,11 @@ CursorCol=7
 CursorRow=98
 TopLine=1
 LeftChar=1
+<<<<<<< HEAD
 [Editor_22]
 CursorCol=4
 CursorRow=5
 TopLine=1
 LeftChar=1
+=======
+>>>>>>> parent of 9d57f3e... Groundwork of message passing
