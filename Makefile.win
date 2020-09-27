@@ -4,13 +4,9 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-<<<<<<< HEAD
-OBJ      = obj/main.o obj/modules.o obj/back.o obj/bidata.o obj/dio.o obj/graphics.o obj/bapi.o obj/bnetwork.o obj/buser.o obj/fnetwork.o obj/fuser.o obj/JSON.o
-LINKOBJ  = obj/main.o obj/modules.o obj/back.o obj/bidata.o obj/dio.o obj/graphics.o obj/bapi.o obj/bnetwork.o obj/buser.o obj/fnetwork.o obj/fuser.o obj/JSON.o
-=======
-OBJ      = obj/main.o obj/module.o obj/test.o
-LINKOBJ  = obj/main.o obj/module.o obj/test.o
->>>>>>> parent of 9d57f3e... Groundwork of message passing
+RES      = obj/Joker_private.res
+OBJ      = obj/main.o obj/modules.o obj/back.o obj/bidata.o obj/graphics.o obj/bapi.o obj/bnetwork.o obj/buser.o obj/fnetwork.o obj/fuser.o obj/JSON.o obj/test.o obj/bisystem.o $(RES)
+LINKOBJ  = obj/main.o obj/modules.o obj/back.o obj/bidata.o obj/graphics.o obj/bapi.o obj/bnetwork.o obj/buser.o obj/fnetwork.o obj/fuser.o obj/JSON.o obj/test.o obj/bisystem.o $(RES)
 LIBS     = -L"C:/TDM-GCC-64/lib" -static-libgcc -L"F:/Works/Sarthak's Workplace/Creation/App Dev/Bi/Joker/deps"
 INCS     = -I"C:/TDM-GCC-64/include" -I"C:/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include" -I"F:/Works/Sarthak's Workplace/Creation/App Dev/Bi/Joker/include"
 CXXINCS  = -I"C:/TDM-GCC-64/include" -I"C:/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include" -I"C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++" -I"F:/Works/Sarthak's Workplace/Creation/App Dev/Bi/Joker/include"
@@ -32,18 +28,14 @@ $(BIN): $(OBJ)
 obj/main.o: src/main.cpp
 	$(CPP) -c src/main.cpp -o obj/main.o $(CXXFLAGS)
 
-obj/module.o: src/Front/module.cpp
-	$(CPP) -c src/Front/module.cpp -o obj/module.o $(CXXFLAGS)
+obj/modules.o: src/Front/modules.cpp
+	$(CPP) -c src/Front/modules.cpp -o obj/modules.o $(CXXFLAGS)
 
-<<<<<<< HEAD
 obj/back.o: src/back/back.cpp
 	$(CPP) -c src/back/back.cpp -o obj/back.o $(CXXFLAGS)
 
 obj/bidata.o: src/back/bidata.cpp
 	$(CPP) -c src/back/bidata.cpp -o obj/bidata.o $(CXXFLAGS)
-
-obj/dio.o: src/res/dio.cpp
-	$(CPP) -c src/res/dio.cpp -o obj/dio.o $(CXXFLAGS)
 
 obj/graphics.o: src/front/graphics.cpp
 	$(CPP) -c src/front/graphics.cpp -o obj/graphics.o $(CXXFLAGS)
@@ -65,7 +57,13 @@ obj/fuser.o: src/classes/fuser.cpp
 
 obj/JSON.o: src/classes/JSON.cpp
 	$(CPP) -c src/classes/JSON.cpp -o obj/JSON.o $(CXXFLAGS)
-=======
+
 obj/test.o: test/test.cpp
 	$(CPP) -c test/test.cpp -o obj/test.o $(CXXFLAGS)
->>>>>>> parent of 9d57f3e... Groundwork of message passing
+
+obj/bisystem.o: src/sys/bisystem.cpp
+	$(CPP) -c src/sys/bisystem.cpp -o obj/bisystem.o $(CXXFLAGS)
+
+obj/Joker_private.res: Joker_private.rc 
+	$(WINDRES) -i Joker_private.rc --input-format=rc -o obj/Joker_private.res -O coff 
+

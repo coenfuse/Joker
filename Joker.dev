@@ -6,14 +6,14 @@ Ver=2
 ObjFiles=
 Includes="F:\Works\Sarthak's Workplace\Creation\App Dev\Bi\Joker\include"
 Libs="F:\Works\Sarthak's Workplace\Creation\App Dev\Bi\Joker\deps"
-PrivateResource=
+PrivateResource=Joker_private.rc
 ResourceIncludes=
 MakeIncludes=
 Compiler=
 CppCompiler=
 Linker=
 IsCpp=1
-Icon=
+Icon=Joker.ico
 ExeOutput=bin
 ObjectOutput=obj
 LogOutput=
@@ -24,29 +24,29 @@ HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
 CommandLine=
-Folders=dep,head,head/Classes,src,src/_classes,src/back,src/front,src/middle,src/res,test
-IncludeVersionInfo=0
+Folders=dep,head,head/Classes,head/sys,src,src/_classes,src/back,src/front,src/middle,src/sys,test
+IncludeVersionInfo=1
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=23
+UnitCount=25
 
 [VersionInfo]
-Major=1
+Major=0
 Minor=0
 Release=0
-Build=0
+Build=1
 LanguageID=1033
 CharsetID=1252
-CompanyName=
-FileVersion=1.0.0.0
+CompanyName=Major Projects Inc.
+FileVersion=0.0.0.1
 FileDescription=Developed using the Dev-C++ IDE
-InternalName=
-LegalCopyright=
-LegalTrademarks=
-OriginalFilename=
-ProductName=
-ProductVersion=1.0.0.0
+InternalName=Joker
+LegalCopyright=None
+LegalTrademarks=None
+OriginalFilename=Bi Prototype
+ProductName=Joker
+ProductVersion=0.0.0.1
 AutoIncBuildNr=0
 SyncProduct=1
 
@@ -153,7 +153,7 @@ BuildCmd=
 [Unit12]
 FileName=include\dio.h
 CompileCpp=1
-Folder=head
+Folder=head/sys
 Compile=1
 Link=1
 Priority=1000
@@ -181,16 +181,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit15]
-FileName=src\res\dio.cpp
-CompileCpp=1
-Folder=src/res
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit16]
 FileName=src\front\graphics.cpp
 CompileCpp=1
 Folder=src/front
@@ -200,7 +190,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit17]
+[Unit16]
 FileName=src\middle\bapi.cpp
 CompileCpp=1
 Folder=src/middle
@@ -210,7 +200,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit18]
+[Unit17]
 FileName=src\classes\bnetwork.cpp
 CompileCpp=1
 Folder=src/_classes
@@ -220,7 +210,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit19]
+[Unit18]
 FileName=src\classes\buser.cpp
 CompileCpp=1
 Folder=src/_classes
@@ -230,7 +220,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit20]
+[Unit19]
 FileName=src\classes\fnetwork.cpp
 CompileCpp=1
 Folder=src/_classes
@@ -240,7 +230,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit21]
+[Unit20]
 FileName=src\classes\fuser.cpp
 CompileCpp=1
 Folder=src/_classes
@@ -250,7 +240,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit22]
+[Unit21]
 FileName=include\classes\JSON.h
 CompileCpp=1
 Folder=head/Classes
@@ -260,7 +250,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit24]
+[Unit22]
 FileName=src\classes\JSON.cpp
 CompileCpp=1
 Folder=src/_classes
@@ -270,10 +260,10 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit23]
-FileName=src\classes\JSON.cpp
+[Unit24]
+FileName=include\bisystem.h
 CompileCpp=1
-Folder=src/_classes
+Folder=head
 Compile=1
 Link=1
 Priority=1000
@@ -284,6 +274,46 @@ BuildCmd=
 FileName=include\graphics.h
 CompileCpp=1
 Folder=head
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit25]
+FileName=src\sys\bisystem.cpp
+CompileCpp=1
+Folder=src/sys
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit26]
+FileName=test\test.cpp
+CompileCpp=1
+Folder=test
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit27]
+FileName=include\access.h
+CompileCpp=1
+Folder=head
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit23]
+FileName=test\test.cpp
+CompileCpp=1
+Folder=test
 Compile=1
 Link=1
 Priority=1000

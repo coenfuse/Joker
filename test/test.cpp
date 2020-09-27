@@ -5,13 +5,15 @@
 	Description: Test file to run various compilation tests
 */
 #include<iostream>
-#include "module.h"
+#include "modules.h"
+#include "bisystem.h"
 using namespace std;
 
 int main(){
-    int a;
+	cout<<access_code;
+	int a;
     a = area(98);
-    cout<<"Area of circle with radius 98 is: "<<a;
+    cout<<"\nArea of circle with radius 98 is: "<<a;
     cout<<"\n"<<perimeter(88, 23);
     return 0;
 }
