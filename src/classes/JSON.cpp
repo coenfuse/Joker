@@ -51,3 +51,6 @@ JSON::JSON(std::string input, int func){
         break;
     }
 }
+
+JSON::~JSON(){
+}

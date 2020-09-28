@@ -1,3 +1,23 @@
+//JSON is nothing. It just works as a redundant (underlined) management tool.
+//It just translates the strings received from bapi.h into useful chunks of trivial data types.
+//The JSON object can then be passed to initialize the higher objects such as Admin and Users.
+//JSON removes the requirement of translating recevived strings by the higher objects so that they can focus on other important stuff.
+//It also helps in separting a specific part of the code so that it can be debugged later on.
+/*
+Example Usage:
+...
+JSON j_Network(getNetwork(par1, par2, ...));
+Network network(j_Network);
+
+in implementation it should simplify initialization as
+Network::network(JSON j_Network){
+	attribute1 = j_Network.getAttr1();
+	attribute2 = j_Network.getAttr2();
+	attribute3 = j_Network.getAttr3();
+	...
+}
+*/
+
 #ifndef JSON_H
 #define JSON_H
 #include<string>
@@ -80,6 +100,7 @@ class JSON
 
 	public:
 		JSON(std::string, int);
+		~JSON();
 	protected:
 };
 

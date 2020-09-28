@@ -19,8 +19,8 @@
 	</File>
 </CodeBlocks_layout_file>
 [Editors]
-Order=0,16,17,18,19,20,21,22,23,24
-Focused=24
+Order=0,16,17,18,19,20,21,22,23,24,26,25
+Focused=25
 [Editor_0]
 CursorCol=13
 CursorRow=9
@@ -140,8 +140,8 @@ LeftChar=1
 =======
 >>>>>>> parent of 9d57f3e... Groundwork of message passing
 [Editor_23]
-CursorCol=73
-CursorRow=19
+CursorCol=1
+CursorRow=1
 TopLine=1
 LeftChar=1
 [Editor_24]
@@ -151,11 +151,11 @@ TopLine=1
 LeftChar=1
 [Editor_25]
 CursorCol=2
-CursorRow=14
+CursorRow=9
 TopLine=1
 LeftChar=1
 [Editor_26]
-CursorCol=58
-CursorRow=3
+CursorCol=16
+CursorRow=6
 TopLine=1
 LeftChar=1

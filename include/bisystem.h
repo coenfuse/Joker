@@ -32,10 +32,11 @@
 	class Phone {
 		private:
 			int prefix;
-            int number;
+            long long number;
+			int setISD(std::string);
 		public:
 			// Constructor
-            Phone(std::string, unsigned int);
+            Phone(std::string, std::string);
             std::string getNumber();        //If number is 123-456-7890, it returns 12*-***-*890
             int sendText(std::string);
 		protected:

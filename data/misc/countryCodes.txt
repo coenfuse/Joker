@@ -1,0 +1,240 @@
+1	Afghanistan	1	93
+2	Albania	2	355
+3	Algeria	3	213
+4	American Samoa	4	1-684
+5	Andorra	5	376
+6	Angola	6	244
+7	Anguilla	7	1-264
+8	Antarctica	8	672
+9	Antigua and Barbuda	9	1-268
+10	Argentina	10	54
+11	Armenia	11	374
+12	Aruba	12	297
+13	Australia	13	61
+14	Austria	14	43
+15	Azerbaijan	15	994
+16	Bahamas	16	1-242
+17	Bahrain	17	973
+18	Bangladesh	18	880
+19	Barbados	19	1-246
+20	Belarus	20	375
+21	Belgium	21	32
+22	Belize	22	501
+23	Benin	23	229
+24	Bermuda	24	1-441
+25	Bhutan	25	975
+26	Bolivia	26	591
+27	Bosnia and Herzegovina	27	387
+28	Botswana	28	267
+29	Brazil	29	55
+30	British Indian Ocean Territory	30	246
+31	British Virgin Islands	31	1-284
+32	Brunei	32	673
+33	Bulgaria	33	359
+3	Burkina Faso	3	226
+35	Burundi	35	257
+36	Cambodia	36	855
+37	Cameroon	37	237
+38	Canada	38	1
+39	Cape Verde	39	238
+40	Cayman Islands	40	1-345
+41	Central African Republic	41	236
+42	Chad	42	235
+43	Chile	43	56
+44	China	44	86
+45	Christmas Island	45	61
+46	Cocos Islands	46	61
+47	Colombia	47	57
+48	Comoros	48	269
+49	Cook Islands	49	682
+50	Costa Rica	50	506
+51	Croatia	51	385
+52	Cuba	52	53
+53	Curacao	53	599
+54	Cyprus	54	357
+55	Czech Republic	55	420
+56	Democratic Republic of the Congo	56	243
+57	Denmark	57	45
+58	Djibouti	58	253
+59	Dominica	59	1-767
+60	Dominican Republic	60	1-809
+61	East Timor	61	670
+62	Ecuador	62	593
+63	Egypt	63	20
+64	El Salvador	64	503
+65	Equatorial Guinea	65	240
+66	Eritrea	66	291
+67	Estonia	67	372
+68	Ethiopia	68	251
+69	Falkland Islands	69	500
+70	Faroe Islands	70	298
+71	Fiji	71	679
+72	Finland	72	358
+73	France	73	33
+74	French Polynesia	74	689
+75	Gabon	75	241
+76	Gambia	76	220
+77	Georgia	77	995
+78	Germany	78	49
+79	Ghana	79	233
+80	Gibraltar	80	350
+81	Greece	81	30
+82	Greenland	82	299
+83	Grenada	83	1-473
+84	Guam	84	1-671
+85	Guatemala	85	502
+86	Guernsey	86	44-1481
+87	Guinea	87	224
+88	Guinea-Bissau	88	245
+89	Guyana	89	592
+90	Haiti	90	509
+91	Honduras	91	504
+92	Hong Kong	92	852
+93	Hungary	93	36
+94	Iceland	94	354
+95	India	95	91
+96	Indonesia	96	62
+97	Iran	97	98
+98	Iraq	98	964
+99	Ireland	99	353
+100	Isle of Man	100	44-1624
+101	Israel	101	972
+102	Italy	102	39
+103	Ivory Coast	103	225
+104	Jamaica	104	1-876
+105	Japan	105	81
+106	Jersey	106	44-1534
+107	Jordan	107	962
+108	Kazakhstan	108	7
+109	Kenya	109	254
+110	Kiribati	110	686
+111	Kosovo	111	383
+112	Kuwait	112	965
+113	Kyrgyzstan	113	996
+114	Laos	114	856
+115	Latvia	115	371
+116	Lebanon	116	961
+117	Lesotho	117	266
+118	Liberia	118	231
+119	Libya	119	218
+120	Liechtenstein	120	423
+121	Lithuania	121	370
+122	Luxembourg	122	352
+123	Macau	123	853
+124	Macedonia	124	389
+125	Madagascar	125	261
+126	Malawi	126	265
+127	Malaysia	127	60
+128	Maldives	128	960
+129	Mali	129	223
+130	Malta	130	356
+131	Marshall Islands	131	692
+132	Mauritania	132	222
+133	Mauritius	133	230
+134	Mayotte	134	262
+135	Mexico	135	52
+136	Micronesia	136	691
+137	Moldova	137	373
+138	Monaco	138	377
+139	Mongolia	139	976
+140	Montenegro	140	382
+141	Montserrat	141	1-664
+142	Morocco	142	212
+143	Mozambique	143	258
+144	Myanmar	144	95
+145	Namibia	145	264
+146	Nauru	146	674
+147	Nepal	147	977
+148	Netherlands	148	31
+149	Netherlands Antilles	149	599
+150	New Caledonia	150	687
+151	New Zealand	151	64
+152	Nicaragua	152	505
+153	Niger	153	227
+154	Nigeria	154	234
+155	Niue	155	683
+156	North Korea	156	850
+157	Northern Mariana Islands	157	1-670
+158	Norway	158	47
+159	Oman	159	968
+160	Pakistan	160	92
+161	Palau	161	680
+162	Palestine	162	970
+163	Panama	163	507
+164	Papua New Guinea	164	675
+165	Paraguay	165	595
+166	Peru	166	51
+167	Philippines	167	63
+168	Pitcairn	168	64
+169	Poland	169	48
+170	Portugal	170	351
+171	Puerto Rico	171	1-787
+172	Qatar	172	974
+173	Republic of the Congo	173	242
+174	Reunion	174	262
+175	Romania	175	40
+176	Russia	176	7
+177	Rwanda	177	250
+178	Saint Barthelemy	178	590
+179	Saint Helena	179	290
+180	Saint Kitts and Nevis	180	1-869
+181	Saint Lucia	181	1-758
+182	Saint Martin	182	590
+183	Saint Pierre and Miquelon	183	508
+184	Saint Vincent and the Grenadines	184	1-784
+185	Samoa	185	685
+186	San Marino	186	378
+187	Sao Tome and Principe	187	239
+188	Saudi Arabia	188	966
+189	Senegal	189	221
+190	Serbia	190	381
+191	Seychelles	191	248
+192	Sierra Leone	192	232
+193	Singapore	193	65
+194	Sint Maarten	194	1-721
+195	Slovakia	195	421
+196	Slovenia	196	386
+197	Solomon Islands	197	677
+198	Somalia	198	252
+199	South Africa	199	27
+200	South Korea	200	82
+201	South Sudan	201	211
+202	pain	202	34
+203	Sri Lanka	203	94
+204	Sudan	204	249
+205	Suriname	205	597
+206	Svalbard and Jan Mayen	206	47
+207	Swaziland	207	268
+208	Sweden	208	46
+209	Switzerland	209	41
+210	Syria	210	963
+211	Taiwan	211	886
+212	Tajikistan	212	992
+213	Tanzania	213	255
+214	Thailand	214	66
+215	Togo	215	228
+216	Tokelau	216	690
+217	Tonga	217	676
+218	Trinidad and Tobago	218	1-868
+219	Tunisia	219	216
+220	Turkey	220	90
+221	Turkmenistan	221	993
+222	Turks and Caicos Islands	222	1-649
+223	Tuvalu	223	688
+224	U.S. Virgin Islands	224	1-340
+225	Uganda	225	256
+226	Ukraine	226	380
+227	United Arab Emirates	227	971
+228	United Kingdom	228	44
+229	United States	229	1
+230	Uruguay	230	598
+231	Uzbekistan	231	998
+232	Vanuatu	232	678
+233	Vatican	233	379
+234	Venezuela	234	58
+235	Vietnam	235	84
+236	Wallis and Futuna	236	681
+237	Western Sahara	237	212
+238	Yemen	238	967
+239	Zambia	239	260
+240	Zimbabwe	240	263

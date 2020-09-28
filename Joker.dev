@@ -29,7 +29,7 @@ IncludeVersionInfo=1
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=25
+UnitCount=27
 
 [VersionInfo]
 Major=0
@@ -291,9 +291,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit26]
-FileName=test\test.cpp
+FileName=src\sys\misc.cpp
 CompileCpp=1
-Folder=test
+Folder=src/sys
 Compile=1
 Link=1
 Priority=1000
@@ -301,9 +301,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit27]
-FileName=include\access.h
+FileName=include\sys\misc.h
 CompileCpp=1
-Folder=head
+Folder=head/sys
 Compile=1
 Link=1
 Priority=1000
