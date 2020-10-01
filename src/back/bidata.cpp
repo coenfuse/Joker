@@ -1,2 +1,2 @@
-#include "bidata.h"
-#include "dio.h"
+#include "../include/bidata.h"
+#include "../include/dio.h"

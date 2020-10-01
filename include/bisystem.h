@@ -33,7 +33,9 @@
 		private:
 			int prefix;
             long long number;
-			int setISD(std::string);
+			void setPrefix(std::string);
+			void setNumber(std::string);
+
 		public:
 			// Constructor
             Phone(std::string, std::string);

@@ -1,0 +1,2 @@
+C:\dev\joker\Joker\Debug\Joker.exe
+C:\dev\joker\Joker\Debug\Joker.pdb

@@ -5,16 +5,15 @@
 	Description: The program starts from here
 */
 #include<iostream>
-#include "modules.h"
-#include "bisystem.h"
-using namespace std;
+#include "../include/modules.h"
+#include "../include/bisystem.h"
 
 int main(){
-	string test = "WHAT IS THIS?\n";
-	cout<<access_code;
+	std::string test = "WHAT IS THIS?\n";
+	std::cout<<access_code;
 	int a;
 	a = area(98);
-	cout<<"\nArea of circle with radius 98 is: "<<a;
-	cout<<"\n"<<perimeter(88, 23);
+	std::cout<<"\nArea of circle with radius 98 is: "<<a;
+	std::cout<<"\n"<<perimeter(88, 23);
     return 0;
 }

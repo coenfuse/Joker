@@ -1,0 +1,14 @@
+﻿  bidata.cpp
+C:\dev\joker\Joker\src\back\bidata.cpp(1,10): fatal error C1083: Cannot open include file: '..\include\bidata.h': No such file or directory
+  graphics.cpp
+C:\dev\joker\Joker\src\front\graphics.cpp(1,10): fatal error C1083: Cannot open include file: '../include/graphics.h': No such file or directory
+  modules.cpp
+C:\dev\joker\Joker\src\front\modules.cpp(1,10): fatal error C1083: Cannot open include file: '../include/modules.h': No such file or directory
+  main.cpp
+  bapi.cpp
+  bisystem.cpp
+  dio.cpp
+C:\dev\joker\Joker\src\sys\dio.cpp(1,10): fatal error C1083: Cannot open include file: '../include/dio.h': No such file or directory
+  JSON.cpp
+C:\dev\joker\Joker\src\sys\JSON.cpp(1,10): fatal error C1083: Cannot open include file: '../include/JSON.h': No such file or directory
+  Generating Code...

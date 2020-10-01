@@ -1,5 +1,5 @@
-#include "modules.h"
-#include "graphics.h"
+#include "../include/modules.h"
+#include "../include/graphics.h"
 
 int area(int rad){
 return 3.14 * rad * rad;
