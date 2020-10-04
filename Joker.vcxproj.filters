@@ -70,5 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
+    <None Include="obj\file.file" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="docs\Readme.txt" />
+    <Text Include="deps\deps.txt" />
+    <Text Include="data\isd.txt" />
   </ItemGroup>
 </Project>

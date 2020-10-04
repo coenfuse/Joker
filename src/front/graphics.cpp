@@ -1,1 +1,5 @@
-#include "../include/graphics.h"
+#include <iostream>
+void welcomeGraphic()
+{
+	std::cout << "#######################################################################" << std::endl;
+}

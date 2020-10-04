@@ -1,0 +1,12 @@
+4 Bytes for int
+4 Bytes for unsigned int
+2 Bytes for unsigned short
+2 Bytes for short
+1 Bytes for bool
+1 Bytes for char
+8 Bytes for double
+4 Bytes for float
+4 Bytes for long
+8 Bytes for long long
+4 Bytes for long int
+32 Bytes for string

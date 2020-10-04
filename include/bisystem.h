@@ -4,7 +4,7 @@
 
 	#ifndef ACCESS_H
 	#define ACCESS_H
-		const std::string access_code = "Cmh3gdcQx&XZVbDQFQgcoen>9&kXUQ69u*(m7D#LWqx&uh6%CQ=4hb$LG";
+		const std::string access_token = "Cmh3gdcQx&XZVbDQFQgcoen>9&kXUQ69u*(m7D#LWqx&uh6%CQ=4hb$LG";
 	#endif
 
 	#ifndef NAME_H
@@ -16,6 +16,7 @@
             std::string lastName;
 		public:
             // Constructor
+			Name();
             Name(std::string fName, std::string mName, std::string lName);
             //Other functions
 			std::string getFirst();
@@ -31,13 +32,16 @@
 	#define PHONE_H
 	class Phone {
 		private:
-			int prefix;
-            long long number;
+			unsigned int prefix;
+			unsigned short var1;
+			unsigned short var2;
+			unsigned short var3;
 			void setPrefix(std::string);
 			void setNumber(std::string);
 
 		public:
 			// Constructor
+			Phone();
             Phone(std::string, std::string);
             std::string getNumber();        //If number is 123-456-7890, it returns 12*-***-*890
             int sendText(std::string);
@@ -50,7 +54,7 @@
 	#define ADDRESS_H
 	class Address {
 		private:
-            int houseNo;
+            unsigned short houseNo;
             char block;
             std::string colony;
             std::string landmark;
@@ -58,13 +62,17 @@
             std::string city;
             std::string state;
             std::string country;
-            int pincode;
+            unsigned int pincode;
 		public:
-			// Constructor
-            Address(int HNO, char BLO, std::string COL, std::string LAN, std::string LOC, std::string CIT, std::string STA, std::string COU, int PIN);
-            std::string getFull();  //Returns full address as string value
-            int update(std::string);    //Function to update address value
-            std::string getHNO();
+			// Constructors
+			Address();		//Default Constructor
+            Address(unsigned short HNO, char BLO, std::string COL, std::string LAN, std::string LOC, std::string CIT, std::string STA, std::string COU, unsigned int PIN);
+            int update(std::string, short key);    //Function to update address value
+			std::string getFull();  //Returns full address as string value
+            std::string getAddline1();
+			std::string getAddline2();
+			std::string getAddline3();
+			std::string getHNO();
             std::string getBLO();
             std::string getCOL();
             std::string getLAN();
@@ -86,7 +94,8 @@
 			std::string header;      //Stores 'someone' from someone@example.com
             std::string host;       //Stores 'example.com' from someone@example.com
 		public:
-			// Constructor
+			// Constructors
+			Email();		// Default Constructor
             Email(std::string);
             std::string getEmail();     //If email is someone@example.com, returns so***ne@example.com
             int sendEmail(std::string);

@@ -1,19 +1,16 @@
 /*
-	Name: Main
+	Name: Joker
 	Author: Sarthak Sharma
 	Date: 25-09-20 17:48
-	Description: The program starts from here
+	Description: This is the entry point for our program. Contains a menu designed on switch for basic frontend.
 */
-#include<iostream>
+#include <iostream>
 #include "../include/modules.h"
-#include "../include/bisystem.h"
+#include "../include/graphics.h"
 
 int main(){
-	std::string test = "WHAT IS THIS?\n";
-	std::cout<<access_code;
-	int a;
-	a = area(98);
-	std::cout<<"\nArea of circle with radius 98 is: "<<a;
-	std::cout<<"\n"<<perimeter(88, 23);
-    return 0;
+	welcomeGraphic();
+	std::cout << "Select an option to proceed. Press number 1 to 4" << std::endl;
+	std::cin.get(); //Makes program to wait for us pressing enter before exiting.
+	//std::cin input;
 }

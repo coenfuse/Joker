@@ -4,7 +4,13 @@
 #include <map>
 #include <iostream>
 
-//Name's Implementations
+//Name's Definitions
+Name::Name() {
+    //Default constructor definition
+    firstName = "xxx";
+    middleName = "xxx";
+    lastName = "xxx";
+}
 Name::Name(std::string fName, std::string mName, std::string lName) {
     firstName = fName;
     middleName = mName;
@@ -28,7 +34,14 @@ std::string Name::getFull() {
     return fname;
 }
 
-// Phone's Implementations
+// Phone's Definitions
+Phone::Phone() {
+    //Default constructor definition
+    prefix = 0;
+    var1 = 0;
+    var2 = 0;
+    var3 = 0;
+}
 Phone::Phone(std::string number, std::string country) {
     //Value of Code derived by intrinsic numbering of countries in ascending order.
     //This code will be then used to fetch country's calling code from local database.
@@ -47,19 +60,128 @@ void Phone::setPrefix(std::string country) {
 }
 
 void Phone::setNumber(std::string input) {
-    //Checking if the number entered is of 10 digits or not. If not, then just store -1;
+    //INCOMPLETE
+    //Check if the number entered is of 10 digits or not. If not, then just store 0;
     std::stringstream convert(input);       //Using sstream file
     int num;
     convert >> num;
-    number = int(num);
+    //number = int(num);
+    var1 = 0;
+    var2 = 0;
+    var3 = 0;
 }
 
 int Phone::sendText(std::string text) {
-    std::cout << "Sending message " << text << " to : " << prefix << "-" << number;
-    std::cout << "\nSent.";
+    //Uses bapi to send a message. Invokes sendSMS()
+    std::cout << "Sending message " << text << " to : " << prefix << "-" << " (" << var1 << ")" << var2 << "-" << var3 << std::endl;
+    std::cout << "Sent.";
     return 0;
 }
 
 std::string Phone::getNumber() {
     return "0";     //Change this later
+}
+
+// Address's Definition
+Address::Address() {
+    //Default constructor definition
+    houseNo = 0;
+    block = '0';
+    colony = "xxxx";
+    landmark = "xxxx";
+    location = "xxxx";
+    city = "xxxx";
+    state = "xxxx";
+    country = "xxxx";
+    pincode = 000000;
+}
+
+Address::Address(unsigned short HNO, char BLO, std::string COL, std::string LAN, std::string LOC, std::string CIT, std::string STA, std::string COU, unsigned int PIN){
+    houseNo = HNO;
+    block = BLO;
+    colony = COL;
+    landmark = LAN;
+    location = LOC;
+    city = CIT;
+    state = STA;
+    country = COU;
+    pincode = PIN;
+}
+
+int Address::update(std::string, short key){
+    // Key defines which value to be updated. Saves time for rewriting the same information.
+    return 0;
+}
+std::string Address::getFull(){
+    return "full address";
+}
+
+std::string Address::getAddline1(){
+    //Consists of HNO, BLO and COL
+    return "address line 1";
+}
+
+std::string Address::getAddline2(){
+    //Consists of LAN, LOC and CIT
+    return "address line 2";
+}
+
+std::string Address::getAddline3(){
+    //Consists of STA, COU and PIN
+    return "address line 3";
+}
+
+std::string Address::getHNO(){
+    return "HNO";
+}
+
+std::string Address::getBLO(){
+    return "BLO";
+}
+
+std::string Address::getCOL(){
+    return "COL";
+}
+
+std::string Address::getLAN(){
+    return "LAN";
+}
+
+std::string Address::getLOC(){
+    return "LOC";
+}
+
+std::string Address::getCIT(){
+    return "CIT";
+}
+
+std::string Address::getSTA(){
+    return "STA";
+}
+
+std::string Address::getCOU(){
+    return "COU";
+}
+
+std::string Address::getPIN(){
+    return "PIN";
+}
+
+// Email's Definition
+Email::Email() {
+    //Default constructor definition
+    header = "someone";
+    host = "@example.com";
+}
+
+Email::Email(std::string){
+    header = "someone";
+    host = "@example.com";
+}
+
+int Email::sendEmail(std::string text) {
+    //Uses bapi to send a message. Invokes sendSMS()
+    std::cout << "Sending message " << text << "to : " << header << host << std::endl;
+    std::cout << "Sent.";
+    return 0;
 }

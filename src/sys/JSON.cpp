@@ -1,4 +1,4 @@
-#include "../include/JSON.h"
+#include <..\include\JSON.h>
 #include <string>
 
 JSON::JSON(std::string input, int func){
@@ -45,7 +45,7 @@ JSON::JSON(std::string input, int func){
             //Code to convert Employee string
         }
         break;
-        case 'default':{
+        default:{
             //Code for default string conversion
         }
         break;
