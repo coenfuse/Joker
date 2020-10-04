@@ -1,2 +1,8 @@
 #pragma once
-void welcomeGraphic();
+namespace bivfx
+{
+	void welcome();
+	void menu();
+	void close();
+}
+
