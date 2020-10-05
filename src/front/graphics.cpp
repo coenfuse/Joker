@@ -16,18 +16,19 @@ void bivfx::welcome(){	//COMPLETE
 
 void bivfx::menu() {	//COMPLETE
 	std::cout << "\n\n";
-	std::cout << "+---------- MENU ----------+" << std::endl;
-	std::cout << "|                          |" << std::endl;
-	std::cout << "|-----1. Login into Bi-----|" << std::endl;
-	std::cout << "|                          |" << std::endl;
-	std::cout << "|----2. Sign In into Bi----|" << std::endl;
-	std::cout << "|                          |" << std::endl;
-	std::cout << "|--3. Contact Bi dev team--|" << std::endl;
-	std::cout << "|                          |" << std::endl;
-	std::cout << "|--------4. Exit Bi--------|" << std::endl;
-	std::cout << "|                          |" << std::endl;
+	std::cout << "\t\t\t+-------------------  MENU  -------------------+" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t|-------------  1. Login into Bi  -------------|" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t|------------  2. Sign In into Bi  ------------|" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t|----------  3. Contact Bi dev team  ----------|" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t|----------------  4. Exit Bi  ----------------|" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t+----------------------------------------------+" << std::endl;
 	std::cout << "\n";
-	std::cout << "Press any number from 1 to 4 to proceed" << std::endl;
+	std::cout << "\t\t\t     Press any number from 1 to 4 to proceed" << std::endl;
 }
 
 void bivfx::close(){	//COMPLETE
@@ -44,4 +45,26 @@ void bivfx::close(){	//COMPLETE
 	std::cout << "\nPress Enter/Return to exit.";
 	std::cout << "\n**********************************************************************************************\n\n" << std::endl;
 	std::cin.get();
+}
+void bivfx::loginMenu() { //COMPLETE
+	std::cout << "\n" << std::endl;
+	std::cout << "\t\t\t+----------------  LOGIN MENU  ----------------+" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t|-----  Press 1 to Login as Administrator  ----|" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t|---------------  <COMING SOON>  --------------|" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t|---------------  <COMING SOON>  --------------|" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t|--------  Press 4 to Login as Student  -------|" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t|---------------  <COMING SOON>  --------------|" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t|---------------  <COMING SOON>  --------------|" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t|------------  Press 0 to go back  ------------|" << std::endl;
+	std::cout << "\t\t\t|                                              |" << std::endl;
+	std::cout << "\t\t\t+----------------------------------------------+" << std::endl;
+	std::cout << "\n";
+	std::cout << "\t\t\t\t\tWaiting for Input..." << std::endl;
 }

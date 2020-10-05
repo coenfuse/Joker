@@ -51,11 +51,9 @@
     <Image Include="Joker.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="obj\file.file" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="data\isd.txt" />
     <Text Include="deps\deps.txt" />
     <Text Include="docs\Readme.txt" />
   </ItemGroup>

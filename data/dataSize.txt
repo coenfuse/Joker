@@ -1,12 +1,22 @@
-4 Bytes for int
-4 Bytes for unsigned int
-2 Bytes for unsigned short
-2 Bytes for short
-1 Bytes for bool
-1 Bytes for char
-8 Bytes for double
-4 Bytes for float
-4 Bytes for long
-8 Bytes for long long
-4 Bytes for long int
-32 Bytes for string
+Fundamental datatypes
+Size of an 'BOOL' data type is: 1 bytes.
+Size of an 'INT' data type is: 4 bytes.
+Size of an 'CHAR' data type is: 1 bytes.
+Size of an 'SHORT' data type is: 2 bytes.
+Size of an 'LONG' data type is: 4 bytes.
+Size of an 'FLOAT' data type is: 4 bytes.
+Size of an 'DOUBLE' data type is: 8 bytes.
+
+Combination of Fundamental datatypes
+Size of an 'LONG INT' data type is: 4 bytes.
+Size of an 'LONG LONG' data type is: 8 bytes.
+Size of an 'LONG FLOAT' data type is: 8 bytes.
+Size of an 'LONG DOUBLE' data type is: 8 bytes.
+
+Unsigned datatypes
+Size of an 'UNSIGNED INT' data type is: 4 bytes.
+Size of an 'UNSIGNED SHORT' data type is: 2 bytes.
+Size of an 'UNSIGNED CHAR' data type is: 1 bytes.
+
+Custom data types
+Size of an 'STRING' data type is: 28 bytes.
