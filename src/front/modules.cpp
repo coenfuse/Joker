@@ -6,15 +6,15 @@
 #include <time.h>
 #include <JSON.h>
 
-//Local variables
+//Local Variables
 /*--------------------------------------------------------------------------------------------------------*/
-short admin = 1;
-//short SUP = 2;
-//short MOD = 3;
-short student = 4;
-//short EMP = 5;
+const short admin = 1;
+//const short support = 2;
+//const short moderator = 3;
+const short student = 4;
+//constant short employee = 5;
 
-//Local declarations
+//Local Declarations
 /*--------------------------------------------------------------------------------------------------------*/
 
 void loginAttempt(unsigned short attempt);
