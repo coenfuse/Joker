@@ -1,4 +1,6 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(476,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(477,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   modules.cpp
+C:\dev\joker\Joker\src\front\modules.cpp(79,44): warning C4244: 'argument': conversion from 'short' to 'char', possible loss of data
+C:\dev\joker\Joker\src\front\modules.cpp(100,21): warning C4244: 'initializing': conversion from 'double' to 'time_t', possible loss of data
   Joker.vcxproj -> C:\dev\joker\Joker\.\bin\Joker.exe
