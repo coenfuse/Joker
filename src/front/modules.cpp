@@ -1,10 +1,11 @@
 #include <iostream>
-#include <graphics.h>
-#include <modules.h>
-#include <bisystem.h>
 #include <bapi.h>
-#include <time.h>
 #include <JSON.h>
+#include "graphics.h"
+#include "modules.h"
+#include "dash.h"
+#include "..\src\sys\frontObjects.h"
+#include "..\src\front\access.h"
 
 //Local Variables
 /*--------------------------------------------------------------------------------------------------------*/
@@ -18,7 +19,6 @@ const short student = 4;
 /*--------------------------------------------------------------------------------------------------------*/
 
 void loginAttempt(unsigned short attempt);
-short dashboard(JSON, short);
 
 //Core definitions
 /*--------------------------------------------------------------------------------------------------------*/
@@ -45,7 +45,7 @@ void bimdl::login() {
 		break;
 	case 0:
 		break;
-	default: std::cout << "Incorrect input. Program will terminate" << std::endl;
+	default: std::cout << "Incorrect Input. Program will now terminate. Error Code: F101" << std::endl;
 		break;
 	}
 }
@@ -68,7 +68,7 @@ void loginAttempt(unsigned short attempt) {	//COMPLETE
 		std::cout << "\t\t\t       Network ID: ";
 		std::string net;
 		std::cin >> net;
-		std::cout << "\t\t\t       Please enter your Username and Password" << std::endl;
+		std::cout << "\n\t\t\t       Please enter your Username and Password" << std::endl;
 		std::cout << "\t\t\t       Username: ";
 		std::string username;
 		std::cin >> username;
@@ -76,15 +76,24 @@ void loginAttempt(unsigned short attempt) {	//COMPLETE
 			std::cout << "\t\t\t       Password: ";
 			std::string salt;
 			std::cin >> salt;
-			if (bapi::user::chk::cred(access_token, admin, username, salt)) {
-				JSON atr = JSON(bapi::user::get::atr::getUser(access_token, username), 1);
-
+			if (bapi::user::chk::authLogin(access_token, admin, username, salt) != "-1") {
+				std::string session_code = bapi::user::chk::authLogin(access_token, admin, username, salt);
+				JSON atr = JSON(bapi::user::get::atr::getUser(access_token, session_code, username), 1);
 				short log;
-				log = dashboard(atr, admin);
+				log = dashboard(atr, admin, session_code);
+			}
+			else {
+				std::cout << "\n\t\t\t       Given Username or Password is incorrect. Retry? [Y/N]" << std::endl;
+				char choice = 'N';
+				std::cin >> choice;
+				if (choice == 'Y' || choice == 'y')
+					loginAttempt(--attempt);
+				else bivfx::close();
+				exit(0);
 			}
 		}
 		std::cout << "User not found in the given network. Retry? [Y/N]" << std::endl;
-		char choice = '0';
+		char choice = 'N';
 		std::cin >> choice;
 		if (choice == 'Y' || choice == 'y')
 			loginAttempt(--attempt);
@@ -92,11 +101,4 @@ void loginAttempt(unsigned short attempt) {	//COMPLETE
 		exit(0);
 	}
 	std::cout << "Too many incorrect inputs. System will now terminate." << std::endl;
-}
-
-short dashboard(JSON atr, short type) { //INCOMPLETE
-	time_t session_start = time(NULL); //Log session starting time
-	time_t session_end = time(NULL); //Log session ending time
-	time_t session_dur = difftime(session_start, session_end); //Find session duration
-	return 1;
 }

@@ -23,8 +23,8 @@ Network::network(JSON j_Network){
 #define JSON_H
 
 #include<string>
-#include "bisystem.h"
 #include<time.h>
+#include "..\src\sys\frontObjects.h"
 //#include<ctime>
 
 class JSON

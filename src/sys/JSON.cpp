@@ -1,4 +1,4 @@
-#include <..\include\JSON.h>
+#include <JSON.h>
 #include <string>
 
 JSON::JSON(std::string input, int func){

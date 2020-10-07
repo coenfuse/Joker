@@ -1,0 +1,11 @@
+The following Error Codes can be used for diagnosing faults in the system.
+
+Error Codes are divided into primarily 3 parts:
+* Frontend Errors (Referred by prefix F):
+	- F100: System encountered default case in dashboard() located in modules.cpp
+	- F101: System encountered default case in bimdl::login() located in module.cpp
+	- F102: System encountered default case in main() file.
+
+
+* Middleware Errors (Referred by prefix M)
+* Backend Errors (Referred by prefix B)

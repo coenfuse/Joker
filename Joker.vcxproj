@@ -28,24 +28,27 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\back\bidata.cpp" />
+    <ClCompile Include="src\front\dashboard.cpp" />
     <ClCompile Include="src\front\graphics.cpp" />
     <ClCompile Include="src\front\modules.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\middle\bapi.cpp" />
-    <ClCompile Include="src\sys\bisystem.cpp" />
-    <ClCompile Include="src\sys\dio.cpp" />
+    <ClCompile Include="src\sys\frontObjects.cpp" />
+    <ClCompile Include="src\back\dio.cpp" />
     <ClCompile Include="src\sys\JSON.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\bapi.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="include\bidata.h" />
-    <ClInclude Include="include\bisystem.h" />
-    <ClInclude Include="include\dio.h" />
-    <ClInclude Include="include\graphics.h" />
+    <ClInclude Include="src\back\bidata.h" />
+    <ClInclude Include="src\front\access.h" />
+    <ClInclude Include="src\sys\frontObjects.h" />
+    <ClInclude Include="src\back\dio.h" />
+    <ClInclude Include="src\front\graphics.h" />
     <ClInclude Include="include\JSON.h" />
-    <ClInclude Include="include\modules.h" />
+    <ClInclude Include="src\front\modules.h" />
+    <ClInclude Include="src\front\dash.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Joker.ico" />
@@ -55,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="deps\deps.txt" />
+    <Text Include="docs\errorCodes.txt" />
     <Text Include="docs\Readme.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -6,8 +6,8 @@
 	Description: This is the entry point for our program. Contains a menu designed on switch for basic frontend.
 */
 #include <iostream>
-#include <modules.h>
-#include <graphics.h>
+#include "..\src\front\modules.h"
+#include "..\src\front\graphics.h"
 
 int main() {
 	unsigned short input;
@@ -24,8 +24,8 @@ int main() {
 		break;
 	case 4: bivfx::close();		// Present in Graphic source file
 		break;
-	default: std::cout << "Incorrect input. Program will terminate" << std::endl;
+	default: std::cout << "Incorrect Input. Program will now terminate. Error Code: F102" << std::endl;
 		break;
 	}
-	//std::cin.get(); //Makes program to wait for us pressing enter before exiting.
+	std::cin.get(); //Makes program to wait for us pressing enter before exiting.
 }

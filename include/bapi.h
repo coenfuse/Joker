@@ -7,14 +7,14 @@ namespace bapi {
 	namespace user { // User Functions
 		namespace chk { // Check Functions
 			bool checkUser(std::string token, short key, std::string username, std::string net);
-			bool cred(std::string token, char key, std::string username, std::string password);
-			bool logut(std::string token, std::string BID_user);
+			std::string authLogin(std::string token, short key, std::string username, std::string password);
+			bool logout(std::string token, std::string BID_user, JSON data);
 		}
 		namespace get { // Get Functions
 			namespace atr { // Attribute Functions
-				std::string getUsers(std::string token, char usertype);
-				std::string getUser(std::string token, std::string BID_requestBy, std::string BID_requestOn);
-				std::string getUser(std::string token, std::string bid);
+				std::string getUsers(std::string token, std::string session_code, char usertype);
+				std::string getUser(std::string token, std::string session_code, std::string BID_requestBy, std::string BID_requestOn);
+				std::string getUser(std::string token, std::string session_code, std::string bid);
 			}
 			//namespace msg {}
 			//namespace notif {}
