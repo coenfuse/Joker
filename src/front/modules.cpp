@@ -64,7 +64,7 @@ void loginAttempt(unsigned short attempt) {	//COMPLETE
 	std::system("cls");
 	if (attempt >= 0 && attempt < 5) {
 		std::cout << "\t\t\t\t\t    Attempts remaining: 0" << attempt + 1 << std::endl;
-		std::cout << "\n\t\t\t       Please enter your Network ID (e.g: BINET12345)" << std::endl;
+		std::cout << "\n\t\t\t       Please enter your Network ID (e.g: NET1234567890)" << std::endl;
 		std::cout << "\t\t\t       Network ID: ";
 		std::string net;
 		std::cin >> net;
@@ -72,13 +72,13 @@ void loginAttempt(unsigned short attempt) {	//COMPLETE
 		std::cout << "\t\t\t       Username: ";
 		std::string username;
 		std::cin >> username;
-		if (bapi::user::chk::checkUser(access_token, admin, username, net)) {
+		if (bapi::user::chk::user(access_token, admin, username, net)) {
 			std::cout << "\t\t\t       Password: ";
 			std::string salt;
 			std::cin >> salt;
 			if (bapi::user::chk::authLogin(access_token, admin, username, salt) != "-1") {
 				std::string session_code = bapi::user::chk::authLogin(access_token, admin, username, salt);
-				JSON_adm attr = JSON_adm(bapi::user::get::atr::getUser(access_token, session_code, username));
+				JSON_adm attr = JSON_adm(bapi::user::get::attr::user(access_token, session_code, username));
 				short log;
 				log = dashboard_adm(attr, session_code);
 			}

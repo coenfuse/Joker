@@ -152,6 +152,7 @@ public:
 private:
 	std::string BID = "xxxxx";				//BID for the user
 	std::string SID = "xxxxx";				//Student's Enrollment no. or College ID
+	std::string NET = "xxxxx";				//Network ID of which the student is part of
 	bool pendingIssue = false;				//TRUE if has a pending issue, otherwise FALSE
 	Name name;								//Name of the student user.
 	Name guardian;							//Guardian name of the student user
@@ -178,6 +179,7 @@ public:
 private:
 	std::string BID = "xxxxx";				//BID for the user
 	std::string EID = "xxxxx";				//Employee's Employement ID
+	std::string NET = "xxxxx";				//Network ID of which the employee is part of
 	bool pendingIssue = false;				//TRUE if has a pending issue, otherwise FALSE
 	Name name;								//Name of the employee user.
 	Name guardian;							//Guardian name of the employee user

@@ -21,7 +21,7 @@ bool checkSalt(std::string);
 
 //USER/CHECK FUNCTIONS
 /*-----------------------------------------------------------------------------------------------*/
-bool bapi::user::chk::checkUser(std::string token, short key, std::string username, std::string net) {
+bool bapi::user::chk::user(std::string token, short key, std::string username, std::string net) {
 	//INCOMPLETE
 	/*Function to check presence of account.
 	*
@@ -64,7 +64,7 @@ std::string bapi::user::chk::authLogin(std::string token, short key, std::string
 	return giveSalt();
 }
 
-bool bapi::user::chk::logout(std::string token, std::string bid, JSON data) {
+bool bapi::user::chk::logout(std::string token, std::string bid, std::string data) {
 	//INCOMPLETE
 	return false;
 }
@@ -72,17 +72,17 @@ bool bapi::user::chk::logout(std::string token, std::string bid, JSON data) {
 
 //USER/GET/ATTRIBUTES Functions
 /*-----------------------------------------------------------------------------------------------*/
-std::string bapi::user::get::atr::getUsers(std::string token, std::string session_code, char usertype) {
+std::string bapi::user::get::attr::users(std::string token, std::string session_code, char usertype) {
 	//INCOMPLETE
 	return "0";
 }
 
-std::string bapi::user::get::atr::getUser(std::string token, std::string session_code, std::string BID_requestBy, std::string BID_requestOn) {
+std::string bapi::user::get::attr::user(std::string token, std::string session_code, std::string BID_requestedBy, std::string BID_requested) {
 	//INCOMPLETE
 	return "0";
 }
 
-std::string bapi::user::get::atr::getUser(std::string token, std::string session_code, std::string bid) {
+std::string bapi::user::get::attr::user(std::string token, std::string session_code, std::string bid) {
 	//INCOMPLETE
 	if (checkAuth(token) && checkSalt(session_code))
 		return "0";
@@ -92,12 +92,12 @@ std::string bapi::user::get::atr::getUser(std::string token, std::string session
 
 //USER/UPDATE/ATTRIBUTES Functions
 /*-----------------------------------------------------------------------------------------------*/
-bool bapi::user::up::atr::updateUsers(std::string token, std::string bid, char action) {	//Consider removal.
+bool bapi::user::up::attr::users(std::string token, std::string bid, char action) {	//Consider removal.
 	//INCOMPLETE
 	return false;
 }
 
-bool bapi::user::up::atr::updateUser(std::string token, std::string bid, JSON user) {
+bool bapi::user::up::attr::user(std::string token, std::string bid, JSON user) {
 	//INCOMPLETE
 	return false;
 }
@@ -105,12 +105,12 @@ bool bapi::user::up::atr::updateUser(std::string token, std::string bid, JSON us
 
 //USER/POST/ATTRIBUTES Functions
 /*-----------------------------------------------------------------------------------------------*/
-bool bapi::user::post::atr::postUsers(std::string token, std::string BID_requestBy, char action, JSON* users) {	//Consider removal
+bool bapi::user::post::attr::users(std::string token, std::string BID_requestBy, char action, JSON* users) {	//Consider removal
 	//INCOMPLETE
 	return false;
 }
 
-bool bapi::user::post::atr::postUser(std::string token, std::string BID_requestBy, char action, JSON user) {
+bool bapi::user::post::attr::user(std::string token, std::string BID_requestBy, char action, JSON user) {
 	//INCOMPLETE
 	return false;
 }
@@ -118,17 +118,20 @@ bool bapi::user::post::atr::postUser(std::string token, std::string BID_requestB
 
 //USER/POP/ATTRIBUTES Functions
 /*-----------------------------------------------------------------------------------------------*/
-namespace userPop = bapi::user::pop::atr;
-bool userPop::popUser(std::string token, std::string BID_requestBy, std::string BID_requestOn, char action) {
+bool bapi::user::pop::attr::user(std::string token, std::string BID_requestBy, std::string BID_requestOn, char action) {
 	//INCOMPLETE
 	return false;
 }
 
 //NETWORK/CHECK Functions
 /*-----------------------------------------------------------------------------------------------*/
-bool bapi::net::chk::searchObj(std::string token, short key, std::string NET, std::string BID) { //INCOMPLETE
+bool bapi::net::chk::user(std::string token, short key, std::string NET, std::string BID) { //INCOMPLETE
 	return true;
 }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
 
 //Local Definitions
 bool checkAuth(std::string token) { // COMPLETE
