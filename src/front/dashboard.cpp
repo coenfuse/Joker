@@ -6,11 +6,9 @@
 #include "access.h"
 
 
-short dashboard(JSON atr, short type, std::string session_code) { //INCOMPLETE
+short dashboard_adm(JSON_adm adm_data, std::string session_code) { //INCOMPLETE
 	std::cout << session_code << std::endl;
-	switch (type)
-	{
-	case 1: { // Dashboard for Admin. INCOMPLETE
+	// Dashboard for Admin. INCOMPLETE
 		/*
 		settings
 			update admin
@@ -64,19 +62,15 @@ short dashboard(JSON atr, short type, std::string session_code) { //INCOMPLETE
 			exportGuest
 			exportGuest
 		*/
+	/*time_t session_start = time(NULL); //Log session starting time
+	time_t session_end = time(NULL); //Log session ending time
+	time_t session_dur = difftime(session_start, session_end); //Find session duration*/
+	return 1;
+}
 
-	}
-		  break;
-	case 2: { // Dashboard for Support. INCOMPLETE
-
-	}
-		  break;
-	case 3: { // Dashboard for Moderator. INCOMPLETE
-
-	}
-		  break;
-	case 4: { // Dashboard for Student. INCOMPLETE
-		/*
+short dashboard_stu(JSON_stu stu_data, std::string session_code) { //INCOMPLETE
+	std::cout << session_code << std::endl;
+	/*
 		student
 			getStats
 			getHistory
@@ -107,21 +101,22 @@ short dashboard(JSON atr, short type, std::string session_code) { //INCOMPLETE
 			feedback
 				postFeedback
 		*/
+	return 1;
+}
 
-	}
-		  break;
-	case 5: { // Dashboard for Employee. INCOMPLETE
+short dashboard_emp(JSON_emp stu_data, std::string session_code) { // INCOMPLETE
+	std::cout << session_code << std::endl;
+	return 1;
+}
 
-	}
-		  break;
-	case 6: { // Dashboard for Guest. INCOMPLETE
+short dashboard_sup(JSON_sup sup_data, std::string session_code) { // INCOMPLETE
+	return 1;
+}
 
-	}
-	default: std::cout << "Abnormal behavior. System will terminate. Error Code: F100" << std::endl;
-	}/*
-	time_t session_start = time(NULL); //Log session starting time
-	time_t session_end = time(NULL); //Log session ending time
-	time_t session_dur = difftime(session_start, session_end); //Find session duration
-	*/
+short dashboard_mod(JSON_mod mod_data, std::string session_code) { // INCOMPLETE
+	return 1;
+}
+
+short dashboard_gue(JSON_guest guest_data, std::string session_code) { // INCOMPLETE
 	return 1;
 }

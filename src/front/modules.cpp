@@ -3,8 +3,8 @@
 #include <JSON.h>
 #include "graphics.h"
 #include "modules.h"
-#include "dash.h"
-#include "..\src\sys\frontObjects.h"
+#include "dashboard.h"
+#include "..\src\sys\frontObj.h"
 #include "..\src\front\access.h"
 
 //Local Variables
@@ -78,9 +78,9 @@ void loginAttempt(unsigned short attempt) {	//COMPLETE
 			std::cin >> salt;
 			if (bapi::user::chk::authLogin(access_token, admin, username, salt) != "-1") {
 				std::string session_code = bapi::user::chk::authLogin(access_token, admin, username, salt);
-				JSON atr = JSON(bapi::user::get::atr::getUser(access_token, session_code, username), 1);
+				JSON_adm attr = JSON_adm(bapi::user::get::atr::getUser(access_token, session_code, username));
 				short log;
-				log = dashboard(atr, admin, session_code);
+				log = dashboard_adm(attr, session_code);
 			}
 			else {
 				std::cout << "\n\t\t\t       Given Username or Password is incorrect. Retry? [Y/N]" << std::endl;

@@ -5,6 +5,7 @@ Error Codes are divided into primarily 3 parts:
 	- F100: System encountered default case in dashboard() located in modules.cpp
 	- F101: System encountered default case in bimdl::login() located in module.cpp
 	- F102: System encountered default case in main() file.
+	- F103: Compatibility issue. Incorrect data passed to JSON object or incorrect constructed.
 
 
 * Middleware Errors (Referred by prefix M)
