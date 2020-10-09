@@ -64,7 +64,7 @@ std::string bapi::user::chk::authLogin(std::string token, short key, std::string
 	return giveSalt();
 }
 
-bool bapi::user::chk::logout(std::string token, std::string bid, std::string data) {
+bool bapi::user::chk::logout(std::string token, std::string session_code, std::string bid, std::string data) {
 	//INCOMPLETE
 	return false;
 }
@@ -72,14 +72,16 @@ bool bapi::user::chk::logout(std::string token, std::string bid, std::string dat
 
 //USER/GET/ATTRIBUTES Functions
 /*-----------------------------------------------------------------------------------------------*/
-std::string bapi::user::get::attr::users(std::string token, std::string session_code, char usertype) {
+std::string bapi::user::get::attr::users(std::string token, std::string session_code, short usertype) {
 	//INCOMPLETE
-	return "0";
+	std::string prefix[] = {"#BLK_ADM","#BLK_STU","#BLK_EMP","#BLK_SUP","#BLK_MOD","#BLK_GUE"};
+	return prefix[0] + "0";
 }
 
 std::string bapi::user::get::attr::user(std::string token, std::string session_code, std::string BID_requestedBy, std::string BID_requested) {
 	//INCOMPLETE
-	return "0";
+	std::string prefix[] = {"#USR_ATTR_ADM","#USR_ATTR_STU","#USR_ATTR_EMP","#USR_ATTR_SUP","#USR_ATTR_MOD","#USR_ATTR_GUE"};
+	return prefix[0] + "0";
 }
 
 std::string bapi::user::get::attr::user(std::string token, std::string session_code, std::string bid) {
@@ -92,12 +94,12 @@ std::string bapi::user::get::attr::user(std::string token, std::string session_c
 
 //USER/UPDATE/ATTRIBUTES Functions
 /*-----------------------------------------------------------------------------------------------*/
-bool bapi::user::up::attr::users(std::string token, std::string bid, char action) {	//Consider removal.
+bool bapi::user::up::attr::users(std::string token, std::string session_code, std::string bid, short action) {	//Consider removal.
 	//INCOMPLETE
 	return false;
 }
 
-bool bapi::user::up::attr::user(std::string token, std::string bid, JSON user) {
+bool bapi::user::up::attr::user(std::string token, std::string session_code, std::string bid, std::string data) {
 	//INCOMPLETE
 	return false;
 }
@@ -105,12 +107,12 @@ bool bapi::user::up::attr::user(std::string token, std::string bid, JSON user) {
 
 //USER/POST/ATTRIBUTES Functions
 /*-----------------------------------------------------------------------------------------------*/
-bool bapi::user::post::attr::users(std::string token, std::string BID_requestBy, char action, JSON* users) {	//Consider removal
+bool bapi::user::post::attr::users(std::string token, std::string session_code, std::string BID_requestBy, short action, std::string data) {	//Consider removal
 	//INCOMPLETE
 	return false;
 }
 
-bool bapi::user::post::attr::user(std::string token, std::string BID_requestBy, char action, JSON user) {
+bool bapi::user::post::attr::user(std::string token, std::string session_code, std::string BID_requestBy, short action, std::string data) {
 	//INCOMPLETE
 	return false;
 }
@@ -118,18 +120,191 @@ bool bapi::user::post::attr::user(std::string token, std::string BID_requestBy, 
 
 //USER/POP/ATTRIBUTES Functions
 /*-----------------------------------------------------------------------------------------------*/
-bool bapi::user::pop::attr::user(std::string token, std::string BID_requestBy, std::string BID_requestOn, char action) {
+bool bapi::user::pop::attr::user(std::string token, std::string session_code, std::string BID_requestBy, std::string BID_requestOn, short action) {
 	//INCOMPLETE
 	return false;
 }
 
 //NETWORK/CHECK Functions
 /*-----------------------------------------------------------------------------------------------*/
+bool bapi::net::chk::net(std::string token, std::string NET){ //INCOMPLETE
+	return true;
+}
+
 bool bapi::net::chk::user(std::string token, short key, std::string NET, std::string BID) { //INCOMPLETE
 	return true;
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
+bool bapi::net::chk::owner(std::string token, std::string NET, std::string BID){ //INCOMPLETE
+	return true;
+}
+
+bool bapi::net::chk::active(std::string token, std::string NET){ //INCOMPLETE
+	return true;
+}
+
+//NETWORK/GET Functions
+/*-----------------------------------------------------------------------------------------------*/
+std::string bapi::net::get::net(std::string token, std::string session_code, std::string NET, std::string BID){ //INCOMPLETE
+	std::string prefix = "#NET";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::stats(std::string token, std::string session_code, std::string NET, std::string BID){ //INCOMPLETE
+	std::string prefix = "#NET_STAT";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::admins(std::string token, std::string session_code, std::string NET, std::string BID){ // INCOMPLETE
+	std::string prefix = "#NET_ADMS";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::owner(std::string token, std::string session_code, std::string NET, std::string BID){ // INCOMPLETE
+	std::string prefix = "#NET_OWN";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::stands(std::string token, std::string session_code, std::string NET, std::string BID) { // INCOMPLETE
+	std::string prefix = "#NET_STDS";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::stand(std::string token, std::string session_code, std::string NET, std::string STD, std::string BID) { // INCOMPLETE
+	std::string prefix = "#NET_STD";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::standStats(std::string token, std::string session_code, std::string NET, std::string STD, std::string BID) { // INCOMPLETE
+	std::string prefix = "#NET_STD_STAT";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::nearestStand(std::string token, std::string session_code, std::string NET, std::string LOC, std::string BID) { // INCOMPLETE
+	std::string prefix = "#NET_NEAR_STD";
+	return prefix + "0";
+}
+
+int bapi::net::get::standDistance(std::string token, std::string session_code, std::string NET, std::string STD1, std::string STD2, std::string BID) { // INCOMPLETE
+	return 100;
+}
+
+std::string bapi::net::get::cycles(std::string token, std::string session_code, std::string NET, std::string BID) { // INCOMPLETE
+	std::string prefix = "#NET_CYCS";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::cycle(std::string token, std::string session_code, std::string NET, std::string CYC) { // INCOMPLETE
+	std::string prefix = "#NET_CYC";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::freeCycles(std::string token, std::string session_code, std::string NET, std::string BID) { // INCOMPLETE
+	std::string prefix = "#NET_FREE_CYC";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::locks(std::string token, std::string session_code, std::string NET, std::string BID) { // INCOMPLETE
+	std::string prefix = "#NET_LCKS";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::lock(std::string token, std::string session_code, std::string NET, std::string LCK, std::string BID) { // INCOMPLETE
+	std::string prefix = "#NET_LCK";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::allTXN(std::string token, std::string session_code, std::string NET, std::string BID_requester){
+	std::string prefix = "#NET_TXNS";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::userTXN(std::string token, std::string session_code, std::string NET, std::string BID_requester, std::string BID_requested){
+	std::string prefix = "#NET_USR_TXN";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::stdTXN(std::string token, std::string session_code, std::string NET, std::string STD, std::string BID_requester){
+	std::string prefix = "#NET_STD_TXN";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::cycTXN(std::string token, std::string session_code, std::string NET, std::string CYC, std::string BID_requester){
+	std::string prefix = "#NET_CYC_TXN";
+	return prefix + "0";
+}
+
+std::string bapi::net::get::TXN(std::string token, std::string session_code, std::string NET, std::string BID_requester, std::string TXN){
+	std::string prefix = "#NET_TXN";
+	return prefix + "0";
+}
+
+//NETWORK/UP Functions
+/*-----------------------------------------------------------------------------------------------*/
+bool bapi::net::up::net(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string data) { // INCOMPLETE
+	return true;
+}
+
+bool bapi::net::up::stands(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string data) { // INCOMPLETE
+	return true;
+}
+
+bool bapi::net::up::stand(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string STD, std::string data) { // INCOMPLETE
+	return true;
+}
+
+bool bapi::net::up::cycles(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string data) { // INCOMPLETE
+	return true;
+}
+
+bool bapi::net::up::cycle(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string CYC, std::string data) { // INCOMPLETE
+	return true;
+}
+
+bool bapi::net::up::locks(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string data) { // INCOMPLETE
+	return true;
+}
+
+bool bapi::net::up::lock(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string LCK, std::string data) { // INCOMPLETE
+	return true;
+}
+
+//NETWORK/POST Functions
+/*-----------------------------------------------------------------------------------------------*/
+bool bapi::net::post::net(std::string token, std::string session_code, std::string BID, std::string data) { //INCOMPLETE
+	return true;
+}
+
+bool bapi::net::post::stand(std::string token, std::string session_code, std::string BID, std::string NET, std::string data){ //INCOMPLETE
+	return true;
+}
+
+bool bapi::net::post::cycle(std::string token, std::string session_code, std::string BID, std::string NET, std::string data) { //INCOMPLETE
+	return true;
+}
+
+bool bapi::net::post::lock(std::string token, std::string session_code, std::string BID, std::string NET, std::string STD, std::string data) { //INCOMPLETE
+	return true;
+}
+
+//NETWORK/POP Functions
+/*-----------------------------------------------------------------------------------------------*/
+bool bapi::net::pop::net(std::string token, std::string session_code, std::string BID, std::string NET) { // INCOMPLETE
+	return true;
+}
+
+bool bapi::net::pop::stand(std::string token, std::string session_code, std::string BID, std::string NET, std::string STD) { // INCOMPLETE
+	return true;
+}
+
+bool bapi::net::pop::cycle(std::string token, std::string session_code, std::string BID, std::string NET, std::string CYC) { // INCOMPLETE
+	return true;
+}
+
+bool bapi::net::pop::lock(std::string token, std::string session_code, std::string BID, std::string NET, std::string STD, std::string LCK) { // INCOMPLETE
+	return true;
+}
+
 //-----------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------
 

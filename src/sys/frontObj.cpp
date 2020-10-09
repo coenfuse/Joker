@@ -17,19 +17,19 @@ Name::Name(std::string fName, std::string mName, std::string lName) {
     lastName = lName;
 }
 
-std::string Name::getFirst() {
+std::string Name::getFirstName() {
     return firstName;
 }
 
-std::string Name::getMiddle() {
+std::string Name::getMiddleName() {
     return middleName;
 }
 
-std::string Name::getLast() {
+std::string Name::getLastName() {
     return lastName;
 }
 
-std::string Name::getFull() {
+std::string Name::getName() {
     std::string fname = firstName + " " + middleName + " " + lastName;
     return fname;
 }
@@ -89,19 +89,19 @@ Address::Address() {
     block = '0';
     colony = "xxxx";
     landmark = "xxxx";
-    location = "xxxx";
+    area = "xxxx";
     city = "xxxx";
     state = "xxxx";
     country = "xxxx";
-    pincode = 000000;
+    pincode = 0;
 }
 
-Address::Address(unsigned short HNO, char BLO, std::string COL, std::string LAN, std::string LOC, std::string CIT, std::string STA, std::string COU, unsigned int PIN){
+Address::Address(unsigned short HNO, char BLO, std::string COL, std::string LAN, std::string AREA, std::string CIT, std::string STA, std::string COU, unsigned int PIN){
     houseNo = HNO;
     block = BLO;
     colony = COL;
     landmark = LAN;
-    location = LOC;
+    area = AREA;
     city = CIT;
     state = STA;
     country = COU;
@@ -147,7 +147,7 @@ std::string Address::getLAN(){
     return "LAN";
 }
 
-std::string Address::getLOC(){
+std::string Address::getAREA(){
     return "LOC";
 }
 
@@ -184,4 +184,33 @@ int Email::sendEmail(std::string text) {
     std::cout << "Sending message " << text << "to : " << header << host << std::endl;
     std::cout << "Sent.";
     return 0;
+}
+
+// Coordinate's Definitions
+Coordinate::Coordinate(){
+    // Default constructor Definition
+    longitude = 0.0;
+    latitude = 0.0;
+}
+
+Coordinate::Coordinate(float LONG, float LAT){
+    longitude = LONG;
+    latitude = LAT;
+}
+
+Coordinate::~Coordinate() {
+
+}
+
+/*float[] getCoordinates(){ // Consider removal of this function.
+    float[2] coordinates = {longitude, latitude};
+    return coordinates;
+}*/
+
+float Coordinate::getLongitude(){
+    return longitude;
+}
+
+float Coordinate::getLatitude(){
+    return latitude;
 }

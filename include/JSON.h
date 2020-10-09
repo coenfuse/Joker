@@ -26,6 +26,7 @@ Network::network(JSON j_Network){
 #include<time.h>
 #include "..\src\sys\frontObj.h"
 #include <map>
+#include <vector>
 //#include<ctime>
 
 class JSON
@@ -247,6 +248,8 @@ private:
 	unsigned int std_count = 0;			//No. of stands in the network
 	unsigned int cyc_count = 0;			//No. of cycles in the Network
 	unsigned int user_count = 0;		//No. of users in the network
+	unsigned int lock_count = 0;		//No.of locks in the network
+	unsigned int capacity = 0;				//Capacity of the network, equals to number of slots (locks) available in the network.
 
 };
 
@@ -262,6 +265,7 @@ private:
 	std::string stdStatus = "xxxxx";			//Representing current state of Stand, Disabled, Maintainence, Frozen, etc.
 	std::string stdName = "xxxxx";			//The name of the stand. More memorable value
 	std::string stdLoc = "xxxxx";			//The location code of the stand
+	Coordinate longlat;						//Location Coordinates
 	unsigned int stdCapacity = 0;		//Unsigned integer value representing the slots available in the stand
 	unsigned int txn_count = 0;			//Consider removing this redundant attribute. This can be calculated on demand.
 
@@ -292,7 +296,7 @@ public:
 private:
 	std::string LCK = "xxxxx";				//LCK (Lock ID)
 	bool lckStatus = false;				//TRUE = Locked, FALSE = Unlocked
-
+	bool able = true;				// Whether the lock is enabled or disabled for normal usage or not.
 };
 
 class JSON_txn
@@ -308,7 +312,8 @@ private:
 	std::string issueFrom = "xxxxx";			//STD of stand from where the cycle is issued
 	std::string depositTo = "xxxxx";			//STD of stand from where the cycle is deposited
 	time_t overtime = time(0);				//Amount of overtime
-	std::string txnStatus = "xxxxx";			//Late, Stolen, Broken, Normal
+	bool complete = true;					//Whether the transaction has completed its cycle. A TXN cycle is from Issue to Deposit back.
+	std::string txnStatus = "xxxxx";			//Pending, Late, Stolen, Broken, Normal
 	std::string remarks = "xxxxx";			//Any error code or output from system goes here
 
 };
