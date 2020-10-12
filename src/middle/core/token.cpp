@@ -5,12 +5,13 @@
 #include <ctime>
 #include <iostream>
 
-#define HIGH 1
+#define HIGH 2
+#define MED 1
 #define LOW 0;
 
 // CAUTION: CHANGING THE FOLLOWING VALUE WITHOUT MAKING NECESSARY CHANGES CAN CAUSE SYSTEM CRASH. Proceed with caution
 // DOCUMENTATION INCOMPLETE
-const bool MODE = LOW;				// PERFORMANCE SWITCH
+unsigned short MODE = LOW;				// PERFORMANCE SWITCH
 
 std::string alphabets[] = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", };
 std::string numbers[] = { "0","1","2","3","4","5","6","7","8","9" };
@@ -21,13 +22,22 @@ Token::Token() {	// COMPLETE (CURRENTLY USING LOW MEMORY VERSION)
 	// Explicitly generating one pseudo access code that would always be the same.
 	// This has been done because the program generates a new access_token on every execution.
 
-	if (MODE) // Set the value to non-zero to activate this HIGH MEMORY part of code
+	switch (MODE)
 	{
+	case 2: {
 		m_access["6969"] = "Gx%kVRN+E^QX3m7Ux4D?y^coenJu2Nfk4S5?TUFETD69FC?4B5L5NW9pnbg$U&D+";
 	}
-	else // Set the if() value to zero to activate this LOW MEMORY part of the code
-	{
+		break;
+	case 1: {
 		m_access["6"] = "Gx%kVRN+E^QX3m7Ux4D?y^coenJu2Nfk4S5?TUFETD69FC?4B5L5NW9pnbg$U&D+";
+	}
+		break;
+	case 0: {
+		m_access["low"] = "k4S5?TUFETD69FC?4B5L5NW9pnb";
+	}
+		break;
+	default:
+		break;
 	}
 
 	// Filling the Token object with a pool of access and session strings.
@@ -59,10 +69,9 @@ void Token::fill() {	// COMPLETE
 	};
 	*/
 
-	//Generating random <key> and <value> for m_session of length 4 and 10 respectively.
-
-	if (MODE)
+	switch (MODE)
 	{
+	case 2: {
 		int alphalength = sizeof(alphabets) / sizeof(alphabets[0]);
 		int pool_len = sizeof(pool) / sizeof(pool[0]);
 		std::string key, session_val, access_val;
@@ -101,7 +110,8 @@ void Token::fill() {	// COMPLETE
 			}
 		}
 	}
-	else { // Set the if() value to zero to activate this LOW MEMORY part of the code
+		  break;
+	case 1: {
 		int alphalength = sizeof(alphabets) / sizeof(alphabets[0]);
 		int pool_len = sizeof(pool) / sizeof(pool[0]);
 		std::string key, session_val, access_val;
@@ -115,6 +125,14 @@ void Token::fill() {	// COMPLETE
 			key = session_val = access_val = "";
 		}
 	}
+		  break;
+	case 0: {
+		m_session["low"] = "69coenfuse";
+	}
+		  break;
+	default:
+		break;
+	}
 }
 
 bool Token::checkAccess(std::string input) {	// COMPLETE
@@ -123,20 +141,34 @@ bool Token::checkAccess(std::string input) {	// COMPLETE
 	// input.substr(length - 2, length) = last two character of string
 	// std::string strip = input.substr(2, (input.length() - 4)) = string excluding first two and last two characters
 
-	if (MODE)
+	switch (MODE)
 	{
+	case 2: {
 		std::string index = input.substr(0, 2) + input.substr(input.length() - 2, input.length());
 		std::string strip = input.substr(2, (input.length() - 4));
 		if (m_access.at(index) == strip)
 			return true;
 		return false;
 	}
-	else {
+		  break;
+	case 1: {
 		std::string index = input.substr(0, 1);
 		std::string strip = input.substr(1, (input.length() - 1));
 		if (m_access.at(index) == strip)
 			return true;
 		return false;
+	}
+		  break;
+	case 0: {
+		std::string index = input.substr(0, 3);
+		std::string strip = input.substr(3, (input.length()-1));
+		if(m_access.at(index) == strip)
+			return true;
+		return false;
+	}
+		  break;
+	default: return false;
+		break;
 	}
 }
 
@@ -146,44 +178,69 @@ bool Token::checkSession(std::string input) {	// COMPLETE
 	// input.substr(length - 2, length) = last two character of string
 	// std::string strip = input.substr(2, (input.length() - 4)) = string excluding first two and last two characters
 
-	if (MODE)
+	switch (MODE)
 	{
+	case 2: {
 		std::string index = input.substr(0, 2) + input.substr(input.length() - 2, input.length());
 		std::string strip = input.substr(2, (input.length() - 4));
 		if (m_session.at(index) == strip)
 			return true;
 		return false;
 	}
-	else {
+		  break;
+	case 1: {
 		std::string index = input.substr(0, 1);
 		std::string strip = input.substr(1, (input.length() - 1));
 		if (m_session.at(index) == strip)
 			return true;
 		return false;
 	}
+		  break;
+	case 0: {
+		std::string index = input.substr(0, 3);
+		std::string strip = input.substr(3, (input.length() - 1));
+		if(m_session.at(index) == strip)
+			return false;
+		return false;
+	}
+		  break;
+	default: return false;
+		break;
+	}
 }
 
 std::string Token::giveAccess() {	// COMPLETE
-	if (MODE)
+	switch (MODE)
 	{
+	case 2: {
 		const unsigned short length = sizeof(alphabets) / sizeof(alphabets[0]);
 		std::string index;
 		srand((unsigned)time(0));
 		index = index + alphabets[(rand() % length)] + alphabets[(rand() % length)] + alphabets[(rand() % length)] + alphabets[(rand() % length)];
 		return index.substr(0, 2) + m_access.at(index) + index.substr(index.length() - 2, index.length());
 	}
-	else {
+		  break;
+	case 1: {
 		const unsigned short length = sizeof(alphabets) / sizeof(alphabets[0]);
 		std::string index;
 		srand((unsigned)time(0));
 		index = index + alphabets[(rand() % length)];
 		return index + m_access.at(index);
 	}
+		  break;
+	case 0: {
+		return "lowk4S5?TUFETD69FC?4B5L5NW9pnb";
+	}
+		  break;
+	default: return "error";
+		break;
+	}
 }
 
 std::string Token::giveSession() {	// COMPLETE
-	if (MODE)
+	switch (MODE)
 	{
+	case 2: {
 		const unsigned short length = sizeof(alphabets) / sizeof(alphabets[0]);
 		std::string index, session_code;
 		srand((unsigned)time(0));
@@ -191,13 +248,22 @@ std::string Token::giveSession() {	// COMPLETE
 		session_code = index.substr(0, 2) + m_session.at(index) + index.substr(index.length() - 2, index.length());
 		return session_code;
 	}
-	else {
+		  break;
+	case 1: {
 		const unsigned short length = sizeof(alphabets) / sizeof(alphabets[0]);
 		std::string index, session_code;
 		srand((unsigned)time(0));
 		index = index + alphabets[(rand() % length)];
 		session_code = index + m_session.at(index);
 		return session_code;
+	}
+		  break;
+	case 0: {
+		return "low69coenfuse";
+	}
+		  break;
+	default: return "error";
+		break;
 	}
 }
 
