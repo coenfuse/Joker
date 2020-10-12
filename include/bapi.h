@@ -36,15 +36,15 @@ namespace bapi {
 
 	namespace user { // User Functions
 		namespace chk { // Check Functions
-			bool user(std::string token, short which, std::string username, std::string NET);
-			std::string authLogin(std::string token, short which, std::string username, std::string password);
-			bool logout(std::string token, std::string session_code, std::string BID, std::string data);
+			bool user(std::string access_code, short which, std::string username, std::string NET);
+			std::string authLogin(std::string access_code, short which, std::string username, std::string password);
+			bool logout(std::string access_code, std::string session_code, std::string BID, std::string data);
 		}
 		namespace get { // Get Functions
 			namespace attr { // Attribute Functions
-				std::string users(std::string token, std::string session_code, short usertype);
-				std::string user(std::string token, std::string session_code, std::string BID_requestedBy, std::string BID_requested);
-				std::string user(std::string token, std::string session_code, std::string bid);		//Consider removal.
+				std::string users(std::string access_code, std::string session_code, short usertype);
+				std::string user(std::string access_code, std::string session_code, std::string BID_requestedBy, std::string BID_requested);
+				std::string user(std::string access_code, std::string session_code, std::string bid);		//Consider removal.
 			}
 			//namespace msg {}
 			//namespace notif {}
@@ -53,8 +53,8 @@ namespace bapi {
 		}
 		namespace up { //Update Functions
 			namespace attr { //Attribute Functions
-				bool users(std::string token, std::string session_code, std::string bid, short action);	//Consider removal.
-				bool user(std::string token, std::string session_code, std::string bid, std::string data);
+				bool users(std::string access_code, std::string session_code, std::string bid, short action);	//Consider removal.
+				bool user(std::string access_code, std::string session_code, std::string bid, std::string data);
 			}
 			//namespace msg {}
 			//namespace notif {}
@@ -63,8 +63,8 @@ namespace bapi {
 		}
 		namespace post { //Post Functions
 			namespace attr { //Attribute Functions
-				bool users(std::string token, std::string session_code, std::string BID_requestBy, short action, std::string data);	//Consider removal
-				bool user(std::string token, std::string session_code, std::string BID_requestBy, short action, std::string data);
+				bool users(std::string access_code, std::string session_code, std::string BID_requestBy, short action, std::string data);	//Consider removal
+				bool user(std::string access_code, std::string session_code, std::string BID_requestBy, short action, std::string data);
 			}
 			//namespace msg {}
 			//namespace notif {}
@@ -73,7 +73,7 @@ namespace bapi {
 		}
 		namespace pop { // Post Functions
 			namespace attr { // Attribute Functions
-				bool user(std::string token, std::string session_code, std::string BID_requestBy, std::string BID_requestOn, short action);
+				bool user(std::string access_code, std::string session_code, std::string BID_requestBy, std::string BID_requestOn, short action);
 			}
 			//namespace msg {}
 			//namespace notif {}
@@ -143,65 +143,65 @@ namespace bapi {
 
 	namespace net { // Network Functions
 		namespace chk { // Check Functions
-			bool net(std::string token, std::string NET);
-			bool user(std::string token, short key, std::string NET, std::string BID);
-			bool owner(std::string token, std::string NET, std::string BID);
-			bool active(std::string token, std::string NET);
+			bool net(std::string access_code, std::string NET);
+			bool user(std::string access_code, short key, std::string NET, std::string BID);
+			bool owner(std::string access_code, std::string NET, std::string BID);
+			bool active(std::string access_code, std::string NET);
 		}
 		namespace get { // Get Functions
-			std::string net(std::string token, std::string session_code, std::string NET, std::string BID);
-			std::string stats(std::string token, std::string session_code, std::string NET, std::string BID);
-			std::string admins(std::string token, std::string session_code, std::string NET, std::string BID);
-			std::string owner(std::string token, std::string session_code, std::string NET, std::string BID);
+			std::string net(std::string access_code, std::string session_code, std::string NET, std::string BID);
+			std::string stats(std::string access_code, std::string session_code, std::string NET, std::string BID);
+			std::string admins(std::string access_code, std::string session_code, std::string NET, std::string BID);
+			std::string owner(std::string access_code, std::string session_code, std::string NET, std::string BID);
 
-			std::string stands(std::string token, std::string session_code, std::string NET, std::string BID);
-			std::string stand(std::string token, std::string session_code, std::string NET, std::string STD, std::string BID);
-			std::string standStats(std::string token, std::string session_code, std::string NET, std::string STD, std::string BID);
-			std::string nearestStand(std::string token, std::string session_code, std::string NET, std::string LOC, std::string BID);
-			int standDistance(std::string token, std::string session_code, std::string NET, std::string STD1, std::string STD2, std::string BID);
+			std::string stands(std::string access_code, std::string session_code, std::string NET, std::string BID);
+			std::string stand(std::string access_code, std::string session_code, std::string NET, std::string STD, std::string BID);
+			std::string standStats(std::string access_code, std::string session_code, std::string NET, std::string STD, std::string BID);
+			std::string nearestStand(std::string access_code, std::string session_code, std::string NET, std::string LOC, std::string BID);
+			int standDistance(std::string access_code, std::string session_code, std::string NET, std::string STD1, std::string STD2, std::string BID);
 
-			std::string cycles(std::string token, std::string session_code, std::string NET, std::string BID);
-			std::string cycle(std::string token, std::string session_code, std::string NET, std::string CYC);
-			std::string freeCycles(std::string token, std::string session_code, std::string NET, std::string BID);
+			std::string cycles(std::string access_code, std::string session_code, std::string NET, std::string BID);
+			std::string cycle(std::string access_code, std::string session_code, std::string NET, std::string CYC);
+			std::string freeCycles(std::string access_code, std::string session_code, std::string NET, std::string BID);
 
-			std::string locks(std::string token, std::string session_code, std::string NET, std::string BID);
-			std::string lock(std::string token, std::string session_code, std::string NET, std::string LCK, std::string BID);
+			std::string locks(std::string access_code, std::string session_code, std::string NET, std::string BID);
+			std::string lock(std::string access_code, std::string session_code, std::string NET, std::string LCK, std::string BID);
 
-			std::string allTXN(std::string token, std::string session_code, std::string NET, std::string BID_requester);
-			std::string userTXN(std::string token, std::string session_code, std::string NET, std::string BID_requester, std::string BID_requested);
-			std::string stdTXN(std::string token, std::string session_code, std::string NET, std::string STD, std::string BID_requester);
-			std::string cycTXN(std::string token, std::string session_code, std::string NET, std::string CYC, std::string BID_requester);
-			std::string TXN(std::string token, std::string session_code, std::string NET, std::string BID_requester, std::string TXN);
+			std::string allTXN(std::string access_code, std::string session_code, std::string NET, std::string BID_requester);
+			std::string userTXN(std::string access_code, std::string session_code, std::string NET, std::string BID_requester, std::string BID_requested);
+			std::string stdTXN(std::string access_code, std::string session_code, std::string NET, std::string STD, std::string BID_requester);
+			std::string cycTXN(std::string access_code, std::string session_code, std::string NET, std::string CYC, std::string BID_requester);
+			std::string TXN(std::string access_code, std::string session_code, std::string NET, std::string BID_requester, std::string TXN);
 		}
 		namespace up { // Update Functions
-			bool net(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string data);
+			bool net(std::string access_code, std::string session_code, std::string NET, std::string BID, short action, std::string data);
 
-			bool stands(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string data);
-			bool stand(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string STD, std::string data);
+			bool stands(std::string access_code, std::string session_code, std::string NET, std::string BID, short action, std::string data);
+			bool stand(std::string access_code, std::string session_code, std::string NET, std::string BID, short action, std::string STD, std::string data);
 
-			bool cycles(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string data);
-			bool cycle(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string CYC, std::string data);
+			bool cycles(std::string access_code, std::string session_code, std::string NET, std::string BID, short action, std::string data);
+			bool cycle(std::string access_code, std::string session_code, std::string NET, std::string BID, short action, std::string CYC, std::string data);
 
-			bool locks(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string data);
-			bool lock(std::string token, std::string session_code, std::string NET, std::string BID, short action, std::string LCK, std::string data);
+			bool locks(std::string access_code, std::string session_code, std::string NET, std::string BID, short action, std::string data);
+			bool lock(std::string access_code, std::string session_code, std::string NET, std::string BID, short action, std::string LCK, std::string data);
 		}
 		namespace post { // Post Functions
-			bool net(std::string token, std::string session_code, std::string BID, std::string data);
+			bool net(std::string access_code, std::string session_code, std::string BID, std::string data);
 
-			bool stand(std::string token, std::string session_code, std::string BID, std::string NET, std::string data);
+			bool stand(std::string access_code, std::string session_code, std::string BID, std::string NET, std::string data);
 
-			bool cycle(std::string token, std::string session_code, std::string BID, std::string NET, std::string data);
+			bool cycle(std::string access_code, std::string session_code, std::string BID, std::string NET, std::string data);
 
-			bool lock(std::string token, std::string session_code, std::string BID, std::string NET, std::string STD, std::string data);
+			bool lock(std::string access_code, std::string session_code, std::string BID, std::string NET, std::string STD, std::string data);
 		}
 		namespace pop { // Pop Functions
-			bool net(std::string token, std::string session_code, std::string BID, std::string NET);
+			bool net(std::string access_code, std::string session_code, std::string BID, std::string NET);
 
-			bool stand(std::string token, std::string session_code, std::string BID, std::string NET, std::string STD);
+			bool stand(std::string access_code, std::string session_code, std::string BID, std::string NET, std::string STD);
 
-			bool cycle(std::string token, std::string session_code, std::string BID, std::string NET, std::string CYC);
+			bool cycle(std::string access_code, std::string session_code, std::string BID, std::string NET, std::string CYC);
 
-			bool lock(std::string token, std::string session_code, std::string BID, std::string NET, std::string STD, std::string LCK);
+			bool lock(std::string access_code, std::string session_code, std::string BID, std::string NET, std::string STD, std::string LCK);
 		}
 	}
 }

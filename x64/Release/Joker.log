@@ -1,0 +1,43 @@
+﻿  bidb.cpp
+  dashboard.cpp
+C:\dev\joker\Joker\src\front\dashboard.cpp(4,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  graphics.cpp
+  modules.cpp
+C:\dev\joker\Joker\src\front\modules.cpp(2,10): fatal error C1083: Cannot open include file: 'bapi.h': No such file or directory
+  main.cpp
+  bapi.cpp
+C:\dev\joker\Joker\src\middle\bapi.cpp(1,10): fatal error C1083: Cannot open include file: 'bapi.h': No such file or directory
+  token.cpp
+C:\dev\joker\Joker\src\middle\core\token.cpp(1,10): fatal error C1083: Cannot open include file: '..\src\middle\token.h': No such file or directory
+  frontObj.cpp
+C:\dev\joker\Joker\src\sys\frontObj.cpp(1,10): fatal error C1083: Cannot open include file: '..\src\sys\frontObj.h': No such file or directory
+  dio.cpp
+  JSON.cpp
+C:\dev\joker\Joker\src\sys\JSON.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  JSON_adm.cpp
+C:\dev\joker\Joker\src\sys\JSON\JSON_adm.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  JSON_bulk.cpp
+C:\dev\joker\Joker\src\sys\JSON\JSON_bulk.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  JSON_cyc.cpp
+C:\dev\joker\Joker\src\sys\JSON\JSON_cyc.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  JSON_emp.cpp
+C:\dev\joker\Joker\src\sys\JSON\JSON_emp.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  JSON_guest.cpp
+C:\dev\joker\Joker\src\sys\JSON\JSON_guest.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  JSON_lock.cpp
+C:\dev\joker\Joker\src\sys\JSON\JSON_lock.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  JSON_mod.cpp
+C:\dev\joker\Joker\src\sys\JSON\JSON_mod.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  JSON_net.cpp
+C:\dev\joker\Joker\src\sys\JSON\JSON_net.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  JSON_std.cpp
+C:\dev\joker\Joker\src\sys\JSON\JSON_std.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  JSON_stu.cpp
+C:\dev\joker\Joker\src\sys\JSON\JSON_stu.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  Compiling...
+  Compiling...
+  JSON_sup.cpp
+C:\dev\joker\Joker\src\sys\JSON\JSON_sup.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  JSON_txn.cpp
+C:\dev\joker\Joker\src\sys\JSON\JSON_txn.cpp(1,10): fatal error C1083: Cannot open include file: 'JSON.h': No such file or directory
+  Compiling...

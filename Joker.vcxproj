@@ -33,6 +33,7 @@
     <ClCompile Include="src\front\modules.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\middle\bapi.cpp" />
+    <ClCompile Include="src\middle\core\token.cpp" />
     <ClCompile Include="src\sys\frontObj.cpp" />
     <ClCompile Include="src\back\dio.cpp" />
     <ClCompile Include="src\sys\JSON.cpp" />
@@ -55,6 +56,7 @@
     </ClInclude>
     <ClInclude Include="src\back\bidb.h" />
     <ClInclude Include="src\front\access.h" />
+    <ClInclude Include="src\middle\token.h" />
     <ClInclude Include="src\sys\frontObj.h" />
     <ClInclude Include="src\back\dio.h" />
     <ClInclude Include="src\front\graphics.h" />
