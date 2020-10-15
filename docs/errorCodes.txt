@@ -7,6 +7,8 @@ Error Codes are divided into primarily 3 parts:
 	- F102: System encountered default case in main() file.
 	- F103: Compatibility issue. Incorrect data passed to JSON object or incorrect constructed.
 
-
 * Middleware Errors (Referred by prefix M)
+	- M100: Incorrect Access or Session code passed.
+
+
 * Backend Errors (Referred by prefix B)

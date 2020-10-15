@@ -7,14 +7,6 @@
 #include "..\src\sys\frontObj.h"
 #include "..\src\front\access.h"
 
-//Local Variables
-/*--------------------------------------------------------------------------------------------------------*/
-const short admin = 1;
-//const short support = 2;
-//const short moderator = 3;
-const short student = 4;
-//constant short employee = 5;
-
 //Local Declarations
 /*--------------------------------------------------------------------------------------------------------*/
 
@@ -72,15 +64,16 @@ void loginAttempt(unsigned short attempt) {	//COMPLETE
 		std::cout << "\t\t\t       Username: ";
 		std::string username;
 		std::cin >> username;
-		if (bapi::user::chk::user(access_token, admin, username, net)) {
+		if (bapi::user::chk::user(access_token, BAPI_ADM, username, net)) {
 			std::cout << "\t\t\t       Password: ";
 			std::string salt;
 			std::cin >> salt;
-			if (bapi::user::chk::authLogin(access_token, admin, username, salt) != "-1") {
-				std::string session_code = bapi::user::chk::authLogin(access_token, admin, username, salt);
-				JSON_adm attr = JSON_adm(bapi::user::get::attr::user(access_token, session_code, username));
-				short log;
-				log = dashboard_adm(attr, session_code);
+			if (bapi::user::chk::authLogin(access_token, BAPI_ADM, username, net, salt) != "-1") {
+				std::string session_code = bapi::user::chk::authLogin(access_token, BAPI_ADM, username, net, salt);
+				std::cout << bapi::user::get::attr::user(access_token, session_code, net, "BID002", "BID002") << std::endl;
+				//JSON_adm attr = JSON_adm(bapi::user::get::attr::user(access_token, session_code, net, "BID002", "BID002"));
+				//short log;
+				//log = dashboard_adm(attr, session_code);
 			}
 			else {
 				std::cout << "\n\t\t\t       Given Username or Password is incorrect. Retry? [Y/N]" << std::endl;

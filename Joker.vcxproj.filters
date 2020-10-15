@@ -113,6 +113,9 @@
     <ClInclude Include="src\middle\token.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\middle\test\test_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Joker.ico">
@@ -121,6 +124,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
+    <None Include="LICENSE" />
+    <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="docs\Readme.txt" />

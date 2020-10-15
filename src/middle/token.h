@@ -14,8 +14,10 @@ private:
 public:
 	bool checkAccess(std::string);
 	bool checkSession(std::string);
+	bool checkOTP(std::string);
 	std::string giveAccess();
 	std::string giveSession();
+	std::string giveOTP();
 	void log();
 	Token();
 	~Token();
@@ -26,4 +28,5 @@ private:
 	// Consider using Tries or Hash Tables.
 	std::map <std::string, std::string> m_session;
 	std::map <std::string, std::string> m_access;
+	std::string OTP;
 };

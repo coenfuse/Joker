@@ -1,2 +1,0 @@
-Intermediate Directory: $(Platform)\$(Configuration)\
-Output Directory: $(SolutionDir)$(Platform)\$(Configuration)\

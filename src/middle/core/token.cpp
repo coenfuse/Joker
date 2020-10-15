@@ -27,15 +27,15 @@ Token::Token() {	// COMPLETE (CURRENTLY USING LOW MEMORY VERSION)
 	case 2: {
 		m_access["6969"] = "Gx%kVRN+E^QX3m7Ux4D?y^coenJu2Nfk4S5?TUFETD69FC?4B5L5NW9pnbg$U&D+";
 	}
-		break;
+		  break;
 	case 1: {
 		m_access["6"] = "Gx%kVRN+E^QX3m7Ux4D?y^coenJu2Nfk4S5?TUFETD69FC?4B5L5NW9pnbg$U&D+";
 	}
-		break;
+		  break;
 	case 0: {
 		m_access["low"] = "k4S5?TUFETD69FC?4B5L5NW9pnb";
 	}
-		break;
+		  break;
 	default:
 		break;
 	}
@@ -161,8 +161,8 @@ bool Token::checkAccess(std::string input) {	// COMPLETE
 		  break;
 	case 0: {
 		std::string index = input.substr(0, 3);
-		std::string strip = input.substr(3, (input.length()-1));
-		if(m_access.at(index) == strip)
+		std::string strip = input.substr(3, (input.length() - 1));
+		if (m_access.at(index) == strip)
 			return true;
 		return false;
 	}
@@ -199,14 +199,18 @@ bool Token::checkSession(std::string input) {	// COMPLETE
 	case 0: {
 		std::string index = input.substr(0, 3);
 		std::string strip = input.substr(3, (input.length() - 1));
-		if(m_session.at(index) == strip)
-			return false;
+		if (m_session.at(index) == strip)
+			return true;
 		return false;
 	}
 		  break;
 	default: return false;
 		break;
 	}
+}
+
+bool Token::checkOTP(std::string input) {
+	return true;
 }
 
 std::string Token::giveAccess() {	// COMPLETE
@@ -267,6 +271,10 @@ std::string Token::giveSession() {	// COMPLETE
 	}
 }
 
+std::string Token::giveOTP() {
+	return "0000";
+}
+
 void Token::log() {	// COMPLETE
 	std::map<std::string, std::string>::iterator pos;
 	for (pos = m_access.begin(); pos != m_access.end(); ++pos) {
@@ -275,5 +283,5 @@ void Token::log() {	// COMPLETE
 	}
 	for (pos = m_session.begin(); pos != m_session.end(); ++pos) {
 		std::cout << "{ " << pos->first << " , " << pos->second << " }" << std::endl;
-		}
+	}
 }

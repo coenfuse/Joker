@@ -56,6 +56,7 @@
     </ClInclude>
     <ClInclude Include="src\back\bidb.h" />
     <ClInclude Include="src\front\access.h" />
+    <ClInclude Include="src\middle\test\test_data.h" />
     <ClInclude Include="src\middle\token.h" />
     <ClInclude Include="src\sys\frontObj.h" />
     <ClInclude Include="src\back\dio.h" />
@@ -68,6 +69,8 @@
     <Image Include="Joker.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include="LICENSE" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
