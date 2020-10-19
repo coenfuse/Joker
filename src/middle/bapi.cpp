@@ -8,7 +8,7 @@
 #define TEST	// Set this TEST to RELASE to unload the system from testing mode.
 
 #ifdef TEST
-#include "..\src\middle\test\test_data.h"
+#include "..\data\testing\test_data.h"
 
 // Local Declarations
 bool checkNetObj(std::string username, std::string NET);
