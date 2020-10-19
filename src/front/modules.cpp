@@ -70,10 +70,9 @@ void loginAttempt(unsigned short attempt) {	//COMPLETE
 			std::cin >> salt;
 			if (bapi::user::chk::authLogin(access_token, BAPI_ADM, username, net, salt) != "-1") {
 				std::string session_code = bapi::user::chk::authLogin(access_token, BAPI_ADM, username, net, salt);
-				std::cout << bapi::user::get::attr::user(access_token, session_code, net, "BID002", "BID002") << std::endl;
-				//JSON_adm attr = JSON_adm(bapi::user::get::attr::user(access_token, session_code, net, "BID002", "BID002"));
-				//short log;
-				//log = dashboard_adm(attr, session_code);
+				JSON_adm attr = JSON_adm(bapi::user::get::attr::user(access_token, session_code, net, "BID002", "BID002"));
+				short log;
+				log = dashboard_adm(attr, session_code);
 			}
 			else {
 				std::cout << "\n\t\t\t       Given Username or Password is incorrect. Retry? [Y/N]" << std::endl;
