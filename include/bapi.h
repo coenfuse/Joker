@@ -524,7 +524,7 @@ namespace BAPI {
 * The following function come under namespace BAPI::USER::
 *
 * ::bool is_present(): 0 or 1
-* ::string authorize_login():	'session_code', 'BID'
+* ::string authorize_login():	SESSION_CODE: 'xxxxxxxxxx', BID:'xxxxxxxxxx'
 * ::bool logout(): 0 or 1
 * ::string get_all(): "#BLK_ADM, count, 0:(BIDxxxxxxxxxx,Name,AID), 1:(BIDxxxxxxxxxx,Name,AID), ... n:(BIDxxxxxxxxxx,Name,AID)"
 *						    "#BLK_STU, count, 0:(BIDxxxxxxxxxx,Name,SID), 1:(BIDxxxxxxxxxx,Name,SID), ... n:(BIDxxxxxxxxxx,Name,SID)"

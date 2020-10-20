@@ -64,13 +64,13 @@ void loginAttempt(unsigned short attempt) {	//COMPLETE
 		std::cout << "\t\t\t       Username: ";
 		std::string username;
 		std::cin >> username;
-		if (bapi::user::chk::user(access_token, BAPI_ADM, username, net)) {
+		if (BAPI::USER::is_present(access_token, net, username, BAPI::ADMIN)) {
 			std::cout << "\t\t\t       Password: ";
 			std::string salt;
 			std::cin >> salt;
-			if (bapi::user::chk::authLogin(access_token, BAPI_ADM, username, net, salt) != "-1") {
-				std::string session_code = bapi::user::chk::authLogin(access_token, BAPI_ADM, username, net, salt);
-				JSON_adm attr = JSON_adm(bapi::user::get::attr::user(access_token, session_code, net, "BID002", "BID002"));
+			if (BAPI::USER::authorize_login(access_token, net, username, salt, BAPI::ADMIN) != "-1") {
+				std::string session_code = BAPI::USER::authorize_login(access_token, net, username, salt, BAPI::ADMIN);
+				JSON_adm attr = JSON_adm(BAPI::USER::get(access_token, session_code, BID, net, BID);
 				short log;
 				log = dashboard_adm(attr, session_code);
 			}

@@ -113,7 +113,7 @@
     <ClInclude Include="src\middle\token.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\middle\test\test_data.h">
+    <ClInclude Include="data\testing\test_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
