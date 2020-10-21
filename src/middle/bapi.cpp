@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <ctime>
 #include <map>
+#include <algorithm>
 #include "..\src\middle\token.h"
 
 #define TEST	// Set this TEST to RELASE to unload the system from testing mode.
@@ -11,73 +12,41 @@
 #include "..\data\testing\test_data.h"
 
 // Local Declarations
-bool checkNetObj(std::string username, std::string NET);
-bool does_network_exist(std::string);
+bool does_user_exist(std::string username, std::string NET);
+bool does_network_exist(std::string NET);
+short user_type(std::string BID);
 
 // Local Definitions
-bool checkNetObj(std::string username, std::string NET) {	
+bool does_user_exist(std::string username, std::string NET){	
 	
-	// COMPLETE
-	// Stupidly slow. I know
+	std::vector<std::string> users = Joker_Users.at(NET);
+	std::sort(users.begin(), users.end());
 
-	if (NET == "NET100") {
-		for (int i = 0; i < NET100_obj->size(); i++)
-			if (NET100_obj[i] == username)
-				return true;
-	}
-	else if (NET == "NET200") {
-		for (int i = 0; i < NET200_obj->size(); i++)
-			if (NET200_obj[i] == username)
-				return true;
-	}
-	else if (NET == "NET300") {
-		for (int i = 0; i < NET300_obj->size(); i++)
-			if (NET300_obj[i] == username)
-				return true;
-	}
-	else if (NET == "NET400") {
-		for (int i = 0; i < NET400_obj->size(); i++)
-			if (NET400_obj[i] == username)
-				return true;
-	}
-	else if (NET == "NET500") {
-		for (int i = 0; i < NET500_obj->size(); i++)
-			if (NET500_obj[i] == username)
-				return true;
-	}
-	else if (NET == "NET600") {
-		for (int i = 0; i < NET600_obj->size(); i++)
-			if (NET600_obj[i] == username)
-				return true;
-	}
-	else if (NET == "NET700") {
-		for (int i = 0; i < NET700_obj->size(); i++)
-			if (NET700_obj[i] == username)
-				return true;
-	}
-	else if (NET == "NET800") {
-		for (int i = 0; i < NET800_obj->size(); i++)
-			if (NET800_obj[i] == username)
-				return true;
-	}
-	else if (NET == "NET900") {
-		for (int i = 0; i < NET900_obj->size(); i++)
-			if (NET900_obj[i] == username)
-				return true;
-	}
-	else if (NET == "NET110") {
-		for (int i = 0; i < NET110_obj->size(); i++)
-			if (NET110_obj[i] == username)
-				return true;
-	}
-	else return false;
+	return std::binary_search(users.begin(), users.end(), username);
 }
+
 bool does_network_exist(std::string NET) {
-	for (net_list_itr = network_list.begin(); net_list_itr < network_list.end(); ++net_list_itr) {
-		if (*net_list_itr == NET)
-			return true;
-	}
-	return false;
+	
+	std::vector<std::string> list_copy = network_list;
+	std::sort(list_copy.begin(), list_copy.begin());
+
+	return std::binary_search(network_list.begin(), network_list.end(), NET);
+}
+
+short user_type(std::string BID) {
+	using namespace BAPI;
+	char type = usertype_list.at(BID);
+	if (type == 'A')
+		return ADM;
+	if (type == 'S')
+		return SUP;
+	if (type == 'M')
+		return MOD;
+	if (type == 'ST')
+		return STU;
+	if (type == 'E')
+		return EMP;
+	else return GUE;
 }
 
 // BAPI::USER
@@ -89,46 +58,34 @@ bool BAPI::USER::is_present(
 	short usertype
 ){
 	//COMPLETE
+	
 	// Returning Convention: 0 or 1
-
-	/*Function to check presence of account inside a network.
-	*
-	* Parameter 1 = Access Token of type 'std::string'
-	* Parameter 2 = Function key of type 'short'
-	*	- Key = 1, for Admin
-	*	- Key = 2, for Support
-	*   - Key = 3, for Moderator
-	*	- Key = 4, for Student
-	*	- Key = 5, for Employee
-	* Parameter 3 = Username string of type 'std::string'. Correlates to AID
-	* Parameter 4 = Network ID string of type 'std::string'. Correlates to NET
-	*
-	*/
 
 	if (token.checkAccess(access_code)) {
 		switch (usertype)
 		{
-		case 1: {	// Invoked if the user key is ADMIN
-			return (checkNetObj(username, NET));
+		case ADM: {	// Invoked if the usertype is ADMIN
+			return (does_user_exist(username, NET));
 		}
 			  break;
-		case 2: {	// Invoked if the user key is SUPPORT
+		case SUP: {	// Invoked if the usertype is SUPPORT
 			// INCOMPLETE
 		}
 			  break;
-		case 3: {	// Invoked if the user key is MODERATOR
+		case MOD: {	// Invoked if the usertype is MODERATOR
 			// INCOMPLETE
 		}
 			  break;
-		case 4: {	// Invoked if the user key is STUDENT
-			return (checkNetObj(username, NET));
+		case STU: {	// Invoked if the usertype is STUDENT
+			return (does_user_exist(username, NET));
 		}
 			  break;
-		case 5: {	// Invoked if the user key is EMPLOYEE
+		case EMP: {	// Invoked if the usertype is EMPLOYEE
 		}
 			  break;
-		default:
-			break;
+		case GUE: {	// Invoked if the usertype is GUEST
+		}
+				break;
 		}
 	}
 	return false;
@@ -154,7 +111,7 @@ std::string BAPI::USER::authorize_login(
 
 	if (token.checkAccess(access_code)) {
 		if (does_network_exist(NET)){
-			if (checkNetObj(username, NET)) {
+			if (does_user_exist(username, NET)) {
 				if (salt == "0000") {
 					std::string BID = (BID_pairs.at(NET)).at(username);
 					return "SESSION_CODE: '" + token.giveSession() + "', BID: '" + BID + "'";
@@ -189,323 +146,124 @@ std::string BAPI::USER::get_all(
 	std::string access_code,
 	std::string session_code,
 	std::string NET,
-	std::string BID_request_by,
+	std::string BID_requested_by,
 	short usertype
 ) {
 	//INCOMPLETE
 
-	/* Return Convention
-	*	string get::attr::users() : "#BLK_ADM, count, 0:(BIDxxxxxxxxxx,Name,AID), 1:(BIDxxxxxxxxxx,Name,AID), ... n:(BIDxxxxxxxxxx,Name,AID)"
-	*								"#BLK_STU, count, 0:(BIDxxxxxxxxxx,Name,SID), 1:(BIDxxxxxxxxxx,Name,SID), ... n:(BIDxxxxxxxxxx,Name,SID)"
-	*								"#BLK_EMP, count, 0:(BIDxxxxxxxxxx,Name,EID), 1:(BIDxxxxxxxxxx,Name,EID), ... n:(BIDxxxxxxxxxx,Name,EID)"
-	*								"#BLK_SUP, count, 0:(BIDxxxxxxxxxx,Name,SUP), 1:(BIDxxxxxxxxxx,Name,SUP), ... n:(BIDxxxxxxxxxx,Name,SUP)"
-	*								"#BLK_MOD, count, 0:(BIDxxxxxxxxxx,Name,MOD), 1:(BIDxxxxxxxxxx,Name,MOD), ... n:(BIDxxxxxxxxxx,Name,MOD)"
-	*								"#BLK_GUE, count, 0:(BGIDxxxxxxxxxx,Name,Duration), 1:(BGIDxxxxxxxxxx,Name,Duration), ... n:(BGIDxxxxxxxxxx,Name,Duration)"
+	/*
+	* Return Convention:
+	* 
+	* Return "-1" if ACCESS_CODE or SESSION_CODE is invalid.
+	* Return "0" if NET doesn't exist
+	* Return "1" if unauthorized access is done to this function (Currently, only ADMIN can access this)
+	* otherwise if usertype is (1), ADMIN
+	*				Return: "#BLK_ADM, count, 0:(BIDxxxxxxxxxx,Name,AID), 1:(BIDxxxxxxxxxx,Name,AID), ... n:(BIDxxxxxxxxxx,Name,AID)"
+	* 
+	*			if usertype is (2), SUPPORT
+	*				Return: "#BLK_SUP, count, 0:(BIDxxxxxxxxxx,Name,SUP), 1:(BIDxxxxxxxxxx,Name,SUP), ... n:(BIDxxxxxxxxxx,Name,SUP)"
+	* 
+	*			if usertype is (3), MODERATOR
+	*				Return: "#BLK_MOD, count, 0:(BIDxxxxxxxxxx,Name,MOD), 1:(BIDxxxxxxxxxx,Name,MOD), ... n:(BIDxxxxxxxxxx,Name,MOD)"
+	* 
+	*			if usertype is (4), STUDENT
+	*				Return: "#BLK_STU, count, 0:(BIDxxxxxxxxxx,Name,SID), 1:(BIDxxxxxxxxxx,Name,SID), ... n:(BIDxxxxxxxxxx,Name,SID)"
+	* 
+	*			if usertype is (5), EMPLOYEE
+	*				Return: "#BLK_EMP, count, 0:(BIDxxxxxxxxxx,Name,EID), 1:(BIDxxxxxxxxxx,Name,EID), ... n:(BIDxxxxxxxxxx,Name,EID)"
+	* 
+	*			if usertype is (6), GUEST
+	*				Return: "#BLK_GUE, count, 0:(BGIDxxxxxxxxxx,Name,Duration), 1:(BGIDxxxxxxxxxx,Name,Duration), ... n:(BGIDxxxxxxxxxx,Name,Duration)"
 	*/
 
+	using namespace BAPI;
 
-	std::string prefix[] = { "#BLK_ADM, ","#BLK_STU, ","#BLK_EMP, ","#BLK_SUP, ","#BLK_MOD, ","#BLK_GUE, " };
-	std::string pass_data = "NULL", BID, name, username, TEMP;
+	const std::string prefix[] = { "#BLK_ADM, ","#BLK_SUP, ","#BLK_MOD, ","#BLK_STU, ","#BLK_EMP, ","#BLK_GUE, " };
+	std::string pass_data = "NULL", BID, NAME, ID, TEMP;
+	size_t start, end;
+	std::map<std::string, std::string> network;
 
-	if (token.checkAccess(access_code) && token.checkSession(session_code) && (userTypes.at(BID_request_by) == 'A'))
-	{
-		if (NET == "NET100") {
-			switch (usertype)
+	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
+		if (does_network_exist(NET)) {
+			if (user_type(BID_requested_by) == ADM)
 			{
-			case 1: {
-				pass_data = "";
-				size_t start, end;
-				int count = 0;
-				std::map<std::string, std::string>::iterator index = NET100_data.begin();
-				
-				for (count; count < 6; count++, ++index) {	// Loops for 6 times because only 6 admins are present.
-					TEMP = index->second;
-					start = TEMP.find("BID:'") + 5;
-					end = TEMP.find("', AID:");
-					BID = TEMP.substr(start, end - start);
+				network = Joker_DB.at(NET);
+				switch (usertype)
+				{
+				case ADM: {
+					std::map<std::string, std::string>::iterator index = network.begin();
+					int count = 0;
+					for (; count < 6; ++count, ++index) {
+						TEMP = index->second;
 
-					start = TEMP.find("NAME:'") + 6;
-					end = TEMP.find("', GUARDIAN:");
-					name = TEMP.substr(start, end - start);
+						start = TEMP.find("BID:'") + 5;
+						end = TEMP.find("', AID:");
+						BID = TEMP.substr(start, end - start);
 
-					start = TEMP.find("AID:'") + 5;
-					end = TEMP.find("', NET:");
-					username = TEMP.substr(start, end - start);
+						start = TEMP.find("NAME:'") + 6;
+						end = TEMP.find("', GUARDIAN:");
+						NAME = TEMP.substr(start, end - start);
 
-					pass_data = pass_data + std::to_string(count) + ":(" + BID + "," + name + "," + username + "), ";
+						start = TEMP.find("AID:'") + 5;
+						end = TEMP.find("', NET:");
+						ID = TEMP.substr(start, end - start);
+
+						pass_data = pass_data + std::to_string(count) + ":(" + BID + "," + NAME + "," + ID + "), ";
+					}
+					return prefix[usertype] + std::to_string(count) + pass_data.substr(0, pass_data.length() - 2);
 				}
+					  break;
 
-				return prefix[0] + std::to_string(count) + pass_data.substr(0, pass_data.length() - 2);
-			}
-				  break;
-			case 2: {
-				pass_data = "";
-				size_t start, end;
-				int count = 0;
-				std::map<std::string, std::string>::iterator index = NET100_data.find("BID007");
-				// Map sorts strings lexiographically, so keys with numericals are at the beginning. (i.e; The Students)
-
-				for (index; index != NET100_data.end(); count++, ++index) {	// Stops after traversing first 10 elements (i.e the students)
-					TEMP = index->second;
-					start = TEMP.find("BID:'") + 5;
-					end = TEMP.find("', SID:");
-					BID = TEMP.substr(start, end - start);
-
-					start = TEMP.find("NAME:'") + 6;
-					end = TEMP.find("', GUARDIAN");
-					name = TEMP.substr(start, end - start);
-
-					start = TEMP.find("SID:'") + 5;
-					end = TEMP.find("', NET:");
-					username = TEMP.substr(start, end - start);
-
-					pass_data = pass_data + std::to_string(count) + ":(" + BID + "," + name + "," + username + "), ";
+				case SUP: {
+					return prefix[usertype];
 				}
+					  break;
 
-				return prefix[1] + std::to_string(count) + pass_data.substr(0, pass_data.length() - 2);
+				case MOD: {
+					return prefix[usertype];
+				}
+					  break;
+
+				case STU: {
+					std::map<std::string, std::string>::iterator index = network.find("BID007");	// This is hack
+					int count = 0;
+					for (count; index != network.end(); count++, ++index) {
+						TEMP = index->second;
+
+						start = TEMP.find("BID:'") + 5;
+						end = TEMP.find("', SID:");
+						BID = TEMP.substr(start, end - start);
+
+						start = TEMP.find("NAME:'") + 6;
+						end = TEMP.find("', GUARDIAN");
+						NAME = TEMP.substr(start, end - start);
+
+						start = TEMP.find("SID:'") + 5;
+						end = TEMP.find("', NET:");
+						ID = TEMP.substr(start, end - start);
+
+						pass_data = pass_data + std::to_string(count) + ":(" + BID + "," + NAME + "," + ID + "), ";
+					}
+					return prefix[usertype] + std::to_string(count) + pass_data.substr(0, pass_data.length() - 2);
+				} 
+					  break;
+
+				case EMP: {
+					return prefix[usertype];
+				}
+					  break;
+
+				case GUE: {
+					return prefix[usertype];
+				}
+					  break;
+				}
 			}
-				  break;
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			default:
-				break;
-			}
+			else return "1";
 		}
-		else if (NET == "NET200") {
-			switch (usertype)
-			{
-			case 1: {
-				pass_data = "";
-				for (int i = 0; i < 6; i++)	// Loops for 6 times because only 6 admins are present.
-					pass_data = pass_data + NET200_obj[i] + ", ";
-				return prefix[0] + pass_data;
-			}
-				  break;
-			case 2: {
-				pass_data = "";
-				for (int i = 5; i < NET200_obj->size(); i++)	// Skips first 6 admins and logs in the rest.
-					pass_data = pass_data + NET200_obj[i] + ", ";
-				return prefix[1] + pass_data;
-			}
-				  break;
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			default:
-				break;
-			}
-		}
-		else if (NET == "NET300") {
-			switch (usertype)
-			{
-			case 1: {
-				pass_data = "";
-				for (int i = 0; i < 6; i++)	// Loops for 6 times because only 6 admins are present.
-					pass_data = pass_data + NET300_obj[i] + ", ";
-				return prefix[0] + pass_data;
-			}
-				  break;
-			case 2: {
-				pass_data = "";
-				for (int i = 5; i < NET500_obj->size(); i++)	// Skips first 6 admins and logs in the rest.
-					pass_data = pass_data + NET300_obj[i] + ", ";
-				return prefix[1] + pass_data;
-			}
-				  break;
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			default:
-				break;
-			}
-		}
-		else if (NET == "NET400") {
-			switch (usertype)
-			{
-			case 1: {
-				pass_data = "";
-				for (int i = 0; i < 6; i++)	// Loops for 6 times because only 6 admins are present.
-					pass_data = pass_data + NET400_obj[i] + ", ";
-				return prefix[0] + pass_data;
-			}
-				  break;
-			case 2: {
-				pass_data = "";
-				for (int i = 5; i < NET400_obj->size(); i++)	// Skips first 6 admins and logs in the rest.
-					pass_data = pass_data + NET400_obj[i] + ", ";
-				return prefix[1] + pass_data;
-			}
-				  break;
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			default:
-				break;
-			}
-		}
-		else if (NET == "NET500") {
-			switch (usertype)
-			{
-			case 1: {
-				pass_data = "";
-				for (int i = 0; i < 6; i++)	// Loops for 6 times because only 6 admins are present.
-					pass_data = pass_data + NET500_obj[i] + ", ";
-				return prefix[0] + pass_data;
-			}
-				  break;
-			case 2: {
-				pass_data = "";
-				//unsigned object_count = sizeof(NET500_obj) / sizeof(NET500_obj[0]);
-				for (int i = 5; i < NET500_obj->size(); i++)	// Skips first 6 admins and logs in the rest.
-					pass_data = pass_data + NET500_obj[i] + ", ";
-				return prefix[1] + pass_data;
-			}
-				  break;
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			default:
-				break;
-			}
-		}
-		else if (NET == "NET600") {
-			switch (usertype)
-			{
-			case 1: {
-				pass_data = "";
-				for (int i = 0; i < 6; i++)	// Loops for 6 times because only 6 admins are present.
-					pass_data = pass_data + NET600_obj[i] + ", ";
-				return prefix[0] + pass_data;
-			}
-				  break;
-			case 2: {
-				pass_data = "";
-				unsigned object_count = sizeof(NET600_obj) / sizeof(NET600_obj[0]);
-				for (int i = 5; i < NET600_obj->size(); i++)	// Skips first 6 admins and logs in the rest.
-					pass_data = pass_data + NET600_obj[i] + ", ";
-				return prefix[1] + pass_data;
-			}
-				  break;
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			default:
-				break;
-			}
-		}
-		else if (NET == "NET700") {
-			switch (usertype)
-			{
-			case 1: {
-				pass_data = "";
-				for (int i = 0; i < 6; i++)	// Loops for 6 times because only 6 admins are present.
-					pass_data = pass_data + NET700_obj[i] + ", ";
-				return prefix[0] + pass_data;
-			}
-				  break;
-			case 2: {
-				pass_data = "";
-				unsigned object_count = sizeof(NET700_obj) / sizeof(NET700_obj[0]);
-				for (int i = 5; i < NET700_obj->size(); i++)	// Skips first 6 admins and logs in the rest.
-					pass_data = pass_data + NET700_obj[i] + ", ";
-				return prefix[1] + pass_data;
-			}
-				  break;
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			default:
-				break;
-			}
-		}
-		else if (NET == "NET800") {
-			switch (usertype)
-			{
-			case 1: {
-				pass_data = "";
-				for (int i = 0; i < 6; i++)	// Loops for 6 times because only 6 admins are present.
-					pass_data = pass_data + NET800_obj[i] + ", ";
-				return prefix[0] + pass_data;
-			}
-				  break;
-			case 2: {
-				pass_data = "";
-				unsigned object_count = sizeof(NET800_obj) / sizeof(NET800_obj[0]);
-				for (int i = 5; i < NET800_obj->size(); i++)	// Skips first 6 admins and logs in the rest.
-					pass_data = pass_data + NET800_obj[i] + ", ";
-				return prefix[1] + pass_data;
-			}
-				  break;
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			default:
-				break;
-			}
-		}
-		else if (NET == "NET900") {
-			switch (usertype)
-			{
-			case 1: {
-				pass_data = "";
-				for (int i = 0; i < 6; i++)	// Loops for 6 times because only 6 admins are present.
-					pass_data = pass_data + NET900_obj[i] + ", ";
-				return prefix[0] + pass_data;
-			}
-				  break;
-			case 2: {
-				pass_data = "";
-				unsigned object_count = sizeof(NET900_obj) / sizeof(NET900_obj[0]);
-				for (int i = 5; i < NET900_obj->size(); i++)	// Skips first 6 admins and logs in the rest.
-					pass_data = pass_data + NET900_obj[i] + ", ";
-				return prefix[1] + pass_data;
-			}
-				  break;
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			default:
-				break;
-			}
-		}
-		else if (NET == "NET110") {
-			switch (usertype)
-			{
-			case 1: {
-				pass_data = "";
-				for (int i = 0; i < 6; i++)	// Loops for 6 times because only 6 admins are present.
-					pass_data = pass_data + NET110_obj[i] + ", ";
-				return prefix[0] + pass_data;
-			}
-				  break;
-			case 2: {
-				pass_data = "";
-				unsigned object_count = sizeof(NET110_obj) / sizeof(NET110_obj[0]);
-				for (int i = 5; i < NET110_obj->size(); i++)	// Skips first 6 admins and logs in the rest.
-					pass_data = pass_data + NET110_obj[i] + ", ";
-				return prefix[1] + pass_data;
-			}
-				  break;
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			default:
-				break;
-			}
-		}
+		else return "0";
 	}
-	return pass_data;
+	else return "-1";
 }
 
 std::string BAPI::USER::get(
@@ -513,92 +271,101 @@ std::string BAPI::USER::get(
 	std::string session_code,
 	std::string BID_requested_by,
 	std::string NET,
-	std::string BID
+	std::string BID_requested
 ) {
 	//INCOMPLETE
 
-	/* Return Convention
-	"	"#USR_ATTR_ADM, BID:'BIDxxxxxxxxxx', AID:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', OWN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'0', ADD2:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), LOC:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx'"
-	*	"#USR_ATTR_STU, BID:'BIDxxxxxxxxxx', SID:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', PEN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'0', ADD2:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), LOC:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx', DEPT:'xxxxxxxxxx', LOGCOUNT:'xxxxxxxxx'"
-	*	"#USR_ATTR_EMP, BID:'BIDxxxxxxxxxx', EID:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', OWN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', SPOUSE:'xxxxxxxxxx', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'1', ADD2:'NULL', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx', DEPT:'xxxxxxxxxx', LOGCOUNT:'xxxxxxxxx'"
+	/*
+	* Return Convention:
+	*
+	* Return "-1" if ACCESS_CODE or SESSION_CODE is invalid.
+	* Return "0" if NET doesn't exist
+	* Return "1" if Access Hierarchy is violated. Heirarchy: ADM -> SUP -> MOD -> (STU <!> EMP <!> GUE)
+	* otherwise if BID_requested is of type ADMIN
+	*				Return: "#USR_ATTR_ADM, BID:'BIDxxxxxxxxxx', AID : 'xxxxxxxxxx', NET : 'NETxxxxxxxxxx', OWN : '0 or 1', NAME : 'xxxxxxxxxx', GUARDIAN : 'xxxxxxxxxx', GEN : 'F or M or O', DOB : '00/MON/0000', ACT_STAT : '0 or 1', PH1 : 'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2 : 'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1 : 'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2 : 'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1 : 'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2 == ADD1 : '0', ADD2 : 'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), LOC:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ONLINE : '0 or 1', ACC_STAT : 'xxxxxxxxxx'"
+	*
+	*			if BID_requested is of type SUPPORT
+	*	to-do ->	Return: "#USR_ATTR_SUP, BID:'BIDxxxxxxxxxx', SUP:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', OWN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', GEN : 'F or M or O', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'1', ADD2:'NULL', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx'"
+	*
+	*			if BID_requested is of type MODERATOR
+	*	to-do ->	Return: "#USR_ATTR_MOD, BID:'BIDxxxxxxxxxx', MOD:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', OWN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', GEN : 'F or M or O', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'1', ADD2:'NULL', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx'"
+	*
+	*			if BID_requested is of type STUDENT
+	*				Return: "#USR_ATTR_STU, BID:'BIDxxxxxxxxxx', SID:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', PEN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', GEN : 'F or M or O', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'0', ADD2:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), LOC:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx', DEPT:'xxxxxxxxxx', LOGCOUNT:'xxxxxxxxx'"
+	*
+	*			if BID_requested is of type EMPLOYEE
+	*				Return: "#USR_ATTR_EMP, BID:'BIDxxxxxxxxxx', EID:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', OWN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', GEN : 'F or M or O', SPOUSE:'xxxxxxxxxx', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'1', ADD2:'NULL', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx', DEPT:'xxxxxxxxxx', LOGCOUNT:'xxxxxxxxx'"
+	*
+	*			if BID_requested is of type GUEST
+	*	to-do ->	Return: "#USR_ATTR_GUE, GID:'BGIDxxxxxxxxxx', Name:'xxxxxxxxxx', START:'00:00,00/00/00', END:'00:00,00/MON/0000', DUR:'00:00:00', IP:'000:000:000'"
 	*/
+
+	using namespace BAPI;
 
 	std::string prefix[] = { "#USR_ATTR_ADM, ","#USR_ATTR_STU, ","#USR_ATTR_EMP, ","#USR_ATTR_SUP, ","#USR_ATTR_MOD, ","#USR_ATTR_GUE, " };
 	std::string pass_data = "NULL";
 
-	if (token.checkAccess(access_code) && token.checkSession(session_code) && (userTypes.at(BID_requested_by) == 'A') || (userTypes.at(BID_requested_by) == 'U'))
-	{
-		if (NET == "NET100") {
-			// Not implementing check method for authenticating type of BID_requested_by
-			// Not implementing checking user type method right now.
-			return prefix[0] + (Joker_DB.at(NET)).at(BID);
+	if (token.checkAccess(access_code) && token.checkSession(session_code)){
+		if (does_network_exist(NET)) {
+			const short requester = user_type(BID_requested_by);
+			const short requested = user_type(BID_requested);
+
+			switch (requester)
+			{
+			case ADM: {
+				pass_data = (Joker_DB.at(NET)).at(BID_requested);
+				return prefix[requested] + pass_data;
+			}
+				  break;
+
+			case SUP: {
+				if (requested != ADM) {
+					pass_data = (Joker_DB.at(NET)).at(BID_requested);
+					return prefix[requested] + pass_data;
+				}
+				return "1";
+			}
+				  break;
+
+			case MOD: {
+				if (requested != ADM && requested != SUP) {
+					return prefix[requested] + pass_data;
+				}
+				return "1";
+			}
+				  break;
+
+			case STU: {
+				if (requested == STU && BID_requested_by == BID_requested) {
+					pass_data = (Joker_DB.at(NET)).at(BID_requested);
+					return prefix[requested] + pass_data;
+				}
+				return "1";
+			}
+				  break;
+
+			case EMP: {
+				if (requested == EMP && BID_requested_by == BID_requested) {
+					pass_data = (Joker_DB.at(NET)).at(BID_requested);
+					return prefix[requested] + pass_data;
+				}
+				return "1";
+			}
+				  break;
+
+			case GUE: {
+				if (requested == STU && BID_requested_by == BID_requested) {
+					pass_data = (Joker_DB.at(NET)).at(BID_requested);
+					return prefix[requested] + pass_data;
+				}
+				return "1";
+			}
+				  break;
+			}
 		}
-		else if (NET == "NET200") {
-			// Not implementing check method for authenticating type of BID_requested_by
-			std::map <std::string, std::string> data_container;
-			data_container = Joker_DB.at(NET);
-			pass_data = data_container.at(BID);
-			return prefix[1] + pass_data;		// Not implementing checking user type method right now.
-		}
-		else if (NET == "NET300") {
-			// Not implementing check method for authenticating type of BID_requested_by
-			std::map <std::string, std::string> data_container;
-			data_container = Joker_DB.at(NET);
-			pass_data = data_container.at(BID);
-			return prefix[0] + pass_data;		// Not implementing checking user type method right now.
-		}
-		else if (NET == "NET400") {
-			// Not implementing check method for authenticating type of BID_requested_by
-			std::map <std::string, std::string> data_container;
-			data_container = Joker_DB.at(NET);
-			pass_data = data_container.at(BID);
-			return prefix[1] + pass_data;		// Not implementing checking user type method right now.
-		}
-		else if (NET == "NET500") {
-			// Not implementing check method for authenticating type of BID_requested_by
-			std::map <std::string, std::string> data_container;
-			data_container = Joker_DB.at(NET);
-			pass_data = data_container.at(BID);
-			return prefix[0] + pass_data;		// Not implementing checking user type method right now.
-		}
-		else if (NET == "NET600") {
-			// Not implementing check method for authenticating type of BID_requested_by
-			std::map <std::string, std::string> data_container;
-			data_container = Joker_DB.at(NET);
-			pass_data = data_container.at(BID);
-			return prefix[0] + pass_data;		// Not implementing checking user type method right now.
-		}
-		else if (NET == "NET700") {
-			// Not implementing check method for authenticating type of BID_requested_by
-			std::map <std::string, std::string> data_container;
-			data_container = Joker_DB.at(NET);
-			pass_data = data_container.at(BID);
-			return prefix[0] + pass_data;		// Not implementing checking user type method right now.
-		}
-		else if (NET == "NET800") {
-			// Not implementing check method for authenticating type of BID_requested_by
-			std::map <std::string, std::string> data_container;
-			data_container = Joker_DB.at(NET);
-			pass_data = data_container.at(BID);
-			return prefix[0] + pass_data;		// Not implementing checking user type method right now.
-		}
-		else if (NET == "NET900") {
-			// Not implementing check method for authenticating type of BID_requested_by
-			std::map <std::string, std::string> data_container;
-			data_container = Joker_DB.at(NET);
-			pass_data = data_container.at(BID);
-			return prefix[0] + pass_data;		// Not implementing checking user type method right now.
-		}
-		else if (NET == "NET110") {
-			// Not implementing check method for authenticating type of BID_requested_by
-			std::map <std::string, std::string> data_container;
-			data_container = Joker_DB.at(NET);
-			pass_data = data_container.at(BID);
-			return prefix[0] + pass_data;		// Not implementing checking user type method right now.
-		}
-		else return pass_data;
+		return "0";
 	}
-	return "ERROR CODE: M100 - Unauthorized access. Bad Access or Session Key";
+	return "-1";
 }
 
 std::string BAPI::USER::update_all(
@@ -612,10 +379,13 @@ std::string BAPI::USER::update_all(
 	// INCOMPLETE. //Consider removal.
 	// Return Convention:
 
-	if (token.checkAccess(access_code) && token.checkSession(session_code) && (userTypes.at(BID_requested_by) == 'A')) {
-		return "something";
+	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
+		if (does_network_exist(NET)) {
+			//...
+		}
+		return "0";
 	}
-	else return "something";
+	return "-1";
 }
 
 std::string BAPI::USER::update(
@@ -628,11 +398,13 @@ std::string BAPI::USER::update(
 ) {
 	// INCOMPLETE
 	// Return Convention:
-	if (token.checkAccess(access_code) && token.checkSession(session_code) && ((userTypes.at(BID_requested_by) == 'A') || (userTypes.at(BID_requested_by) == 'U'))) {
-		(Joker_DB.at(NET)).at(BID) = user_data;
-		return "something";
+	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
+		if (does_network_exist(NET)) {
+			//...
+		}
+		return "0";
 	}
-	else return "something";
+	return "-1";
 }
 
 std::string BAPI::USER::add_multiple(
@@ -646,14 +418,13 @@ std::string BAPI::USER::add_multiple(
 	// INCOMPLETE. Consider Removal
 	// Return Convention:
 
-	if (token.checkAccess(access_code) && token.checkSession(session_code) && (userTypes.at(BID_requested_by) == 'A')) {
-		for (int i = 0; i < 10; i++) {
-			std::string BID_add = token.giveSession();
-			(Joker_DB.at(NET)).insert(make_pair(BID_add, multiple_user_data));
+	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
+		if (does_network_exist(NET)) {
+			//...
 		}
-		return "something";
+		return "0";
 	}
-	else return "something";
+	return "-1";
 }
 
 std::string BAPI::USER::add(
@@ -669,12 +440,13 @@ std::string BAPI::USER::add(
 	//Required, forumlation of passing conventions in the front end that would govern how data is passed into 'data' variable.
 	//Return Convention:
 
-	if (token.checkAccess(access_code) && token.checkSession(session_code) && (userTypes.at(BID_requested_by) == 'A')) {
-		std::string BID_add = token.giveSession();	// Currently using a random seed, would be later replaced with a BID generator.
-		(Joker_DB.at(NET)).insert(make_pair(BID_add, user_data)); // In implementation, make a BID_add generator.
-		return "something";
+	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
+		if (does_network_exist(NET)) {
+			//...
+		}
+		return "0";
 	}
-	else return "something";
+	return "-1";
 }
 
 std::string BAPI::USER::remove(
@@ -690,8 +462,13 @@ std::string BAPI::USER::remove(
 	//Consider doing by making a string,struct pair where status of the account is fetched by the ACT_STAT attribute of a particular struct object.
 	// Return Convention:
 
-	if (token.checkAccess(access_code) && token.checkSession(session_code) && (userTypes.at(BID_requested_by) == 'A')) {
-		(Joker_DB.at(NET)).erase((Joker_DB.at(NET)).find(BID_to_remove));
+	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
+		if (does_network_exist(NET)) {
+			(Joker_DB.at(NET)).erase((Joker_DB.at(NET)).find(BID_to_remove));
+		}
+		return "0";
+	}
+	return "-1";
 
 		// How does above line works?
 		/* Read it from the right:
@@ -704,10 +481,6 @@ std::string BAPI::USER::remove(
 		* Now in left side, Joker_DB.at(NET) returns a map, we add an erase function to it with iterator we already caluclated.
 		* Thus, ( Joker_DB.at(NET) ).erase( Joker_DB.at(NET).find(BID_to_remove) )
 		*/
-
-		return "something";
-	}
-	else return "something";
 }
 
 // BAPI::USER::MESSAGES

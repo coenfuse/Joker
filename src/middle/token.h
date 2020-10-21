@@ -10,6 +10,7 @@ class Token
 	//INCOMPLETE
 	// Method declarations
 private:
+	std::string rndm(int LEN);
 	void fill();
 public:
 	bool checkAccess(std::string);
@@ -26,7 +27,6 @@ public:
 private:
 	// Would ofcourse change the datatype used here as I learn more stuff.
 	// Consider using Tries or Hash Tables.
-	std::map <std::string, std::string> m_session;
-	std::map <std::string, std::string> m_access;
-	std::string OTP;
+
+	std::map <std::string, std::string> m_session, m_access, m_otp;
 };

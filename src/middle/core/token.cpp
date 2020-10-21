@@ -211,7 +211,9 @@ bool Token::checkSession(std::string input) {	// COMPLETE
 }
 
 bool Token::checkOTP(std::string input) {
-	return true;
+	
+	return (m_otp.at(input) == input);
+
 }
 
 std::string Token::giveAccess() {	// COMPLETE
@@ -273,7 +275,26 @@ std::string Token::giveSession() {	// COMPLETE
 }
 
 std::string Token::giveOTP() {
-	return "0000";
+	std::string otp;
+	std::string numbers = "0123456789";
+	short length = numbers.length() - 1;
+	srand(time(NULL));
+	for (int i = 0; i < 4; i++) {	// Maximum length of OTP is four
+		otp = otp + numbers[rand() % length];
+	}
+	m_otp[otp] = otp;
+	return otp;
+}
+
+std::string Token::rndm(int LEN) {
+	std::string str;
+	std::string symbols = "1234567890-=!@#$%^&*()_+qwertyuiopasdfghjklzxcvbnm,./QWERTYUIOPASDFGHJKLZXCVBNM<>?";
+	auto length = symbols.length() - 1;
+	srand(time(NULL));
+	for (int i = 0; i < LEN; i++) {
+		str = str + symbols[rand() % length];
+	}
+	return str;
 }
 
 void Token::log() {	// COMPLETE

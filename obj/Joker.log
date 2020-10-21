@@ -1,12 +1,4 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(476,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(477,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   modules.cpp
-C:\dev\joker\Joker\src\front\modules.cpp(73,74): error C2065: 'BID': undeclared identifier
-C:\dev\joker\Joker\src\front\modules.cpp(73,84): error C2065: 'BID': undeclared identifier
-C:\dev\joker\Joker\src\front\modules.cpp(73,88): error C2143: syntax error: missing ')' before ';'
-C:\dev\joker\Joker\src\front\modules.cpp(73,88): error C2512: 'JSON_adm': no appropriate default constructor available
-C:\dev\joker\Joker\src\front\modules.cpp(73,88): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\dev\joker\Joker\src\front\modules.cpp(73,19): error C2512: 'JSON_adm': no appropriate default constructor available
-C:\dev\joker\Joker\include\JSON.h(122,7): message : see declaration of 'JSON_adm'
-  JSON_txn.cpp
-  Generating Code...
+  Joker.vcxproj -> C:\dev\joker\Joker\.\bin\Joker.exe

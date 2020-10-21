@@ -6,8 +6,9 @@
 #include "access.h"
 
 
-short dashboard_adm(JSON_adm adm_data, std::string session_code) { //INCOMPLETE
+short dashboard_adm(std::string adm_data, std::string session_code) { //INCOMPLETE
 	std::cout << session_code << std::endl;
+	std::cout << adm_data << std::endl;
 	// Dashboard for Admin. INCOMPLETE
 		/*
 		settings

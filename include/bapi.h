@@ -6,20 +6,20 @@
 
 namespace BAPI {
 
-	// Shared variables
-	// Type variables
-	const short ADMIN = 1;
-	const short SUPPORT = 2;
-	const short MODERATOR = 3;
-	const short STUDENT = 4;
-	const short EMPLOYEE = 5;
+	// Type variables. NEVER CHANGE THEM!
+	const short ADM = 0;	// Administrator
+	const short SUP = 1;	// Support
+	const short MOD = 2;	// Moderator
+	const short STU = 3;	// Student
+	const short EMP = 4;	// Employee
+	const short GUE = 5;	// Guest
 
-	// Action variables
-	const short ACTION1 = 1;
-	const short ACTION2 = 2;
-	const short ACTION3 = 3;
-	const short ACTION4 = 4;
-	const short ACTION5 = 5;
+	// Action variables. NEVER CHANGE THEM!
+	const short ACT1 = 1;
+	const short ACT2 = 2;
+	const short ACT3 = 3;
+	const short ACT4 = 4;
+	const short ACT5 = 5;
 
 	namespace USER {
 
@@ -54,7 +54,7 @@ namespace BAPI {
 			std::string access_code,
 			std::string session_code,
 			std::string NET,
-			std::string BID_request_by,
+			std::string BID_requested_by,
 			short usertype
 		);
 
@@ -63,7 +63,7 @@ namespace BAPI {
 			std::string session_code,
 			std::string BID_requested_by,
 			std::string NET,
-			std::string BID
+			std::string BID_requested
 		);
 
 		// The following are UPDATE functions
@@ -556,7 +556,7 @@ namespace BAPI {
 * ::bool is_owner(): 0 or 1
 * ::bool is_active(): 0 or 1
 * ::string get_all():
-* ::string get(): "#NET, NET:'NETxxxxxxxxxx', ORG:'xxxxxxxxxx', OWN:'BIDxxxxxxxxxx', ADM:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', SUP:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', MOD:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', USER:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', STD:'count,(STDxxxxxxxxxx, STDxxxxxxxxxx, ...)', CYC:'count,(CYCxxxxxxxxxx, CYCxxxxxxxxxx, ...)', LCK:'count,(LCKxxxxxxxxxx,LCKxxxxxxxxxx,...)', CAP:'count', TXN:'TXNxxxxxxxxxx'"
+* ::string get(): "#NET, NAME: 'xxxxxxxxxxx', NET:'NETxxxxxxxxxx', ORG:'xxxxxxxxxx', OWN:'BIDxxxxxxxxxx', ADM:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', SUP:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', MOD:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', USER:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', STD:'count,(STDxxxxxxxxxx, STDxxxxxxxxxx, ...)', CYC:'count,(CYCxxxxxxxxxx, CYCxxxxxxxxxx, ...)', LCK:'count,(LCKxxxxxxxxxx,LCKxxxxxxxxxx,...)', CAP:'count', TXN:'TXNxxxxxxxxxx'"
 * ::string get_stats(): "#NET_STAT, INCOMPLETE"
 * ::string get_admins(): "#NET_ADMS, count:'xxxx', 0:(BIDxxxxxxxxxx,Name,AID), 1:(BIDxxxxxxxxxx,Name,AID), ... n:(BIDxxxxxxxxxx,Name,AID)"
 * ::string get_owner(): "#NET_OWN, BID:'BIDxxxxxxxxxx'";

@@ -5,6 +5,7 @@ Token token;
 
 std::vector<std::string> network_list = {
 	"NET100",
+	"NET110",
 	"NET200",
 	"NET300",
 	"NET400",
@@ -12,8 +13,7 @@ std::vector<std::string> network_list = {
 	"NET600",
 	"NET700",
 	"NET800",
-	"NET900",
-	"NET110",
+	"NET900"
 };
 
 std::vector<std::string>::iterator net_list_itr;
@@ -380,6 +380,21 @@ std::map<std::string, std::string> NET110_index = {
 	{"2011-369-000","BID016"}
 };
 
+// Network Objects (Contains 10 networks with each having 16 user objects. 6 Admins and 10 Students)
+std::vector<std::string> NET100_user_list = { "vilidutt","armelo","armanza","zakajuda","coenfuse","larochey","2017-310-123","2017-310-124","2017-310-125","2017-310-126","2017-310-127","2017-310-128","2017-310-129","2017-310-130","2017-310-131","2017-310-132" };
+std::vector<std::string> NET200_user_list = { "catibatz","nurymato","arayfero","elenjudd","bessbaro","quastro","2016-315-120","2016-315-121","2016-315-122","2016-315-123","2016-315-124","2016-315-125","2016-315-126","2016-315-127","2016-315-128","2016-315-129" };
+std::vector<std::string> NET300_user_list = { "morynern","yoanison","diaolani","alissolt","tzakary","armygirl","2018-335-093","2018-335-094","2018-335-095","2018-335-096","2018-335-097","2018-335-098","2018-335-099","2018-335-100","2018-335-101","2018-335-102" };
+std::vector<std::string> NET400_user_list = { "mussboi","nosinoy","inaload","bolt","carrotlover","bongbro","2014-815-120","2014-815-121","2014-815-122","2014-815-123","2014-815-124","2014-815-125","2014-815-126","2014-815-127","2014-815-128","2014-815-129" };
+std::vector<std::string> NET500_user_list = { "neriwirt","foadbutt","edamedin","iramsolt","elenjuda","junazer","2020-312-888","2020-312-889","2020-312-890","2020-312-891","2020-312-892","2020-312-893","2020-312-894","2020-312-895","2020-312-896","2020-312-897" };
+std::vector<std::string> NET600_user_list = { "arayjobe","edaskutt","egonelek","javigroh","jurimota","jodychey","2015-360-723","2015-360-724","2015-360-725","2015-360-726","2015-360-727","2015-360-728","2015-360-729","2015-360-730","2015-360-731","2015-360-732" };
+std::vector<std::string> NET700_user_list = { "corzar", "eberzani", "myelin", "toggo", "kerifaby", "hedifero","2014-390-873","2014-390-874","2014-390-875","2014-390-876","2014-390-877","2014-390-878","2014-390-879","2014-390-880","2014-390-881","2014-390-882" };
+std::vector<std::string> NET800_user_list = { "caprilla","toggo","ibayrahim","edacryar","drisbud","etto","2013-690-001","2013-690-002","2013-690-003","2013-690-004","2013-690-005","2013-690-006","2013-690-007","2013-690-008","2013-690-009","2013-690-010" };
+std::vector<std::string> NET900_user_list = { "odin","tenamaro","retahyer","faizelek","keriprak","vilipolk","2012-480-323","2012-480-324","2012-480-325","2012-480-326","2012-480-327","2012-480-328","2012-480-329","2012-480-330","2012-480-331","2012-480-332" };
+std::vector<std::string> NET110_user_list = { "elezor","nuriceli","babu","walymeck","judafaur","capitalari","2011-369-111","2011-369-222","2011-369-333","2011-369-444","2011-369-555","2011-369-666","2011-369-777","2011-369-888","2011-369-999","2011-369-000" };
+
+std::vector<std::string>::iterator user_list_itr;
+
+std::map<std::string, char> usertype_list = { {"BID001",'A'},{"BID002",'A'},{"BID003",'A'},{"BID004",'A'},{"BID005",'A'},{"BID006",'A'},{"BID007",'U'},{"BID008",'U'},{"BID009",'U'},{"BID010",'U'},{"BID011",'U'},{"BID012",'U'},{"BID013",'U'},{"BID014",'U'},{"BID015",'U'},{"BID016",'U'} };
 
 std::map<std::string, std::map<std::string, std::string>> Joker_DB = {
 	{"NET100", NET100_data},
@@ -405,19 +420,17 @@ std::map<std::string, std::map<std::string, std::string>> BID_pairs = {
 	{"NET900", NET900_index},
 	{"NET110", NET110_index}
 };
+std::map<std::string, std::vector<std::string>> Joker_Users = {
+	{"NET100",NET100_user_list},
+	{"NET200",NET200_user_list},
+	{"NET300",NET300_user_list},
+	{"NET400",NET400_user_list },
+	{"NET500",NET500_user_list},
+	{"NET600",NET600_user_list},
+	{"NET700",NET700_user_list},
+	{"NET800",NET800_user_list},
+	{"NET900",NET900_user_list},
+	{"NET110",NET110_user_list}
+};
 
 // Local Variable Inits
-
-	// Network Objects (Contains 10 networks with each having 16 user objects. 6 Admins and 10 Students)
-std::string NET100_obj[] = { "vilidutt","armelo","armanza","zakajuda","coenfuse","larochey","2017-310-123","2017-310-124","2017-310-125","2017-310-126","2017-310-127","2017-310-128","2017-310-129","2017-310-130","2017-310-131","2017-310-132" };
-std::string NET200_obj[] = { "catibatz","nurymato","arayfero","elenjudd","bessbaro","quastro","2016-315-120","2016-315-121","2016-315-122","2016-315-123","2016-315-124","2016-315-125","2016-315-126","2016-315-127","2016-315-128","2016-315-129" };
-std::string NET300_obj[] = { "morynern","yoanison","diaolani","alissolt","tzakary","armygirl","2018-335-093","2018-335-094","2018-335-095","2018-335-096","2018-335-097","2018-335-098","2018-335-099","2018-335-100","2018-335-101","2018-335-102" };
-std::string NET400_obj[] = { "mussboi","nosinoy","inaload","bolt","carrotlover","bongbro","2014-815-120","2014-815-121","2014-815-122","2014-815-123","2014-815-124","2014-815-125","2014-815-126","2014-815-127","2014-815-128","2014-815-129" };
-std::string NET500_obj[] = { "neriwirt","foadbutt","edamedin","iramsolt","elenjuda","junazer","2020-312-888","2020-312-889","2020-312-890","2020-312-891","2020-312-892","2020-312-893","2020-312-894","2020-312-895","2020-312-896","2020-312-897" };
-std::string NET600_obj[] = { "arayjobe","edaskutt","egonelek","javigroh","jurimota","jodychey","2015-360-723","2015-360-724","2015-360-725","2015-360-726","2015-360-727","2015-360-728","2015-360-729","2015-360-730","2015-360-731","2015-360-732" };
-std::string NET700_obj[] = { "corzar", "eberzani", "myelin", "toggo", "kerifaby", "hedifero","2014-390-873","2014-390-874","2014-390-875","2014-390-876","2014-390-877","2014-390-878","2014-390-879","2014-390-880","2014-390-881","2014-390-882" };
-std::string NET800_obj[] = { "caprilla","toggo","ibayrahim","edacryar","drisbud","etto","2013-690-001","2013-690-002","2013-690-003","2013-690-004","2013-690-005","2013-690-006","2013-690-007","2013-690-008","2013-690-009","2013-690-010" };
-std::string NET900_obj[] = { "odin","tenamaro","retahyer","faizelek","keriprak","vilipolk","2012-480-323","2012-480-324","2012-480-325","2012-480-326","2012-480-327","2012-480-328","2012-480-329","2012-480-330","2012-480-331","2012-480-332" };
-std::string NET110_obj[] = { "elezor","nuriceli","babu","walymeck","judafaur","capitalari","2011-369-111","2011-369-222","2011-369-333","2011-369-444","2011-369-555","2011-369-666","2011-369-777","2011-369-888","2011-369-999","2011-369-000" };
-
-std::map<std::string, char> userTypes = { {"BID001",'A'},{"BID002",'A'},{"BID003",'A'},{"BID004",'A'},{"BID005",'A'},{"BID006",'A'},{"BID007",'U'},{"BID008",'U'},{"BID009",'U'},{"BID010",'U'},{"BID011",'U'},{"BID012",'U'},{"BID013",'U'},{"BID014",'U'},{"BID015",'U'},{"BID016",'U'} };

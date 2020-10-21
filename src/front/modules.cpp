@@ -1,6 +1,7 @@
 #include <iostream>
 #include <bapi.h>
 #include <JSON.h>
+#include <string>
 #include "graphics.h"
 #include "modules.h"
 #include "dashboard.h"
@@ -64,15 +65,15 @@ void loginAttempt(unsigned short attempt) {	//COMPLETE
 		std::cout << "\t\t\t       Username: ";
 		std::string username;
 		std::cin >> username;
-		if (BAPI::USER::is_present(access_token, net, username, BAPI::ADMIN)) {
+		if (BAPI::USER::is_present(access_token, net, username, BAPI::ADM)) {
 			std::cout << "\t\t\t       Password: ";
 			std::string salt;
 			std::cin >> salt;
-			if (BAPI::USER::authorize_login(access_token, net, username, salt, BAPI::ADMIN) != "-1") {
-				std::string session_code = BAPI::USER::authorize_login(access_token, net, username, salt, BAPI::ADMIN);
-				JSON_adm attr = JSON_adm(BAPI::USER::get(access_token, session_code, BID, net, BID);
+			if (BAPI::USER::authorize_login(access_token, net, username, salt, BAPI::ADM) != "-1") {
+				std::string token = BAPI::USER::authorize_login(access_token, net, username, salt, BAPI::ADM);
+				std::string attr = BAPI::USER::get(access_token, "low69coenfuse", "BID001", net, "BID008");
 				short log;
-				log = dashboard_adm(attr, session_code);
+				log = dashboard_adm(attr, token);
 			}
 			else {
 				std::cout << "\n\t\t\t       Given Username or Password is incorrect. Retry? [Y/N]" << std::endl;
