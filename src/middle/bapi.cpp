@@ -9,42 +9,45 @@
 #define TEST	// Set this TEST to RELASE to unload the system from testing mode.
 
 #ifdef TEST
+
 #include "..\data\testing\test_data.h"
 
 // Local Declarations
+
 bool does_user_exist(std::string username, std::string NET);
 bool does_network_exist(std::string NET);
-short user_type(std::string BID);
+short user_type(std::string BID, std::string NET);
 
 // Local Definitions
+
 bool does_user_exist(std::string username, std::string NET){	
 	
-	std::vector<std::string> users = Joker_Users.at(NET);
-	std::sort(users.begin(), users.end());
+	std::vector<std::string> user_list = Joker_Users.at(NET);
+	std::sort(user_list.begin(), user_list.end());
 
-	return std::binary_search(users.begin(), users.end(), username);
+	return std::binary_search(user_list.begin(), user_list.end(), username);
 }
-
 bool does_network_exist(std::string NET) {
 	
 	std::vector<std::string> list_copy = network_list;
 	std::sort(list_copy.begin(), list_copy.begin());
 
-	return std::binary_search(network_list.begin(), network_list.end(), NET);
+	return std::binary_search(list_copy.begin(), list_copy.end(), NET);
 }
-
-short user_type(std::string BID) {
+short user_type(std::string BID, std::string NET) {
+	
 	using namespace BAPI;
-	char type = usertype_list.at(BID);
-	if (type == 'A')
+
+	std::string DATA = (Joker_DB.at(NET)).at(BID);
+	if ( DATA.find("TYPE:'ADM'") != -1 )
 		return ADM;
-	if (type == 'S')
+	else if ( DATA.find("TYPE:'SUP'") != -1 )
 		return SUP;
-	if (type == 'M')
+	else if ( DATA.find("TYPE:'MOD'") != -1 )
 		return MOD;
-	if (type == 'ST')
+	else if ( DATA.find("TYPE:'STU'") != -1 )
 		return STU;
-	if (type == 'E')
+	else if ( DATA.find("TYPE:'EMP'") != -1 )
 		return EMP;
 	else return GUE;
 }
@@ -178,14 +181,22 @@ std::string BAPI::USER::get_all(
 
 	using namespace BAPI;
 
-	const std::string prefix[] = { "#BLK_ADM, ","#BLK_SUP, ","#BLK_MOD, ","#BLK_STU, ","#BLK_EMP, ","#BLK_GUE, " };
+	const std::string prefix[] = { 
+		"#BLK_ADM, ",
+		"#BLK_SUP, ",
+		"#BLK_MOD, ",
+		"#BLK_STU, ",
+		"#BLK_EMP, ",
+		"#BLK_GUE, "
+	};
+
 	std::string pass_data = "NULL", BID, NAME, ID, TEMP;
 	size_t start, end;
 	std::map<std::string, std::string> network;
 
 	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
 		if (does_network_exist(NET)) {
-			if (user_type(BID_requested_by) == ADM)
+			if (user_type(BID_requested_by, NET) == ADM)
 			{
 				network = Joker_DB.at(NET);
 				switch (usertype)
@@ -302,13 +313,20 @@ std::string BAPI::USER::get(
 
 	using namespace BAPI;
 
-	std::string prefix[] = { "#USR_ATTR_ADM, ","#USR_ATTR_STU, ","#USR_ATTR_EMP, ","#USR_ATTR_SUP, ","#USR_ATTR_MOD, ","#USR_ATTR_GUE, " };
+	std::string prefix[] = { 
+		"#USR_ATTR_ADM, ",
+		"#USR_ATTR_SUP, ",
+		"#USR_ATTR_MOD, ",
+		"#USR_ATTR_STU, ",
+		"#USR_ATTR_EMP, ",
+		"#USR_ATTR_GUE, "
+	};
 	std::string pass_data = "NULL";
 
 	if (token.checkAccess(access_code) && token.checkSession(session_code)){
 		if (does_network_exist(NET)) {
-			const short requester = user_type(BID_requested_by);
-			const short requested = user_type(BID_requested);
+			const short requester = user_type(BID_requested_by, NET);
+			const short requested = user_type(BID_requested, NET);
 
 			switch (requester)
 			{
@@ -377,7 +395,11 @@ std::string BAPI::USER::update_all(
 	short action
 ) {	
 	// INCOMPLETE. //Consider removal.
-	// Return Convention:
+	/*
+	* Return Convention:
+	* 
+	* Actions:
+	*/
 
 	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
 		if (does_network_exist(NET)) {

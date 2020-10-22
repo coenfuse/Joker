@@ -1,6 +1,5 @@
 #include <iostream>
 #include <bapi.h>
-#include <JSON.h>
 #include <string>
 #include "graphics.h"
 #include "modules.h"
@@ -91,7 +90,6 @@ void loginAttempt(unsigned short attempt) {	//COMPLETE
 		if (choice == 'Y' || choice == 'y')
 			loginAttempt(--attempt);
 		else bivfx::close();
-		exit(0);
 	}
 	std::cout << "Too many incorrect inputs. System will now terminate." << std::endl;
 }
