@@ -7,19 +7,32 @@
 namespace BAPI {
 
 	// Type variables. NEVER CHANGE THEM!
-	const short ADM = 0;	// Administrator
-	const short SUP = 1;	// Support
-	const short MOD = 2;	// Moderator
-	const short STU = 3;	// Student
-	const short EMP = 4;	// Employee
-	const short GUE = 5;	// Guest
+	const unsigned short ADM = 0;	// Administrator
+	const unsigned short SUP = 1;	// Support
+	const unsigned short MOD = 2;	// Moderator
+	const unsigned short STU = 3;	// Student
+	const unsigned short EMP = 4;	// Employee
+	const unsigned short GUE = 5;	// Guest
 
 	// Action variables. NEVER CHANGE THEM!
-	const short ACT1 = 1;
-	const short ACT2 = 2;
-	const short ACT3 = 3;
-	const short ACT4 = 4;
-	const short ACT5 = 5;
+	namespace USER_ACT
+	{
+		const unsigned short ACTIVATE = 0;
+		const unsigned short DEACTIVATE = 1;
+		const unsigned short ENABLE = 2;
+		const unsigned short DISABLE = 3;
+		const unsigned short MONITOR = 4;
+		const unsigned short BLOCK = 5;
+	}
+
+	namespace NTWK_ACT
+	{
+		const unsigned short ACT1 = 0;
+		const unsigned short ACT2 = 0;
+		const unsigned short ACT3 = 0;
+		const unsigned short ACT4 = 0;
+		const unsigned short ACT5 = 0;
+	}
 
 	namespace USER {
 
@@ -73,7 +86,6 @@ namespace BAPI {
 			std::string session_code,
 			std::string BID_requested_by,
 			std::string NET,
-			std::string multiple_user_data,
 			short action
 		);	//Consider removal.
 		
@@ -82,8 +94,16 @@ namespace BAPI {
 			std::string session_code,
 			std::string BID_requested_by,
 			std::string NET,
-			std::string BID,
+			std::string BID_to_be_updated,
 			std::string user_data
+		);
+
+		std::string update(
+			std::string access_code,
+			std::string session_code,
+			std::string BID_requested_by,
+			std::string NET,
+			std::string BID_to_be_updated
 		);
 
 		// The following are POST functions

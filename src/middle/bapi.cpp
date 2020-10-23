@@ -116,7 +116,26 @@ std::string BAPI::USER::authorize_login(
 		if (does_network_exist(NET)){
 			if (does_user_exist(username, NET)) {
 				if (salt == "0000") {
+
 					std::string BID = (BID_pairs.at(NET)).at(username);
+					std::map<std::string, std::string> TEMP = Joker_DB.at(NET);
+					std::string USER_DATA = (Joker_DB.at(NET)).at(BID);
+					std::string KEY = "ONLINE:'", STATUS = "T", substr1, substr2;
+					size_t start = 0, end = USER_DATA.find(KEY) + KEY.length();
+					
+					substr1 = USER_DATA.substr(start, end);
+					
+					start = substr1.length() + STATUS.length();
+					end = USER_DATA.length() - start;
+					substr2 = USER_DATA.substr(start, end);
+
+					USER_DATA = substr1 + STATUS + substr2;
+					TEMP[BID] = USER_DATA;
+					Joker_DB[NET] = TEMP;
+
+					// THIS FUNCTION IS WORKING BUT THE CHAGES MADE BY IT AREN"T GETTING REFLECTED GLOBALLY.
+					// MAYBE BECAUSE WE ARE NOT MAKING THE CORRECT USE OF POINTERS.
+
 					return "SESSION_CODE: '" + token.giveSession() + "', BID: '" + BID + "'";
 				}
 				return "3";
@@ -135,11 +154,11 @@ bool BAPI::USER::logout(
 	std::string NET,
 	std::string user_data
 ) {
-	// INCOMPLETE
+	// COMPLETE
 	// Returning Convention: 
 
 	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
-		//(Joker_DB.at(NET)).insert(BID, user_data);
+		(Joker_DB.at(NET)).insert(BID, user_data);
 		return true;
 	}
 	return false;
@@ -391,23 +410,204 @@ std::string BAPI::USER::update_all(
 	std::string session_code,
 	std::string BID_requested_by,
 	std::string NET,
-	std::string multiple_user_data,
 	short action
 ) {	
-	// INCOMPLETE. //Consider removal.
+	// COMPLETE. //Consider removal.
 	/*
 	* Return Convention:
+	* Return "-1" if ACCESS_CODE or SESSION_CODE is invalid.
+	* Return "0" on normal execution.
+	* Return "1" if NET doesn't exist
+	* Return "2" if Access Hierarchy is violated. Heirarchy: ADM -> SUP -> MOD -> (STU <!> EMP <!> GUE)
+	* Return "3" if attribute key is not found in the database.
 	* 
 	* Actions:
-	*/
+	* ACTIVATE = 0
+	* DEACTIVATE = 1
+	* ENABLE = 2
+	* DISABLE = 3
+	* MONITOR = 4
+	* BLOCK = 5
+	*/ 
+	
+	using namespace BAPI::USER_ACT;
 
 	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
 		if (does_network_exist(NET)) {
-			//...
+			const short requester = user_type(BID_requested_by, NET);
+			if (user_type(BID_requested_by, NET) == ADM){
+				switch (action)
+				{
+				case ACTIVATE: {
+					const std::string REPLACE_FROM = "IS_ACTIVE:'", TO_INSERT = "T";
+
+					std::map<std::string, std::string> USER_DATA = Joker_DB.at(NET);
+					std::map<std::string, std::string>::iterator itr;
+					std::string TEMP_DATA, NEW_DATA, FIRST_HALF, SECOND_HALF;
+					for (itr = USER_DATA.begin() ; itr != USER_DATA.end() ; ++itr) {
+						size_t start = 0, end = 0;
+						
+						TEMP_DATA = itr->second;
+						if (TEMP_DATA.find(REPLACE_FROM) != -1)
+						{
+							end = TEMP_DATA.find(REPLACE_FROM) + REPLACE_FROM.length();
+							FIRST_HALF = TEMP_DATA.substr(start, end);
+
+							start = end + TO_INSERT.length();
+							end = TEMP_DATA.length() - start;
+							SECOND_HALF = TEMP_DATA.substr(start, end);
+
+							NEW_DATA = FIRST_HALF + TO_INSERT + SECOND_HALF;
+							USER_DATA[itr->first] = NEW_DATA;
+						}
+						else return "3";
+					}
+					Joker_DB[NET] = USER_DATA;
+				}
+						break;
+				case DEACTIVATE: {
+					const std::string REPLACE_FROM = "IS_ACTIVE:'", TO_INSERT = "F";
+
+					std::map<std::string, std::string> USER_DATA = Joker_DB.at(NET);
+					std::map<std::string, std::string>::iterator itr;
+					std::string TEMP_DATA, NEW_DATA, FIRST_HALF, SECOND_HALF;
+					for (itr = USER_DATA.begin(); itr != USER_DATA.end(); ++itr) {
+						size_t start = 0, end = 0;
+
+						TEMP_DATA = itr->second;
+						if (TEMP_DATA.find(REPLACE_FROM) != -1)
+						{
+							end = TEMP_DATA.find(REPLACE_FROM) + REPLACE_FROM.length();
+							FIRST_HALF = TEMP_DATA.substr(start, end);
+
+							start = end + TO_INSERT.length();
+							end = TEMP_DATA.length() - start;
+							SECOND_HALF = TEMP_DATA.substr(start, end);
+
+							NEW_DATA = FIRST_HALF + TO_INSERT + SECOND_HALF;
+							USER_DATA[itr->first] = NEW_DATA;
+						}
+						else return "3";
+					}
+					Joker_DB[NET] = USER_DATA;
+				}
+						break;
+				case ENABLE: {
+					const std::string REPLACE_FROM = "ACCOUNT_STAT:'", TO_INSERT = "0";
+
+					std::map<std::string, std::string> USER_DATA = Joker_DB.at(NET);
+					std::map<std::string, std::string>::iterator itr;
+					std::string TEMP_DATA, NEW_DATA, FIRST_HALF, SECOND_HALF;
+					for (itr = USER_DATA.begin(); itr != USER_DATA.end(); ++itr) {
+						size_t start = 0, end = 0;
+
+						TEMP_DATA = itr->second;
+						if (TEMP_DATA.find(REPLACE_FROM) != -1)
+						{
+							end = TEMP_DATA.find(REPLACE_FROM) + REPLACE_FROM.length();
+							FIRST_HALF = TEMP_DATA.substr(start, end);
+
+							start = end + TO_INSERT.length();
+							end = TEMP_DATA.length() - start;
+							SECOND_HALF = TEMP_DATA.substr(start, end);
+
+							NEW_DATA = FIRST_HALF + TO_INSERT + SECOND_HALF;
+							USER_DATA[itr->first] = NEW_DATA;
+						}
+						else return "3";
+					}
+					Joker_DB[NET] = USER_DATA;
+				}
+						break;
+				case DISABLE: {
+					const std::string REPLACE_FROM = "ACCOUNT_STAT:'", TO_INSERT = "1";
+
+					std::map<std::string, std::string> USER_DATA = Joker_DB.at(NET);
+					std::map<std::string, std::string>::iterator itr;
+					std::string TEMP_DATA, NEW_DATA, FIRST_HALF, SECOND_HALF;
+					for (itr = USER_DATA.begin(); itr != USER_DATA.end(); ++itr) {
+						size_t start = 0, end = 0;
+
+						TEMP_DATA = itr->second;
+						if (TEMP_DATA.find(REPLACE_FROM) != -1)
+						{
+							end = TEMP_DATA.find(REPLACE_FROM) + REPLACE_FROM.length();
+							FIRST_HALF = TEMP_DATA.substr(start, end);
+
+							start = end + TO_INSERT.length();
+							end = TEMP_DATA.length() - start;
+							SECOND_HALF = TEMP_DATA.substr(start, end);
+
+							NEW_DATA = FIRST_HALF + TO_INSERT + SECOND_HALF;
+							USER_DATA[itr->first] = NEW_DATA;
+						}
+						else return "3";
+					}
+					Joker_DB[NET] = USER_DATA;
+				}
+						break;
+				case MONITOR: {
+					const std::string REPLACE_FROM = "ACCOUNT_STAT:'", TO_INSERT = "2";
+
+					std::map<std::string, std::string> USER_DATA = Joker_DB.at(NET);
+					std::map<std::string, std::string>::iterator itr;
+					std::string TEMP_DATA, NEW_DATA, FIRST_HALF, SECOND_HALF;
+					for (itr = USER_DATA.begin(); itr != USER_DATA.end(); ++itr) {
+						size_t start = 0, end = 0;
+
+						TEMP_DATA = itr->second;
+						if (TEMP_DATA.find(REPLACE_FROM) != -1)
+						{
+							end = TEMP_DATA.find(REPLACE_FROM) + REPLACE_FROM.length();
+							FIRST_HALF = TEMP_DATA.substr(start, end);
+
+							start = end + TO_INSERT.length();
+							end = TEMP_DATA.length() - start;
+							SECOND_HALF = TEMP_DATA.substr(start, end);
+
+							NEW_DATA = FIRST_HALF + TO_INSERT + SECOND_HALF;
+							USER_DATA[itr->first] = NEW_DATA;
+						}
+						else return "3";
+					}
+					Joker_DB[NET] = USER_DATA;
+				}
+						break;
+				case BLOCK: {
+					const std::string REPLACE_FROM = "ACCOUNT_STAT:'", TO_INSERT = "3";
+
+					std::map<std::string, std::string> USER_DATA = Joker_DB.at(NET);
+					std::map<std::string, std::string>::iterator itr;
+					std::string TEMP_DATA, NEW_DATA, FIRST_HALF, SECOND_HALF;
+					for (itr = USER_DATA.begin(); itr != USER_DATA.end(); ++itr) {
+						size_t start = 0, end = 0;
+
+						TEMP_DATA = itr->second;
+						if (TEMP_DATA.find(REPLACE_FROM) != -1)
+						{
+							end = TEMP_DATA.find(REPLACE_FROM) + REPLACE_FROM.length();
+							FIRST_HALF = TEMP_DATA.substr(start, end);
+
+							start = end + TO_INSERT.length();
+							end = TEMP_DATA.length() - start;
+							SECOND_HALF = TEMP_DATA.substr(start, end);
+
+							NEW_DATA = FIRST_HALF + TO_INSERT + SECOND_HALF;
+							USER_DATA[itr->first] = NEW_DATA;
+						}
+						else return "3";
+					}
+					Joker_DB[NET] = USER_DATA;
+				}
+							break;
+				}
+				return "0";
+			}
+			else return "2";
 		}
-		return "0";
+		else return "1";
 	}
-	return "-1";
+	else return "-1";
 }
 
 std::string BAPI::USER::update(
@@ -427,6 +627,18 @@ std::string BAPI::USER::update(
 		return "0";
 	}
 	return "-1";
+}
+
+std::string update(
+	std::string access_code,
+	std::string session_code,
+	std::string BID_requested_by,
+	std::string NET,
+	std::string BID_to_be_updated
+) {
+	// INCOMPLETE
+	// Return Convention
+	return "INCOMPLETE";
 }
 
 std::string BAPI::USER::add_multiple(
