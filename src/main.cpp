@@ -6,8 +6,8 @@
 	Description: This is the entry point for our program. Contains a menu designed on switch for basic frontend.
 */
 #include <iostream>
-#include "..\src\front\modules.h"
-#include "..\src\front\graphics.h"
+#include "..\src\client\sys\modules.h"
+#include "..\src\client\vfx\graphics.h"
 
 int main() {
 	unsigned short input;

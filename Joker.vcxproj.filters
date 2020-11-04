@@ -15,70 +15,70 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\middle\bapi.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\front\graphics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\front\modules.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\sys\JSON.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\front\dashboard.cpp">
+    <ClCompile Include="src\client\util\json\JSON\JSON_adm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\back\dio.cpp">
+    <ClCompile Include="src\client\util\json\JSON\JSON_bulk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\back\bidb.cpp">
+    <ClCompile Include="src\client\util\json\JSON\JSON_cyc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\frontObj.cpp">
+    <ClCompile Include="src\client\util\json\JSON\JSON_emp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\JSON\JSON_adm.cpp">
+    <ClCompile Include="src\client\util\json\JSON\JSON_guest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\JSON\JSON_stu.cpp">
+    <ClCompile Include="src\client\util\json\JSON\JSON_lock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\JSON\JSON_emp.cpp">
+    <ClCompile Include="src\client\util\json\JSON\JSON_mod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\JSON\JSON_net.cpp">
+    <ClCompile Include="src\client\util\json\JSON\JSON_net.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\JSON\JSON_cyc.cpp">
+    <ClCompile Include="src\client\util\json\JSON\JSON_std.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\JSON\JSON_lock.cpp">
+    <ClCompile Include="src\client\util\json\JSON\JSON_stu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\JSON\JSON_txn.cpp">
+    <ClCompile Include="src\client\util\json\JSON\JSON_sup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\JSON\JSON_std.cpp">
+    <ClCompile Include="src\client\util\json\JSON\JSON_txn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\JSON\JSON_bulk.cpp">
+    <ClCompile Include="src\server\core\token\token.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\JSON\JSON_sup.cpp">
+    <ClCompile Include="src\server\api\bapi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\JSON\JSON_mod.cpp">
+    <ClCompile Include="src\client\vfx\graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\JSON\JSON_guest.cpp">
+    <ClCompile Include="src\client\sys\src\dashboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\middle\core\token.cpp">
+    <ClCompile Include="src\client\sys\src\modules.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\client\util\class\frontObj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\server\db\src\bidb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\server\db\src\dio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\client\util\json\JSON\JSON.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,34 +86,34 @@
     <ClInclude Include="include\bapi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\JSON.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\front\graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\front\modules.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\back\dio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\front\access.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\back\bidb.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sys\frontObj.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\front\dashboard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\middle\token.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="data\testing\test_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\server\core\token.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\cred\access.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\vfx\graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\sys\modules.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\sys\dashboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\util\class\frontObj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\server\db\bidb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\server\db\dio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\util\json\JSON.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
