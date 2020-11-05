@@ -27,6 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\client\util\class\com\coordinate\coor.cpp" />
     <ClCompile Include="src\client\util\class\frontObj.cpp" />
     <ClCompile Include="src\client\util\json\JSON\JSON.cpp" />
     <ClCompile Include="src\client\util\json\JSON\JSON_adm.cpp" />
@@ -78,6 +79,20 @@
     <Text Include="deps\deps.txt" />
     <Text Include="docs\errorCodes.txt" />
     <Text Include="docs\Readme.txt" />
+    <Text Include="src\client\util\class\com\address\add.txt" />
+    <Text Include="src\client\util\class\com\email\email.txt" />
+    <Text Include="src\client\util\class\com\name\name.txt" />
+    <Text Include="src\client\util\class\com\phone\phone.txt" />
+    <Text Include="src\client\util\class\sys\cyc\cyc.txt" />
+    <Text Include="src\client\util\class\sys\lck\lck.txt" />
+    <Text Include="src\client\util\class\sys\net\net.txt" />
+    <Text Include="src\client\util\class\sys\std\std.txt" />
+    <Text Include="src\client\util\class\user\adm\adm.txt" />
+    <Text Include="src\client\util\class\user\emp\emp.txt" />
+    <Text Include="src\client\util\class\user\gue\gue.txt" />
+    <Text Include="src\client\util\class\user\mod\mod.txt" />
+    <Text Include="src\client\util\class\user\stu\stu.txt" />
+    <Text Include="src\client\util\class\user\sup\sup.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
