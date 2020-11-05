@@ -1,5 +1,31 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(476,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(477,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  coor.cpp
+  frontObj.cpp
+  JSON.cpp
+  JSON_adm.cpp
+  JSON_bulk.cpp
+  JSON_cyc.cpp
+  JSON_emp.cpp
+  JSON_guest.cpp
+  JSON_lock.cpp
+  JSON_mod.cpp
+  JSON_net.cpp
+  JSON_std.cpp
+  JSON_stu.cpp
+  JSON_sup.cpp
+  JSON_txn.cpp
+  dashboard.cpp
+  graphics.cpp
+  modules.cpp
+  main.cpp
   bapi.cpp
+  Generating Code...
 C:\dev\joker\Joker\src\server\api\bapi.cpp(304): warning C4715: 'BAPI::USER::get_all': not all control paths return a value
+  Compiling...
+  token.cpp
+  bidb.cpp
+  dio.cpp
+  Generating Code...
+  LINK : .\bin\Joker.exe not found or not built by the last incremental link; performing full link
   Joker.vcxproj -> C:\dev\joker\Joker\.\bin\Joker.exe

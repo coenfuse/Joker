@@ -5,6 +5,7 @@
 	Updated: 04-10-2020, 13:12
 	Description: This is the entry point for our program. Contains a menu designed on switch for basic frontend.
 */
+
 #include <iostream>
 #include "..\src\client\sys\modules.h"
 #include "..\src\client\vfx\graphics.h"
