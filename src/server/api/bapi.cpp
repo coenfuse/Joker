@@ -154,11 +154,18 @@ bool BAPI::USER::logout(
 	std::string NET,
 	std::string user_data
 ) {
-	// COMPLETE
+	// INCOMPLETE
 	// Returning Convention: 
 
 	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
-		(Joker_DB.at(NET)).insert(BID, user_data);
+		//The following line causes error C2675 and C2100. Use pointers or a propietary data handler.
+		//(Joker_DB.at(NET)).insert(BID, user_data);
+		// The above line also has an invalid syntax. Instead
+		(Joker_DB.at(NET))[NET] = (BID, user_data);
+		
+		// What the above line does is, it takes the Joker_DB map. Makes a copy of it in the scope function.
+		// Adds new data to it (causing memory problems) and then just deletes it when function goes out of scope.
+		// Without making changes to the original file.
 		return true;
 	}
 	return false;

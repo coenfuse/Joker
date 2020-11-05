@@ -69,9 +69,6 @@
     <ClCompile Include="src\client\sys\src\modules.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\client\util\class\frontObj.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\server\db\src\bidb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -79,6 +76,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\client\util\json\JSON\JSON.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\client\util\class\frontObj.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,9 +104,6 @@
     <ClInclude Include="src\client\sys\dashboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\client\util\class\frontObj.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\server\db\bidb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -114,6 +111,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\client\util\json\JSON.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\util\class\frontObj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\util\class\common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

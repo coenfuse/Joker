@@ -54,6 +54,7 @@
     <ClInclude Include="include\bapi.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="src\client\util\class\common.h" />
     <ClInclude Include="src\client\util\class\frontObj.h" />
     <ClInclude Include="src\client\cred\access.h" />
     <ClInclude Include="data\testing\test_data.h" />

@@ -1,29 +1,5 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(476,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(477,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   bapi.cpp
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xtree(1375,13): error C2675: unary '++': '_Iter' does not define this operator or a conversion to a type acceptable to the predefined operator
-          with
-          [
-              _Iter=std::string
-          ]
-C:\dev\joker\Joker\src\server\api\bapi.cpp(161): message : see reference to function template instantiation 'void std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,false>>::insert<std::string>(_Iter,_Iter)' being compiled
-          with
-          [
-              _Kty=std::string,
-              _Ty=std::string,
-              _Pr=std::less<std::string>,
-              _Alloc=std::allocator<std::pair<const std::string,std::string>>,
-              _Iter=std::string
-          ]
-C:\dev\joker\Joker\src\server\api\bapi.cpp(161): message : see reference to function template instantiation 'void std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,false>>::insert<std::string>(_Iter,_Iter)' being compiled
-          with
-          [
-              _Kty=std::string,
-              _Ty=std::string,
-              _Pr=std::less<std::string>,
-              _Alloc=std::allocator<std::pair<const std::string,std::string>>,
-              _Iter=std::string
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xtree(1376,36): error C2100: illegal indirection
-  dio.cpp
-  Generating Code...
+C:\dev\joker\Joker\src\server\api\bapi.cpp(304): warning C4715: 'BAPI::USER::get_all': not all control paths return a value
+  Joker.vcxproj -> C:\dev\joker\Joker\.\bin\Joker.exe
