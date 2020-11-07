@@ -70,7 +70,7 @@ void loginAttempt(unsigned short attempt) {	//COMPLETE
 			std::cin >> salt;
 			if (BAPI::USER::authorize_login(access_token, net, username, salt, BAPI::ADM) != "-1") {
 				std::string token = BAPI::USER::authorize_login(access_token, net, username, salt, BAPI::ADM);
-				std::string attr = BAPI::USER::get(access_token, "low69coenfuse", "BID001", net, "BID008");
+				std::string attr = BAPI::USER::get(access_token, "low69coenfuse", "BID001", net, "BID005");
 				short log;
 				log = dashboard_adm(attr, token);
 			}

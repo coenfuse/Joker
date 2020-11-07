@@ -25,6 +25,34 @@ namespace BAPI {
 		const unsigned short BLOCK = 5;
 	}
 
+	// User_Data Wrapper structure definition.
+
+	struct User_Data {
+		// A heavy wrapper. Of size 880 bytes
+		std::string BID;
+		std::string TYPE;
+		std::string IS_ACTIVE;
+		std::string ONLINE;
+		std::string ACCOUNT_STAT;
+		std::string PROFILE_COMPLETE;
+		std::string LOG_COUNT;
+		std::string NET;
+		std::string OWN;
+		std::string ID;		// AID/SID/SUP/MOD/GUE/EMP
+		std::string NAME;
+		std::string GUARDIAN;
+		std::string DOB;
+		std::string GENDER;
+		std::string PRIMARY_PHONE;
+		std::string SECONDARY_PHONE;
+		std::string PRIMARY_EMAIL;
+		std::string SECONDARY_EMAIL;
+		std::string PRIMARY_ADD;
+		std::string ADD2_ADD1;
+		std::string SECONDARY_ADD;
+		std::string DEPT;
+	};
+
 	namespace NTWK_ACT
 	{
 		const unsigned short ACT1 = 0;
@@ -53,12 +81,12 @@ namespace BAPI {
 			short usertype
 		);
 
-		bool logout(
+		short logout(
 			std::string access_code,
 			std::string session_code,
 			std::string BID,
 			std::string NET,
-			std::string user_data
+			User_Data user_data
 		);
 
 		// The following are simple GET functions

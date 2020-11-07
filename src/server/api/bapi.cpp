@@ -12,6 +12,18 @@
 
 #include "..\data\testing\test_data.h"
 
+std::map<std::string, std::map<std::string, std::string>> *Joker_DB_ptr = &Joker_DB;
+std::map<std::string, std::vector<std::string>> *Joker_Users_ptr = &Joker_Users;
+std::vector<std::string> *net_list_ptr = &network_list;
+
+// A NOTE TO THE READER.
+// An effort has been made here to keep the syntax simpler.
+// The pointers defined above point to complex data structures.
+// Using related methods for those structures would only make the code unreadable.
+// Thus, temporary variables are used in functions to simplify the
+// usage of of nested members. The members then, can be edited separately with ease.
+// So, complex syntax is traded wherever possible at the cost of high memory usage.
+
 // Local Declarations
 
 bool does_user_exist(std::string username, std::string NET);
@@ -21,18 +33,12 @@ short user_type(std::string BID, std::string NET);
 // Local Definitions
 
 bool does_user_exist(std::string username, std::string NET){	
-	
-	std::vector<std::string> user_list = Joker_Users.at(NET);
-	std::sort(user_list.begin(), user_list.end());
-
-	return std::binary_search(user_list.begin(), user_list.end(), username);
+	std::sort(Joker_Users_ptr->at(NET).begin(), Joker_Users_ptr->at(NET).end());
+	return std::binary_search(Joker_Users_ptr->at(NET).begin(), Joker_Users_ptr->at(NET).end(), username);
 }
 bool does_network_exist(std::string NET) {
-	
-	std::vector<std::string> list_copy = network_list;
-	std::sort(list_copy.begin(), list_copy.begin());
-
-	return std::binary_search(list_copy.begin(), list_copy.end(), NET);
+	std::sort(net_list_ptr->begin(), net_list_ptr->end());
+	return std::binary_search(net_list_ptr->begin(), net_list_ptr->end(), NET);
 }
 short user_type(std::string BID, std::string NET) {
 	
@@ -117,9 +123,11 @@ std::string BAPI::USER::authorize_login(
 			if (does_user_exist(username, NET)) {
 				if (salt == "0000") {
 
+					// A NOTE TO THE READER, if necessary
+
 					std::string BID = (BID_pairs.at(NET)).at(username);
 					std::map<std::string, std::string> TEMP = Joker_DB.at(NET);
-					std::string USER_DATA = (Joker_DB.at(NET)).at(BID);
+					std::string USER_DATA = (Joker_DB_ptr->at(NET)).at(BID);
 					std::string KEY = "ONLINE:'", STATUS = "T", substr1, substr2;
 					size_t start = 0, end = USER_DATA.find(KEY) + KEY.length();
 					
@@ -133,9 +141,6 @@ std::string BAPI::USER::authorize_login(
 					TEMP[BID] = USER_DATA;
 					Joker_DB[NET] = TEMP;
 
-					// THIS FUNCTION IS WORKING BUT THE CHAGES MADE BY IT AREN"T GETTING REFLECTED GLOBALLY.
-					// MAYBE BECAUSE WE ARE NOT MAKING THE CORRECT USE OF POINTERS.
-
 					return "SESSION_CODE: '" + token.giveSession() + "', BID: '" + BID + "'";
 				}
 				return "3";
@@ -147,16 +152,50 @@ std::string BAPI::USER::authorize_login(
 	return "-1";
 }
 
-bool BAPI::USER::logout(
+short BAPI::USER::logout(
 	std::string access_code,
 	std::string session_code,
 	std::string BID,
 	std::string NET,
-	std::string user_data
+	User_Data user_data
 ) {
 	// INCOMPLETE
-	// Returning Convention: 
 
+	/*
+	* Return Convention:
+	* -1 : If ACCESS_CODE or SESSION_CODE is invalid
+	* 0 : If the data is written successfully onto the database.
+	* 1 : if NET doesn't exist
+	* 2 : if BID doesn't exist. When a new user is created, his BID is
+	*     instantly updated into the database. So possible issue of new user
+	*     facing a logout issue is covered.
+	* 3 : If the user_data is incomplete.
+	* 4 : If some exception is thrown while updating the database. 
+	*/
+
+	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
+		if (does_network_exist(NET)) {
+			try {
+				// Check if BID exists.
+				auto TEMP = Joker_DB_ptr->at(NET).at(BID);
+			}
+			catch (...) {
+				return 2;	// The BID doesn't exist
+			}
+			
+			// BID does exist. Now parsing User_Data;
+			while (true) {
+				if (false)
+					return 3;
+			}
+
+		}
+		return 1;
+	}
+	return -1;
+
+
+	/*
 	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
 		//The following line causes error C2675 and C2100. Use pointers or a propietary data handler.
 		//(Joker_DB.at(NET)).insert(BID, user_data);
@@ -169,6 +208,7 @@ bool BAPI::USER::logout(
 		return true;
 	}
 	return false;
+	*/
 }
 
 std::string BAPI::USER::get_all(
