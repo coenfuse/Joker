@@ -1,5 +1,9 @@
 #pragma once
 #include<vector>
+#include<map>
+#include<string>
+#include"..\src\server\core\token.h"
+
 // Change the BID keys to integer type from strings in the release phase.
 
 Token token;

@@ -29,24 +29,12 @@
   <ItemGroup>
     <ClCompile Include="src\client\util\class\com\coordinate\coor.cpp" />
     <ClCompile Include="src\client\util\class\frontObj.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON_adm.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON_bulk.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON_cyc.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON_emp.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON_guest.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON_lock.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON_mod.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON_net.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON_std.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON_stu.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON_sup.cpp" />
-    <ClCompile Include="src\client\util\json\JSON\JSON_txn.cpp" />
     <ClCompile Include="src\client\sys\src\dashboard.cpp" />
     <ClCompile Include="src\client\vfx\graphics.cpp" />
     <ClCompile Include="src\client\sys\src\modules.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\server\api\bapi.cpp" />
+    <ClCompile Include="src\server\api\util\JSON\JSON.cpp" />
     <ClCompile Include="src\server\core\token\token.cpp" />
     <ClCompile Include="src\server\db\src\bidb.cpp" />
     <ClCompile Include="src\server\db\src\dio.cpp" />
@@ -59,11 +47,11 @@
     <ClInclude Include="src\client\util\class\frontObj.h" />
     <ClInclude Include="src\client\cred\access.h" />
     <ClInclude Include="data\testing\test_data.h" />
+    <ClInclude Include="src\server\api\util\JSON.h" />
     <ClInclude Include="src\server\core\token.h" />
     <ClInclude Include="src\server\db\bidb.h" />
     <ClInclude Include="src\server\db\dio.h" />
     <ClInclude Include="src\client\vfx\graphics.h" />
-    <ClInclude Include="src\client\util\json\JSON.h" />
     <ClInclude Include="src\client\sys\modules.h" />
     <ClInclude Include="src\client\sys\dashboard.h" />
   </ItemGroup>

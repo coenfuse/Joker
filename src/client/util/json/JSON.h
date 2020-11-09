@@ -19,6 +19,7 @@ Network::network(JSON j_Network){
 }
 */
 
+/*
 #ifndef JSON_H
 #define JSON_H
 
@@ -319,3 +320,4 @@ private:
 };
 
 #endif
+*/

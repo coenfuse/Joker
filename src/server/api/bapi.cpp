@@ -29,6 +29,7 @@ std::vector<std::string> *net_list_ptr = &network_list;
 bool does_user_exist(std::string username, std::string NET);
 bool does_network_exist(std::string NET);
 short user_type(std::string BID, std::string NET);
+bool write_to_disk(JSON user_data);
 
 // Local Definitions
 
@@ -56,6 +57,17 @@ short user_type(std::string BID, std::string NET) {
 	else if ( DATA.find("TYPE:'EMP'") != -1 )
 		return EMP;
 	else return GUE;
+}
+bool write_to_disk(JSON user_data) {
+	//Serializing the User_Data into string first
+	try {
+		// Some BS goes here.
+	}
+	catch (...) {
+		// If any BS occurs
+		return false;
+	}
+	return true;	// Normal behaviour
 }
 
 // BAPI::USER
@@ -157,9 +169,9 @@ short BAPI::USER::logout(
 	std::string session_code,
 	std::string BID,
 	std::string NET,
-	User_Data user_data
+	JSON user_data
 ) {
-	// INCOMPLETE
+	// COMPLETE
 
 	/*
 	* Return Convention:
@@ -167,28 +179,28 @@ short BAPI::USER::logout(
 	* 0 : If the data is written successfully onto the database.
 	* 1 : if NET doesn't exist
 	* 2 : if BID doesn't exist. When a new user is created, his BID is
-	*     instantly updated into the database. So possible issue of new user
+	*     instantly updated into the database. So possiblilty of a new user
 	*     facing a logout issue is covered.
-	* 3 : If the user_data is incomplete.
+	* 3 : If the user_data is incomplete or 
 	* 4 : If some exception is thrown while updating the database. 
 	*/
 
 	if (token.checkAccess(access_code) && token.checkSession(session_code)) {
 		if (does_network_exist(NET)) {
 			try {
-				// Check if BID exists.
+				// Checking if BID exists.
 				auto TEMP = Joker_DB_ptr->at(NET).at(BID);
 			}
 			catch (...) {
-				return 2;	// The BID doesn't exist
+				return 2;
 			}
-			
-			// BID does exist. Now parsing User_Data;
-			while (true) {
-				if (false)
-					return 3;
+			if (user_data.has_empty_tag()) {
+				if (write_to_disk(user_data)) {
+					return 0;
+				}
+				return 4;
 			}
-
+			return 3;
 		}
 		return 1;
 	}

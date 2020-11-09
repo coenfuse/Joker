@@ -1,7 +1,8 @@
 #include <iostream>
 #include <time.h>
 #include <string>
-#include "..\src\client\util\json\JSON.h"
+#include "..\src\server\api\util\JSON.h"
+//#include "..\src\client\util\json\JSON.h"
 #include "..\src\client\vfx\graphics.h"
 #include "..\src\client\cred\access.h"
 
@@ -69,7 +70,7 @@ short dashboard_adm(std::string adm_data, std::string session_code) { //INCOMPLE
 	return 1;
 }
 
-short dashboard_stu(JSON_stu stu_data, std::string session_code) { //INCOMPLETE
+short dashboard_stu(JSON stu_data, std::string session_code) { //INCOMPLETE
 	std::cout << session_code << std::endl;
 	/*
 		student
@@ -105,19 +106,19 @@ short dashboard_stu(JSON_stu stu_data, std::string session_code) { //INCOMPLETE
 	return 1;
 }
 
-short dashboard_emp(JSON_emp stu_data, std::string session_code) { // INCOMPLETE
+short dashboard_emp(JSON stu_data, std::string session_code) { // INCOMPLETE
 	std::cout << session_code << std::endl;
 	return 1;
 }
 
-short dashboard_sup(JSON_sup sup_data, std::string session_code) { // INCOMPLETE
+short dashboard_sup(JSON sup_data, std::string session_code) { // INCOMPLETE
 	return 1;
 }
 
-short dashboard_mod(JSON_mod mod_data, std::string session_code) { // INCOMPLETE
+short dashboard_mod(JSON mod_data, std::string session_code) { // INCOMPLETE
 	return 1;
 }
 
-short dashboard_gue(JSON_guest guest_data, std::string session_code) { // INCOMPLETE
+short dashboard_gue(JSON guest_data, std::string session_code) { // INCOMPLETE
 	return 1;
 }

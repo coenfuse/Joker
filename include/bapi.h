@@ -1,6 +1,7 @@
 #ifndef BAPI_H
 #define BAPI_H
 #include <string>
+#include "..\src\server\api\util\JSON.h"
 
 // Returning conventions of these functions are mentioned at the end of this file.
 
@@ -24,34 +25,6 @@ namespace BAPI {
 		const unsigned short MONITOR = 4;
 		const unsigned short BLOCK = 5;
 	}
-
-	// User_Data Wrapper structure definition.
-
-	struct User_Data {
-		// A heavy wrapper. Of size 880 bytes
-		std::string BID;
-		std::string TYPE;
-		std::string IS_ACTIVE;
-		std::string ONLINE;
-		std::string ACCOUNT_STAT;
-		std::string PROFILE_COMPLETE;
-		std::string LOG_COUNT;
-		std::string NET;
-		std::string OWN;
-		std::string ID;		// AID/SID/SUP/MOD/GUE/EMP
-		std::string NAME;
-		std::string GUARDIAN;
-		std::string DOB;
-		std::string GENDER;
-		std::string PRIMARY_PHONE;
-		std::string SECONDARY_PHONE;
-		std::string PRIMARY_EMAIL;
-		std::string SECONDARY_EMAIL;
-		std::string PRIMARY_ADD;
-		std::string ADD2_ADD1;
-		std::string SECONDARY_ADD;
-		std::string DEPT;
-	};
 
 	namespace NTWK_ACT
 	{
@@ -86,7 +59,7 @@ namespace BAPI {
 			std::string session_code,
 			std::string BID,
 			std::string NET,
-			User_Data user_data
+			JSON user_data
 		);
 
 		// The following are simple GET functions
@@ -574,18 +547,18 @@ namespace BAPI {
 * ::bool is_present(): 0 or 1
 * ::string authorize_login():	SESSION_CODE: 'xxxxxxxxxx', BID:'xxxxxxxxxx'
 * ::bool logout(): 0 or 1
-* ::string get_all(): "#BLK_ADM, count, 0:(BIDxxxxxxxxxx,Name,AID), 1:(BIDxxxxxxxxxx,Name,AID), ... n:(BIDxxxxxxxxxx,Name,AID)"
-*						    "#BLK_STU, count, 0:(BIDxxxxxxxxxx,Name,SID), 1:(BIDxxxxxxxxxx,Name,SID), ... n:(BIDxxxxxxxxxx,Name,SID)"
-*						    "#BLK_EMP, count, 0:(BIDxxxxxxxxxx,Name,EID), 1:(BIDxxxxxxxxxx,Name,EID), ... n:(BIDxxxxxxxxxx,Name,EID)"
-*						    "#BLK_SUP, count, 0:(BIDxxxxxxxxxx,Name,SUP), 1:(BIDxxxxxxxxxx,Name,SUP), ... n:(BIDxxxxxxxxxx,Name,SUP)"
-*						    "#BLK_MOD, count, 0:(BIDxxxxxxxxxx,Name,MOD), 1:(BIDxxxxxxxxxx,Name,MOD), ... n:(BIDxxxxxxxxxx,Name,MOD)"
-*						    "#BLK_GUE, count, 0:(BGIDxxxxxxxxxx,Name,Duration), 1:(BGIDxxxxxxxxxx,Name,Duration), ... n:(BGIDxxxxxxxxxx,Name,Duration)"
-* ::string get(): "#USR_ATTR_ADM, BID:'BIDxxxxxxxxxx', AID : 'xxxxxxxxxx', NET : 'NETxxxxxxxxxx', OWN : '0 or 1', NAME : 'xxxxxxxxxx', GUARDIAN : 'xxxxxxxxxx', GEN : 'F or M or O', DOB : '00/MON/0000', ACT_STAT : '0 or 1', PH1 : 'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2 : 'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1 : 'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2 : 'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1 : 'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2 == ADD1 : '0', ADD2 : 'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), LOC:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ONLINE : '0 or 1', ACC_STAT : 'xxxxxxxxxx'"
-*					   "#USR_ATTR_STU, BID:'BIDxxxxxxxxxx', SID:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', PEN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', GEN : 'F or M or O', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'0', ADD2:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), LOC:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx', DEPT:'xxxxxxxxxx', LOGCOUNT:'xxxxxxxxx'"
-*					   "#USR_ATTR_EMP, BID:'BIDxxxxxxxxxx', EID:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', OWN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', GEN : 'F or M or O', SPOUSE:'xxxxxxxxxx', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'1', ADD2:'NULL', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx', DEPT:'xxxxxxxxxx', LOGCOUNT:'xxxxxxxxx'"
-*	//INCOMPLETE	   "#USR_ATTR_SUP, BID:'BIDxxxxxxxxxx', SUP:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', OWN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', GEN : 'F or M or O', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'1', ADD2:'NULL', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx'"
-*	//INCOMPLETE	   "#USR_ATTR_MOD, BID:'BIDxxxxxxxxxx', MOD:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', OWN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', GEN : 'F or M or O', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'1', ADD2:'NULL', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx'"
-*	//INCOMPLETE	   "#USR_ATTR_GUE, GID:'BGIDxxxxxxxxxx', Name:'xxxxxxxxxx', START:'00:00,00/00/00', END:'00:00,00/MON/0000', DUR:'00:00:00', IP:'000:000:000'"
+* ::string get_all(): "#ALL_ADM, count, 0:(BIDxxxxxxxxxx,Name,AID), 1:(BIDxxxxxxxxxx,Name,AID), ... n:(BIDxxxxxxxxxx,Name,AID)"
+*					  "#ALL_STU, count, 0:(BIDxxxxxxxxxx,Name,SID), 1:(BIDxxxxxxxxxx,Name,SID), ... n:(BIDxxxxxxxxxx,Name,SID)"
+*					  "#ALL_EMP, count, 0:(BIDxxxxxxxxxx,Name,EID), 1:(BIDxxxxxxxxxx,Name,EID), ... n:(BIDxxxxxxxxxx,Name,EID)"
+*					  "#ALL_SUP, count, 0:(BIDxxxxxxxxxx,Name,SUP), 1:(BIDxxxxxxxxxx,Name,SUP), ... n:(BIDxxxxxxxxxx,Name,SUP)"
+*					  "#ALL_MOD, count, 0:(BIDxxxxxxxxxx,Name,MOD), 1:(BIDxxxxxxxxxx,Name,MOD), ... n:(BIDxxxxxxxxxx,Name,MOD)"
+*					  "#ALL_GUE, count, 0:(BGIDxxxxxxxxxx,Name,Duration), 1:(BGIDxxxxxxxxxx,Name,Duration), ... n:(BGIDxxxxxxxxxx,Name,Duration)"
+* ::string get(): "#ATR_ADM, BID:'BIDxxxxxxxxxx', AID : 'xxxxxxxxxx', NET : 'NETxxxxxxxxxx', OWN : '0 or 1', NAME : 'xxxxxxxxxx', GUARDIAN : 'xxxxxxxxxx', GEN : 'F or M or O', DOB : '00/MON/0000', ACT_STAT : '0 or 1', PH1 : 'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2 : 'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1 : 'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2 : 'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1 : 'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2 == ADD1 : '0', ADD2 : 'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), LOC:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ONLINE : '0 or 1', ACC_STAT : 'xxxxxxxxxx'"
+*					   "#ATR_STU, BID:'BIDxxxxxxxxxx', SID:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', PEN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', GEN : 'F or M or O', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'0', ADD2:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), LOC:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx', DEPT:'xxxxxxxxxx', LOGCOUNT:'xxxxxxxxx'"
+*					   "#ATR_EMP, BID:'BIDxxxxxxxxxx', EID:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', OWN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', GEN : 'F or M or O', SPOUSE:'xxxxxxxxxx', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'1', ADD2:'NULL', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx', DEPT:'xxxxxxxxxx', LOGCOUNT:'xxxxxxxxx'"
+*	//INCOMPLETE	   "#ATR_SUP, BID:'BIDxxxxxxxxxx', SUP:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', OWN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', GEN : 'F or M or O', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'1', ADD2:'NULL', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx'"
+*	//INCOMPLETE	   "#ATR_MOD, BID:'BIDxxxxxxxxxx', MOD:'xxxxxxxxxx', NET:'NETxxxxxxxxxx', OWN:'0 or 1', NAME:'xxxxxxxxxx', GUARDIAN:'xxxxxxxxxx', GEN : 'F or M or O', DOB:'00/MON/0000', ACT_STAT:'0 or 1', PH1:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', PH2:'CODE:(xxxxxx), NUM:(xxxxxxxxxx)', EM1:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', EM2:'HEAD:(xxxxxxxxxx), HOST:(xxxxxxxxxx)', ADD1:'HNO:(xxx), BLO:(xxx), COL:(xxxxxxxxxx), LAN:(xxxxxxxxxx), AREA:(xxxxxxxxxx), CIT:(xxxxxxxxxx), STA:(xxxxxxxxxx), COU:(xxxxxxxxxx), PIN:(xxxxxxxxxx)', ADD2==ADD1:'1', ADD2:'NULL', ONLINE:'0 or 1', ACC_STAT:'xxxxxxxxxx'"
+*	//INCOMPLETE	   "#ATR_GUE, GID:'BGIDxxxxxxxxxx', Name:'xxxxxxxxxx', START:'00:00,00/00/00', END:'00:00,00/MON/0000', DUR:'00:00:00', IP:'000:000:000'"
 * ::string update_all(): "RESPONSE CODE: Message, Remarks(if any)"
 * ::string update(): "RESPONSE CODE: Message, Remarks(if any)"
 * ::string add_multiple(): "RESPONSE CODE: Message, Remarks(if any)"
@@ -604,7 +577,7 @@ namespace BAPI {
 * ::bool is_owner(): 0 or 1
 * ::bool is_active(): 0 or 1
 * ::string get_all():
-* ::string get(): "#NET, NAME: 'xxxxxxxxxxx', NET:'NETxxxxxxxxxx', ORG:'xxxxxxxxxx', OWN:'BIDxxxxxxxxxx', ADM:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', SUP:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', MOD:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', USER:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', STD:'count,(STDxxxxxxxxxx, STDxxxxxxxxxx, ...)', CYC:'count,(CYCxxxxxxxxxx, CYCxxxxxxxxxx, ...)', LCK:'count,(LCKxxxxxxxxxx,LCKxxxxxxxxxx,...)', CAP:'count', TXN:'TXNxxxxxxxxxx'"
+* ::string get(): "#ALL_NET, NAME: 'xxxxxxxxxxx', NET:'NETxxxxxxxxxx', ORG:'xxxxxxxxxx', OWN:'BIDxxxxxxxxxx', ADM:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', SUP:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', MOD:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', USER:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', STD:'count,(STDxxxxxxxxxx, STDxxxxxxxxxx, ...)', CYC:'count,(CYCxxxxxxxxxx, CYCxxxxxxxxxx, ...)', LCK:'count,(LCKxxxxxxxxxx,LCKxxxxxxxxxx,...)', CAP:'count', TXN:'TXNxxxxxxxxxx'"
 * ::string get_stats(): "#NET_STAT, INCOMPLETE"
 * ::string get_admins(): "#NET_ADMS, count:'xxxx', 0:(BIDxxxxxxxxxx,Name,AID), 1:(BIDxxxxxxxxxx,Name,AID), ... n:(BIDxxxxxxxxxx,Name,AID)"
 * ::string get_owner(): "#NET_OWN, BID:'BIDxxxxxxxxxx'";
@@ -615,7 +588,7 @@ namespace BAPI {
 * BAPI::NETWORK::STAND::
 *
 * ::bool is_present(): 0 or 1
-* ::string get_all(): "#NET_STDS, count:'xxxx', 0:'STDxxxxxxxxxx', 1:'STDxxxxxxxxxx', ... n:'STDxxxxxxxxxx'";
+* ::string get_all(): "#ALL_STD, count:'xxxx', 0:'STDxxxxxxxxxx', 1:'STDxxxxxxxxxx', ... n:'STDxxxxxxxxxx'";
 * ::string get(): "#NET_STD, TIME:'00:00:00, DD/MMM/YYYY', STD:'STDxxxxxxxxxx', ACT_STAT:'0 or 1', STD_STAT:'xxxxxxxxxx', NAME:'xxxxxxxxxx', LOC:'xxxxxxxxxx', COORDINATE:(xxxxxx,xxxxxx), CAPACITY:'xxx', TXN_COUNT:'xxxxxxxxxx'"
 * ::string get_stats(): "#NET_STD_STAT, INCOMPLETE"
 * ::string get_nearest(): "#NET_NEAR_STD, 0:(DIST,STDxxxxxxxxxx), 1:(DIST,STDxxxxxxxxx), 2:(DIST,STDxxxxxxxxxx)";
@@ -629,9 +602,9 @@ namespace BAPI {
 * BAPI::NETWORK::CYCLE::
 *
 * ::bool is_present(): 0 or 1
-* ::string get_all(): "#NET_CYCS, count:'xxxx', 0:'CYCxxxxxxxxxx', 1:'CYCxxxxxxxxxx', ... n:'CYCxxxxxxxxxx'";
+* ::string get_all(): "#ALL_CYC, count:'xxxx', 0:'CYCxxxxxxxxxx', 1:'CYCxxxxxxxxxx', ... n:'CYCxxxxxxxxxx'";
 * ::string get(): "#NET_CYC, TIME:'00:00:00,DD/MMM/YYYY', CYC:'CYCxxxxxxxxxx', CYC_STAT:'xxxxxxxxxx', ISSUED:'0 or 1', LOC:'STDxxxxxxxxxx or BIDxxxxxxxxxx', WITH:'BIDxxxxxxxxxx', HEALTH:'xxxxxx'";
-* ::string get_available(): "#NET_CYC_AVAILABLE, TIME:'00:00:00, DD/MMM/YYYY', count: 'xxxx', 0:('CYCxxxxxxxxxx', 'STDxxxxxxxxxx'), 1:('CYCxxxxxxxxxx', 'STDxxxxxxxxxx'), ... , n:('CYCxxxxxxxxxx', 'STDxxxxxxxxxx')"
+* ::string get_available(): "#NET_CYC_FREE, TIME:'00:00:00, DD/MMM/YYYY', count: 'xxxx', 0:('CYCxxxxxxxxxx', 'STDxxxxxxxxxx'), 1:('CYCxxxxxxxxxx', 'STDxxxxxxxxxx'), ... , n:('CYCxxxxxxxxxx', 'STDxxxxxxxxxx')"
 * ::string update_all(): "RESPONSE CODE: Message, Remarks(if any)"
 * ::string update(): "RESPONSE CODE: Message, Remarks(if any)"
 * ::string add(): "RESPONSE CODE: Message, CYC"
@@ -639,9 +612,9 @@ namespace BAPI {
 *
 * BAPI::NETWORK::LOCK::
 *
-* ::string get_all(): "#NET_LCKS, count:'xxxx', 0:(STDxxxxxxxxxx,LCKxxxxxxxxxx,...LCKxxxxxxxxxx), 1:(STDxxxxxxxxxx,LCKxxxxxxxxxx,...LCKxxxxxxxxxx), ... n:(STDxxxxxxxxxx,LCKxxxxxxxxxx,...LCKxxxxxxxxxx)"
+* ::string get_all(): "#ALL_LCK, count:'xxxx', 0:(STDxxxxxxxxxx,LCKxxxxxxxxxx,...LCKxxxxxxxxxx), 1:(STDxxxxxxxxxx,LCKxxxxxxxxxx,...LCKxxxxxxxxxx), ... n:(STDxxxxxxxxxx,LCKxxxxxxxxxx,...LCKxxxxxxxxxx)"
 * ::string get(): "#NET_LCK, TIME:'00:00:00,DD/MMM/YYYY', STD:'STDxxxxxxxxxx', OPEN:'0 or 1', ACTIVE:'0 or 1'";
-* ::string get_stats(): "#NET_STATS, INCOMPLETE"
+* ::string get_stats(): "#NET_LCK_STAT, INCOMPLETE"
 * ::string update_all(): "RESPONSE CODE: Message, Remarks(if any)"
 * ::string update(): "RESPONSE CODE: Message, Remarks(if any)"
 * ::string add(): "RESPONSE CODE: Message, LCK"
@@ -649,7 +622,7 @@ namespace BAPI {
 *
 * BAPI::NETWORK::TXN::
 *
-* ::string get_all_TXN(): "#NET_TXNS, TIME:'00:00:00,DD/MMM/YYYY', count:'xxxx', 0:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY'), 1:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY'), ... n:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY')"
+* ::string get_all_TXN(): "#ALL_TXN, TIME:'00:00:00,DD/MMM/YYYY', count:'xxxx', 0:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY'), 1:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY'), ... n:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY')"
 * ::string get_user_TXN(): "#NET_USR_TXN, TIME:'00:00:00,DD/MMM/YYYY', count:'xxxx', 0:(TXNxxxxxxxxxx,txnStatus,issuedAt,overtime), 1:(TXNxxxxxxxxxx,txnStatus,issuedAt,overtime), ... n:(TXNxxxxxxxxxx,txnStatus,issuedAt,overtime)"
 * ::string get_stand_TXN(): "#NET_STD_TXN, TIME:'00:00:00,DD/MMM/YYYY', count:'xxxx', 0:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY'), 1:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY'), ... n:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY')"
 * ::string get_cycle_TXN(): "#NET_CYC_TXN, TIME:'00:00:00,DD/MMM/YYYY', count:'xxxx', 0:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issuedAt,'00:00:00,DD/MMM/YYYY'), 1:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issuedAt,'00:00:00,DD/MMM/YYYY'), ... n:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issuedAt,'00:00:00,DD/MMM/YYYY')"
