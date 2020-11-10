@@ -1,8 +1,10 @@
+// Testing Incomplete
 #include "..\src\server\api\util\JSON.h"
-
 
 // Public Implementations
 JSON::JSON(JSON::Type wrapper_type) {
+	// COMPLETE
+
 	switch (wrapper_type)
 	{
 	case JSON::ALL_ADM: init_ALL_ADM();
@@ -78,24 +80,154 @@ JSON::~JSON() {
 
 }
 
-bool JSON::has_empty_tag() {
-	// INCOMPLETE
-	return true;
+std::string JSON::at(std::string TAG) const {
+	// COMPLETE
+
+	std::string _DATA = "0";
+	try {
+		_DATA = m_default_tag_list.at(TAG);
+	}
+	catch (...) {
+		try {
+			_DATA = m_custom_tag_list.at(TAG);
+		}
+		catch (...) {
+			return _DATA;
+		}
+		return _DATA;
+	}
+	return _DATA;	// Flow reaches here if m_default_tag_list contains the TAG specified.
 }
 
-inline size_t JSON::length() {
-	return (m_default_tags + m_custom_tags);
-}
-
-void JSON::remove(std::string to_remove_tag) {
-	if (m_custom_tags > 0) {
-		// Cannot delete only custom_tag
+void JSON::add(std::string custom_tag){
+	// COMPLETE
+	if  (m_custom_tag_list.find(custom_tag) != m_custom_tag_list.end()) {
+		std::pair<std::string, std::string> data_pair = { custom_tag, "" };
+		m_custom_tag_list.insert(data_pair);
 	}
 }
 
+void JSON::add(std::string custom_tag, std::string data_attached) {
+	// COMPLETE
+	if (m_custom_tag_list.find(custom_tag) != m_custom_tag_list.end()) {
+		std::pair<std::string, std::string> data_pair = { custom_tag, data_attached };
+		m_custom_tag_list.insert(data_pair);
+	}
+	m_custom_tag_list[custom_tag] = data_attached;	// Overwrites new data to the key.
+}
+
+std::list<std::string> JSON::empty_tags() {
+	// COMPLETE
+
+	std::list<std::string> empty_tags_list = {""};
+	for (auto each : m_default_tag_list) {
+		if (each.second == "")
+			empty_tags_list.emplace_back(each.first);
+	}
+	for (auto each : m_custom_tag_list) {
+		if (each.second == "")
+			empty_tags_list.emplace_back(each.first);
+	}
+
+	return empty_tags_list;
+}
+
+void JSON::fill_empty_tags(std::string fill_with = "0") {
+	// COMPLETE
+
+	for (auto each : m_default_tag_list) {
+		if (each.second == "")
+			add(each.first, fill_with);
+	}
+	for (auto each : m_custom_tag_list) {
+		if (each.second == "")
+			add(each.first, fill_with);
+	}
+}
+
+bool JSON::has_empty_tag() {
+	// COMPLETE
+
+	bool default_has_empty = false;
+	bool custom_has_empty = false;
+
+	for (auto each : m_default_tag_list)
+		if (each.second != "")
+			default_has_empty = true;
+	for (auto each : m_custom_tag_list)
+		if (each.second == "")
+			custom_has_empty = true;
+
+	return (default_has_empty && custom_has_empty);
+}
+
+inline size_t JSON::length() const {
+	// COMPLETE
+
+	return ( m_default_tag_list.size() + m_custom_tag_list.size() );
+}
+
+bool JSON::remove(std::string to_remove_tag) {
+	// COMPLETE
+
+	if (m_custom_tag_list.size() > 0) {
+		try {
+			m_custom_tag_list.erase(to_remove_tag);
+		}
+		catch (...) {
+			// Exception Caught
+			return false;
+		}
+		return true;
+	}
+	return false;
+}
+
+std::string JSON::serialize() {
+	// COMPLETE
+
+	std::string serailized_data = "{ " +  m_prefix;
+	for (auto each : m_default_tag_list) {
+		serailized_data += "\"" + each.first + "\":\"" + each.second + ", ";
+	}
+	for (auto each : m_custom_tag_list) {
+		serailized_data += "\"" + each.first + "\":\"" + each.second + ",";
+	}
+
+	return serailized_data.substr(0,serailized_data.length()-1) + " }";
+}
+
+std::list<std::string> JSON::tag_list() {
+	// COMPLETE
+
+	std::list<std::string> tag_list;
+	for (auto each : m_default_tag_list) {
+		tag_list.emplace_back(each.first);
+	}
+	for (auto each : m_custom_tag_list) {
+		tag_list.emplace_back(each.first);
+	}
+
+	return tag_list;
+}
+
+std::string JSON::type() const { return m_type; }
+
 // Private Implementations
 void JSON::init_ALL_ADM() {
-	// Do something good today. Before it's too late
+	/*
+	* SAMPLE_DATA : "#ALL_ADM, count, 0:(BIDxxxxxxxxxx,Name,AID), 1:(BIDxxxxxxxxxx,Name,AID), ... n:(BIDxxxxxxxxxx,Name,AID)"
+	* 
+	* TAG_LIST
+	* 0:(BIDxxxxxxxxxx,Name,AID)
+	* 1:(BIDxxxxxxxxxx,Name,AID)
+	* 2:(BIDxxxxxxxxxx,Name,AID)
+	* ...
+	* n:(BIDxxxxxxxxxx,Name,AID)
+	*/
+	m_prefix = "#ALL_ADM";
+	m_type = "string";
+	//m_default_tag_list["0"] = "";
 }
 
 void JSON::init_ALL_SUP() {

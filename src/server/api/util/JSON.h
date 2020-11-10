@@ -1,3 +1,5 @@
+// Testing Incomplete
+
 // JSON template wrapper definition
 
 //JSON works as a redundant (underlined) management tool.
@@ -35,24 +37,35 @@ Network::network(JSON j_Network){
 
 #pragma once
 #include <string>
+#include <map>	// CURRENTLY USING MAPS FOR ACCELERATING THE DEVELOPMENT. LATER WILL USE INBUILT PAIRS.
+#include <list>
 
+//template <class T, class Y>;
 class JSON {
 private:
 	// Private Variables
 	std::string m_prefix = "null";
 	std::string m_type = "empty";
-	size_t m_default_tags = 0;
-	size_t m_custom_tags = 0;
-	// vector default_tag_list[]
-	// vector custom_tag_list[]
+	//std::map<T, Y> m_default_tag_list;
+	//std::map<T, Y> m_custom_tag_list;
+	std::map<std::string, std::string> m_default_tag_list;
+	std::map<std::string, std::string> m_custom_tag_list;
+	// size_t m_default_tags = m_default_tag_list.size();
+	// size_t m_custom_tags = m_custom_tag_list.size();
+
+	/*
+	struct Pair {
+		std::string TAG;
+		std::string DATA;
+	};
 
 	struct Tag {
 		std::string TAG_NAME;
-		std::string tag_data;
+		Pair _data;
 		Tag* previous_tag = nullptr;
 		Tag* next_Tag = nullptr;
 	};
-
+	*/
 private:
 	// Private Methods
 	JSON() {
@@ -181,15 +194,15 @@ public:
 	~JSON();
 	JSON(Type wrapper_type);
 
-	std::string at();
-	std::string add(std::string custom_tag);
-	std::string add(std::string custom_tag, std::string data);
-	std::string empty_tags();
+	std::string at(std::string TAG) const;
+	void add(std::string custom_tag);
+	void add(std::string custom_tag, std::string data);
+	std::list<std::string> empty_tags();
 	void fill_empty_tags(std::string fill_with = "0");
 	bool has_empty_tag();
-	size_t length();
-	void remove(std::string to_remove_tag);
+	size_t length() const;
+	bool remove(std::string to_remove_tag);
 	std::string serialize();
-	std::string tag_list();
-	std::string type();
+	std::list<std::string> tag_list();
+	std::string type() const;
 };
