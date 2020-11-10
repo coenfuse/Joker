@@ -1,0 +1,3 @@
+A network cannot have more than 10 admins.
+A network cannot have more than 10 support agents.
+A network cannot have more than 10 moderators.

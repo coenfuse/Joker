@@ -7,69 +7,165 @@ JSON::JSON(JSON::Type wrapper_type) {
 
 	switch (wrapper_type)
 	{
-	case JSON::ALL_ADM: init_ALL_ADM();
+	case JSON::ALL_ADM: {
+		m_prefix = _PTYPE_ALL_ADM;
+		m_type = "ALL_ADM";
+	}
 		break;
-	case JSON::ALL_SUP: init_ALL_SUP();
+	case JSON::ALL_SUP: {
+		m_prefix = _PTYPE_ALL_SUP;
+		m_type = "ALL_SUP";
+	}
 		break;
-	case JSON::ALL_MOD: init_ALL_MOD();
+	case JSON::ALL_MOD: {
+		m_prefix = _PTYPE_ALL_MOD;
+		m_type = "ALL_MOD";
+	}
 		break;
-	case JSON::ALL_STU: init_ALL_STU();
+	case JSON::ALL_STU: {
+		m_prefix = _PTYPE_ALL_STU;
+		m_type = "ALL_STU";
+	}
 		break;
-	case JSON::ALL_EMP: init_ALL_EMP();
+	case JSON::ALL_EMP: {
+		m_prefix = _PTYPE_ALL_EMP;
+		m_type = "ALL_EMP";
+	}
 		break;
-	case JSON::ALL_GUE: init_ALL_GUE();
+	case JSON::ALL_GUE: {
+		m_prefix = _PTYPE_ALL_GUE;
+		m_type = "ALL_GUE";
+	}
 		break;
-	case JSON::ALL_NET: init_ALL_NET();
+	case JSON::ALL_NET: {
+		m_prefix = _PTYPE_ALL_NET;
+		m_type = "ALL_NET";
+	}
 		break;
-	case JSON::ALL_STD: init_ALL_STD();
+	case JSON::ALL_STD: {
+		m_prefix = _PTYPE_ALL_STD;
+		m_type = "ALL_STD";
+	}
 		break;
-	case JSON::ALL_CYC: init_ALL_CYC();
+	case JSON::ALL_CYC: {
+		m_prefix = _PTYPE_ALL_CYC;
+		m_type = "ALL_CYC";
+	}
 		break;
-	case JSON::ALL_LCK: init_ALL_LCK();
+	case JSON::ALL_LCK: {
+		m_prefix = _PTYPE_ALL_LCK;
+		m_type = "ALL_LCK";
+	}
 		break;
-	case JSON::ALL_TXN: init_ALL_TXN();
+	case JSON::ALL_TXN: {
+		m_prefix = _PTYPE_ALL_TXN;
+		m_type = "ALL_TXN";
+	}
 		break;
-	case JSON::ATR_ADM: init_ATR_ADM();
+	case JSON::ATR_ADM: {
+		m_prefix = _PTYPE_ATR_ADM;
+		m_type = "ATR_ADM";
+	}
 		break;
-	case JSON::ATR_SUP: init_ATR_SUP();
+	case JSON::ATR_SUP: {
+		m_prefix = _PTYPE_ATR_SUP;
+		m_type = "ATR_SUP";
+	}
 		break;
-	case JSON::ATR_MOD: init_ATR_MOD();
+	case JSON::ATR_MOD: {
+		m_prefix = _PTYPE_ATR_MOD;
+		m_type = "ATR_MOD";
+	}
 		break;
-	case JSON::ATR_STU: init_ATR_STU();
+	case JSON::ATR_STU: {
+		m_prefix = _PTYPE_ATR_STU;
+		m_type = "ATR_STU";
+	}
 		break;
-	case JSON::ATR_EMP: init_ATR_EMP();
+	case JSON::ATR_EMP: {
+		m_prefix = _PTYPE_ATR_EMP;
+		m_type = "ATR_EMP";
+	}
 		break;
-	case JSON::ATR_GUE: init_ATR_GUE();
+	case JSON::ATR_GUE: {
+		m_prefix = _PTYPE_ATR_GUE;
+		m_type = "ATR_GUE";
+	}
 		break;
-	case JSON::NET_STAT: init_NET_STAT();
+	case JSON::NET_STAT: {
+		m_prefix = _PTYPE_NET_STAT;
+		m_type = "NET_STAT";
+	}
 		break;
-	case JSON::NET_ADMS: init_NET_ADMS();
+	case JSON::NET_ADMS: {
+		m_prefix = _PTYPE_NET_ADMS;
+		m_type = "NET_ADMS";
+	}
 		break;
-	case JSON::NET_OWN: init_NET_OWN();
+	case JSON::NET_OWN: {
+		m_prefix = _PTYPE_NET_OWN;
+		m_type = "NET_OWN";
+	}
 		break;
-	case JSON::NET_STD: init_NET_STD();
+	case JSON::NET_STD: {
+		m_prefix = _PTYPE_NET_STD;
+		m_type = "NET_STD";
+	}
 		break;
-	case JSON::NET_STD_STAT: init_NET_STD_STAT();
+	case JSON::NET_STD_STAT: {
+		m_prefix = _PTYPE_NET_STD_STAT;
+		m_type = "NET_STD_STAT";
+	}
 		break;
-	case JSON::NET_NEAR_STD: init_NET_NEAR_STD();
+	case JSON::NET_NEAR_STD: {
+		m_prefix = _PTYPE_NET_NEAR_STD;
+		m_type = "NET_NEAR_STD";
+	}
 		break;
-	case JSON::NET_STD_VACANT: init_NET_STD_VACANT();
+	case JSON::NET_STD_VACANT: {
+		m_prefix = _PTYPE_NET_STD_VACANT;
+		m_type = "NET_STD_VACANT";
+	}
 		break;
-	case JSON::NET_CYC: init_NET_CYC();
+	case JSON::NET_CYC: {
+		m_prefix = _PTYPE_NET_CYC;
+		m_type = "NET_CYC";
+	}
 		break;
-	case JSON::NET_CYC_FREE: init_NET_CYC_FREE();
+	case JSON::NET_CYC_FREE: {
+		m_prefix = _PTYPE_NET_CYC_FREE;
+		m_type = "NET_CYC_FREE";
+	}
 		break;
-	case JSON::NET_LCK: init_NET_LCK();
+	case JSON::NET_LCK: {
+		m_prefix = _PTYPE_NET_LCK;
+		m_type = "NET_LCK";
+	}
 		break;
-	case JSON::NET_LCK_STAT: init_NET_LCK_STAT();
+	case JSON::NET_LCK_STAT: {
+		m_prefix = _PTYPE_NET_LCK_STAT;
+		m_type = "NET_LCK_STAT";
+	}
 		break;
-	case JSON::TXN: init_TXN();
+	case JSON::TXN: {
+		m_prefix = _PTYPE_TXN;
+		m_type = "TXN";
+	}
 		break;
-	case JSON::NET_USR_TXN: init_NET_USR_TXN();
+	case JSON::NET_USR_TXN: {
+		m_prefix = _PTYPE_NET_USR_TXN;
+		m_type = "NET_USR_TXN";
+	}
 		break;
-	case JSON::NET_STD_TXN: init_NET_STD_TXN();
+	case JSON::NET_STD_TXN: {
+		m_prefix = _PTYPE_NET_STD_TXN;
+		m_type = "NET_STD_TXN";
+	}
 		break;
-	case JSON::NET_CYC_TXN: init_NET_CYC_TXN();
+	case JSON::NET_CYC_TXN: {
+		m_prefix = _PTYPE_NET_CYC_TXN;
+		m_type = "NET_CYC_TXN";
+	}
 		break;
 	default:
 		break;
@@ -132,7 +228,7 @@ std::list<std::string> JSON::empty_tags() {
 	return empty_tags_list;
 }
 
-void JSON::fill_empty_tags(std::string fill_with = "0") {
+void JSON::fill_empty_tags(std::string fill_with) {
 	// COMPLETE
 
 	for (auto each : m_default_tag_list) {
@@ -159,6 +255,84 @@ bool JSON::has_empty_tag() {
 			custom_has_empty = true;
 
 	return (default_has_empty && custom_has_empty);
+}
+
+void JSON::insert(std::string input_data) {
+	switch (m_prefix)
+	{
+	case JSON::_PTYPE_empty:	// At this case, no data will be inserted.
+		break;
+	case JSON::_PTYPE_ALL_ADM: add_ALL_ADM(input_data);
+		break;
+	case JSON::_PTYPE_ALL_SUP: add_ALL_SUP(input_data);
+		break;
+	case JSON::_PTYPE_ALL_MOD:
+		break;
+	case JSON::_PTYPE_ALL_STU:
+		break;
+	case JSON::_PTYPE_ALL_EMP:
+		break;
+	case JSON::_PTYPE_ALL_GUE:
+		break;
+	case JSON::_PTYPE_ALL_NET:
+		break;
+	case JSON::_PTYPE_ALL_STD:
+		break;
+	case JSON::_PTYPE_ALL_CYC:
+		break;
+	case JSON::_PTYPE_ALL_LCK:
+		break;
+	case JSON::_PTYPE_ALL_TXN:
+		break;
+	case JSON::_PTYPE_ATR_ADM:
+		break;
+	case JSON::_PTYPE_ATR_SUP:
+		break;
+	case JSON::_PTYPE_ATR_MOD:
+		break;
+	case JSON::_PTYPE_ATR_STU:
+		break;
+	case JSON::_PTYPE_ATR_EMP:
+		break;
+	case JSON::_PTYPE_ATR_GUE:
+		break;
+	case JSON::_PTYPE_NET_STAT:
+		break;
+	case JSON::_PTYPE_NET_ADMS:
+		break;
+	case JSON::_PTYPE_NET_OWN:
+		break;
+	case JSON::_PTYPE_NET_STD:
+		break;
+	case JSON::_PTYPE_NET_STD_STAT:
+		break;
+	case JSON::_PTYPE_NET_NEAR_STD:
+		break;
+	case JSON::_PTYPE_NET_STD_VACANT:
+		break;
+	case JSON::_PTYPE_NET_CYC:
+		break;
+	case JSON::_PTYPE_NET_CYC_FREE:
+		break;
+	case JSON::_PTYPE_NET_LCK:
+		break;
+	case JSON::_PTYPE_NET_LCK_STAT:
+		break;
+	case JSON::_PTYPE_TXN:
+		break;
+	case JSON::_PTYPE_NET_USR_TXN:
+		break;
+	case JSON::_PTYPE_NET_STD_TXN:
+		break;
+	case JSON::_PTYPE_NET_CYC_TXN:
+		break;
+	default:
+		break;
+	}
+}
+
+bool JSON::is_type(std::string given_type) {
+	return (m_type == given_type);
 }
 
 inline size_t JSON::length() const {
@@ -214,119 +388,139 @@ std::list<std::string> JSON::tag_list() {
 std::string JSON::type() const { return m_type; }
 
 // Private Implementations
-void JSON::init_ALL_ADM() {
+
+void JSON::add_ALL_ADM(std::string input_data) {
 	/*
 	* SAMPLE_DATA : "#ALL_ADM, count, 0:(BIDxxxxxxxxxx,Name,AID), 1:(BIDxxxxxxxxxx,Name,AID), ... n:(BIDxxxxxxxxxx,Name,AID)"
-	* 
+	*
 	* TAG_LIST
 	* 0:(BIDxxxxxxxxxx,Name,AID)
 	* 1:(BIDxxxxxxxxxx,Name,AID)
-	* 2:(BIDxxxxxxxxxx,Name,AID)
 	* ...
-	* n:(BIDxxxxxxxxxx,Name,AID)
+	* 9:(BIDxxxxxxxxxx,Name,AID)
 	*/
-	m_prefix = "#ALL_ADM";
-	m_type = "string";
-	//m_default_tag_list["0"] = "";
-}
 
-void JSON::init_ALL_SUP() {
-	// Do something good today. Before it's too late
+	std::string TAG = std::to_string(m_default_tag_list.size());
+	try {
+		m_default_tag_list[TAG] = input_data;
+	}
+	catch (...) {
+		// Handled any exception
+	}
 }
-void JSON::init_ALL_MOD() {
-	// Do something good today. Before it's too late
-}
-void JSON::init_ALL_STU() {
-	// Do something good today. Before it's too late
-}
-void JSON::init_ALL_EMP() {
-	// Do something good today. Before it's too late
-}
-void JSON::init_ALL_GUE() {
-	// Do something good today. Before it's too late
-}
-void JSON::init_ALL_NET() {
-	// Do something good today. Before it's too late
-}
-void JSON::init_ALL_STD() {
-	// Do something good today. Before it's too late
-}
-void JSON::init_ALL_CYC() {
-	// Do something good today. Before it's too late
-}
-void JSON::init_ALL_LCK() {
-	// Do something good today. Before it's too late
-}
-void JSON::init_ALL_TXN() {
-	// Do something good today. Before it's too late
-}
+void JSON::add_ALL_SUP(std::string input_data) {
+	/*
+	* SAMPLE_DATA : "#ALL_SUP, count, 0:(BIDxxxxxxxxxx,Name,SUP), 1:(BIDxxxxxxxxxx,Name,SUP), ... n:(BIDxxxxxxxxxx,Name,SUP)"
+	*
+	* TAG_LIST
+	* 0:(BIDxxxxxxxxxx,Name,SUP)
+	* 1:(BIDxxxxxxxxxx,Name,SUP)
+	* ...
+	* 9:(BIDxxxxxxxxxx,Name,SUP)
+	*/
 
-void JSON::init_ATR_ADM() {
+	std::string TAG = std::to_string(m_default_tag_list.size());
+	try {
+		m_default_tag_list[TAG] = input_data;
+	}
+	catch (...) {
+		// Handled any exception
+	}
+}
+void JSON::add_ALL_MOD() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_ATR_SUP() {
+void JSON::add_ALL_STU() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_ATR_MOD() {
+void JSON::add_ALL_EMP() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_ATR_STU() {
+void JSON::add_ALL_GUE() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_ATR_EMP() {
+void JSON::add_ALL_NET() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_ATR_GUE() {
+void JSON::add_ALL_STD() {
 	// Do something good today. Before it's too late
 }
-
-void JSON::init_NET_STAT() {
+void JSON::add_ALL_CYC() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_NET_ADMS() {
+void JSON::add_ALL_LCK() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_NET_OWN() {
+void JSON::add_ALL_TXN() {
 	// Do something good today. Before it's too late
 }
 
-void JSON::init_NET_STD() {
+void JSON::add_ATR_ADM() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_NET_STD_STAT() {
+void JSON::add_ATR_SUP() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_NET_NEAR_STD() {
+void JSON::add_ATR_MOD() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_NET_STD_VACANT() {
+void JSON::add_ATR_STU() {
 	// Do something good today. Before it's too late
 }
-
-void JSON::init_NET_CYC() {
+void JSON::add_ATR_EMP() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_NET_CYC_FREE() {
-	// Do something good today. Before it's too late
-}
-
-void JSON::init_NET_LCK() {
-	// Do something good today. Before it's too late
-}
-void JSON::init_NET_LCK_STAT() {
+void JSON::add_ATR_GUE() {
 	// Do something good today. Before it's too late
 }
 
-void JSON::init_TXN() {
+void JSON::add_NET_STAT() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_NET_USR_TXN() {
+void JSON::add_NET_ADMS() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_NET_STD_TXN() {
+void JSON::add_NET_OWN() {
 	// Do something good today. Before it's too late
 }
-void JSON::init_NET_CYC_TXN() {
+
+void JSON::add_NET_STD() {
+	// Do something good today. Before it's too late
+}
+void JSON::add_NET_STD_STAT() {
+	// Do something good today. Before it's too late
+}
+void JSON::add_NET_NEAR_STD() {
+	// Do something good today. Before it's too late
+}
+void JSON::add_NET_STD_VACANT() {
+	// Do something good today. Before it's too late
+}
+
+void JSON::add_NET_CYC() {
+	// Do something good today. Before it's too late
+}
+void JSON::add_NET_CYC_FREE() {
+	// Do something good today. Before it's too late
+}
+
+void JSON::add_NET_LCK() {
+	// Do something good today. Before it's too late
+}
+void JSON::add_NET_LCK_STAT() {
+	// Do something good today. Before it's too late
+}
+
+void JSON::add_TXN() {
+	// Do something good today. Before it's too late
+}
+void JSON::add_NET_USR_TXN() {
+	// Do something good today. Before it's too late
+}
+void JSON::add_NET_STD_TXN() {
+	// Do something good today. Before it's too late
+}
+void JSON::add_NET_CYC_TXN() {
 	// Do something good today. Before it's too late
 }
 

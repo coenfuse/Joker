@@ -181,7 +181,7 @@ short BAPI::USER::logout(
 	* 2 : if BID doesn't exist. When a new user is created, his BID is
 	*     instantly updated into the database. So possiblilty of a new user
 	*     facing a logout issue is covered.
-	* 3 : If the user_data is incomplete or 
+	* 3 : If the user_data is incomplete or invalid type
 	* 4 : If some exception is thrown while updating the database. 
 	*/
 
@@ -194,7 +194,9 @@ short BAPI::USER::logout(
 			catch (...) {
 				return 2;
 			}
-			if (user_data.has_empty_tag()) {
+			std::string type = user_data.type();
+			if (user_data.has_empty_tag() && type == "ATR_ADM" || type == "ATR_SUP"
+				||type == "ATR_MOD" || type == "ATR_STU" || type == "ATR_EMP") {
 				if (write_to_disk(user_data)) {
 					return 0;
 				}

@@ -115,5 +115,6 @@
     <Text Include="src\client\util\class\com\email\email.txt" />
     <Text Include="src\client\util\class\com\name\name.txt" />
     <Text Include="src\client\util\class\com\phone\phone.txt" />
+    <Text Include="docs\Rules.txt" />
   </ItemGroup>
 </Project>

@@ -44,7 +44,49 @@ Network::network(JSON j_Network){
 class JSON {
 private:
 	// Private Variables
-	std::string m_prefix = "null";
+	enum prefix_type {
+		_PTYPE_empty,
+		_PTYPE_ALL_ADM,
+		_PTYPE_ALL_SUP,
+		_PTYPE_ALL_MOD,
+		_PTYPE_ALL_STU,
+		_PTYPE_ALL_EMP,
+		_PTYPE_ALL_GUE,
+		_PTYPE_ALL_NET,
+		_PTYPE_ALL_STD,
+		_PTYPE_ALL_CYC,
+		_PTYPE_ALL_LCK,
+		_PTYPE_ALL_TXN,
+
+		_PTYPE_ATR_ADM,
+		_PTYPE_ATR_SUP,
+		_PTYPE_ATR_MOD,
+		_PTYPE_ATR_STU,
+		_PTYPE_ATR_EMP,
+		_PTYPE_ATR_GUE,
+
+		_PTYPE_NET_STAT,
+		_PTYPE_NET_ADMS,
+		_PTYPE_NET_OWN,
+
+		_PTYPE_NET_STD,
+		_PTYPE_NET_STD_STAT,
+		_PTYPE_NET_NEAR_STD,
+		_PTYPE_NET_STD_VACANT,
+
+		_PTYPE_NET_CYC,
+		_PTYPE_NET_CYC_FREE,
+		
+		_PTYPE_NET_LCK,
+		_PTYPE_NET_LCK_STAT,
+
+		_PTYPE_TXN,
+		_PTYPE_NET_USR_TXN,
+		_PTYPE_NET_STD_TXN,
+		_PTYPE_NET_CYC_TXN,
+	};
+
+	prefix_type m_prefix = _PTYPE_empty;
 	std::string m_type = "empty";
 	//std::map<T, Y> m_default_tag_list;
 	//std::map<T, Y> m_custom_tag_list;
@@ -72,45 +114,44 @@ private:
 		// Default Constructor
 		// Declaring in private section so user is forced to user parameterized.
 	}
+	void add_ALL_ADM(std::string input_data);
+	void add_ALL_SUP(std::string input_data);
+	void add_ALL_MOD();
+	void add_ALL_STU();
+	void add_ALL_EMP();
+	void add_ALL_GUE();
+	void add_ALL_NET();
+	void add_ALL_STD();
+	void add_ALL_CYC();
+	void add_ALL_LCK();
+	void add_ALL_TXN();
 
-	void init_ALL_ADM();
-	void init_ALL_SUP();
-	void init_ALL_MOD();
-	void init_ALL_STU();
-	void init_ALL_EMP();
-	void init_ALL_GUE();
-	void init_ALL_NET();
-	void init_ALL_STD();
-	void init_ALL_CYC();
-	void init_ALL_LCK();
-	void init_ALL_TXN();
+	void add_ATR_ADM();
+	void add_ATR_SUP();
+	void add_ATR_MOD();
+	void add_ATR_STU();
+	void add_ATR_EMP();
+	void add_ATR_GUE();
 
-	void init_ATR_ADM();
-	void init_ATR_SUP();
-	void init_ATR_MOD();
-	void init_ATR_STU();
-	void init_ATR_EMP();
-	void init_ATR_GUE();
+	void add_NET_STAT();
+	void add_NET_ADMS();
+	void add_NET_OWN();
 
-	void init_NET_STAT();
-	void init_NET_ADMS();
-	void init_NET_OWN();
+	void add_NET_STD();
+	void add_NET_STD_STAT();
+	void add_NET_NEAR_STD();
+	void add_NET_STD_VACANT();
 
-	void init_NET_STD();
-	void init_NET_STD_STAT();
-	void init_NET_NEAR_STD();
-	void init_NET_STD_VACANT();
+	void add_NET_CYC();
+	void add_NET_CYC_FREE();
 
-	void init_NET_CYC();
-	void init_NET_CYC_FREE();
+	void add_NET_LCK();
+	void add_NET_LCK_STAT();
 
-	void init_NET_LCK();
-	void init_NET_LCK_STAT();
-
-	void init_TXN();
-	void init_NET_USR_TXN();
-	void init_NET_STD_TXN();
-	void init_NET_CYC_TXN();
+	void add_TXN();
+	void add_NET_USR_TXN();
+	void add_NET_STD_TXN();
+	void add_NET_CYC_TXN();
 
 	void m_add_tag(std::string tag_to_add, std::string data_for_tag);
 	void m_remove_tag(std::string tag_to_remove);
@@ -200,6 +241,8 @@ public:
 	std::list<std::string> empty_tags();
 	void fill_empty_tags(std::string fill_with = "0");
 	bool has_empty_tag();
+	void insert(std::string input_data);
+	bool is_type(std::string given_type);
 	size_t length() const;
 	bool remove(std::string to_remove_tag);
 	std::string serialize();

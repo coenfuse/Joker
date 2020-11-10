@@ -67,6 +67,7 @@
     <Text Include="deps\deps.txt" />
     <Text Include="docs\errorCodes.txt" />
     <Text Include="docs\Readme.txt" />
+    <Text Include="docs\Rules.txt" />
     <Text Include="src\client\util\class\com\address\add.txt" />
     <Text Include="src\client\util\class\com\email\email.txt" />
     <Text Include="src\client\util\class\com\name\name.txt" />
