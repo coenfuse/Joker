@@ -90,7 +90,7 @@ private:
 	std::string m_type = "empty";
 	//std::map<T, Y> m_default_tag_list;
 	//std::map<T, Y> m_custom_tag_list;
-	std::map<std::string, std::string> m_default_tag_list;
+	std::map<std::string, std::string> m_default_container;
 	std::map<std::string, std::string> m_custom_tag_list;
 	// size_t m_default_tags = m_default_tag_list.size();
 	// size_t m_custom_tags = m_custom_tag_list.size();
@@ -116,15 +116,15 @@ private:
 	}
 	void add_ALL_ADM(std::string input_data);
 	void add_ALL_SUP(std::string input_data);
-	void add_ALL_MOD();
-	void add_ALL_STU();
-	void add_ALL_EMP();
-	void add_ALL_GUE();
-	void add_ALL_NET();
-	void add_ALL_STD();
-	void add_ALL_CYC();
-	void add_ALL_LCK();
-	void add_ALL_TXN();
+	void add_ALL_MOD(std::string input_data);
+	void add_ALL_STU(std::string input_data);
+	void add_ALL_EMP(std::string input_data);
+	void add_ALL_GUE(std::string input_data);
+	void add_ALL_NET(std::string input_data);
+	void add_ALL_STD(std::string input_data);
+	void add_ALL_CYC(std::string input_data);
+	void add_ALL_LCK(std::string input_data);
+	void add_ALL_TXN(std::string input_data);
 
 	void add_ATR_ADM();
 	void add_ATR_SUP();

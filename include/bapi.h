@@ -576,8 +576,8 @@ namespace BAPI {
 * ::bool user_exist(): 0 or 1
 * ::bool is_owner(): 0 or 1
 * ::bool is_active(): 0 or 1
-* ::string get_all():
-* ::string get(): "#ALL_NET, NAME: 'xxxxxxxxxxx', NET:'NETxxxxxxxxxx', ORG:'xxxxxxxxxx', OWN:'BIDxxxxxxxxxx', ADM:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', SUP:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', MOD:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', USER:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', STD:'count,(STDxxxxxxxxxx, STDxxxxxxxxxx, ...)', CYC:'count,(CYCxxxxxxxxxx, CYCxxxxxxxxxx, ...)', LCK:'count,(LCKxxxxxxxxxx,LCKxxxxxxxxxx,...)', CAP:'count', TXN:'TXNxxxxxxxxxx'"
+* ::string get_all(): "#ALL_NET, count, 00:(NETxxxx,Name,ORG,User_Count), 01:(NETxxxx,Name,ORG,User_Count), ... n:(NETxxxx,Name,ORG,User_Count)"
+* ::string get(): "#ATR_NET, NAME: 'xxxxxxxxxxx', NET:'NETxxxxxxxxxx', ORG:'xxxxxxxxxx', OWN:'BIDxxxxxxxxxx', ADM:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', SUP:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', MOD:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', USER:'count,(BIDxxxxxxxxxx, BIDxxxxxxxxxx, ...)', STD:'count,(STDxxxxxxxxxx, STDxxxxxxxxxx, ...)', CYC:'count,(CYCxxxxxxxxxx, CYCxxxxxxxxxx, ...)', LCK:'count,(LCKxxxxxxxxxx,LCKxxxxxxxxxx,...)', CAP:'count', TXN:'TXNxxxxxxxxxx'"
 * ::string get_stats(): "#NET_STAT, INCOMPLETE"
 * ::string get_admins(): "#NET_ADMS, count:'xxxx', 0:(BIDxxxxxxxxxx,Name,AID), 1:(BIDxxxxxxxxxx,Name,AID), ... n:(BIDxxxxxxxxxx,Name,AID)"
 * ::string get_owner(): "#NET_OWN, BID:'BIDxxxxxxxxxx'";

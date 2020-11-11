@@ -181,7 +181,7 @@ std::string JSON::at(std::string TAG) const {
 
 	std::string _DATA = "0";
 	try {
-		_DATA = m_default_tag_list.at(TAG);
+		_DATA = m_default_container.at(TAG);
 	}
 	catch (...) {
 		try {
@@ -216,7 +216,7 @@ std::list<std::string> JSON::empty_tags() {
 	// COMPLETE
 
 	std::list<std::string> empty_tags_list = {""};
-	for (auto each : m_default_tag_list) {
+	for (auto each : m_default_container) {
 		if (each.second == "")
 			empty_tags_list.emplace_back(each.first);
 	}
@@ -231,7 +231,7 @@ std::list<std::string> JSON::empty_tags() {
 void JSON::fill_empty_tags(std::string fill_with) {
 	// COMPLETE
 
-	for (auto each : m_default_tag_list) {
+	for (auto each : m_default_container) {
 		if (each.second == "")
 			add(each.first, fill_with);
 	}
@@ -247,7 +247,7 @@ bool JSON::has_empty_tag() {
 	bool default_has_empty = false;
 	bool custom_has_empty = false;
 
-	for (auto each : m_default_tag_list)
+	for (auto each : m_default_container)
 		if (each.second != "")
 			default_has_empty = true;
 	for (auto each : m_custom_tag_list)
@@ -258,11 +258,20 @@ bool JSON::has_empty_tag() {
 }
 
 void JSON::insert(std::string input_data) {
+	// INCOMPLETE
+	// TODO: Create a parser inside this function that'll verify and concatenate all the data received.
+	// TODO: This needs to be a variable input function.
+
 	switch (m_prefix)
 	{
 	case JSON::_PTYPE_empty:	// At this case, no data will be inserted.
 		break;
-	case JSON::_PTYPE_ALL_ADM: add_ALL_ADM(input_data);
+	case JSON::_PTYPE_ALL_ADM: {
+		// Add parsing, data consistency checking here.
+		// Upon success, create a concatenated input_data string that'll
+		// be passed to the function below.
+		add_ALL_ADM(input_data);
+	}
 		break;
 	case JSON::_PTYPE_ALL_SUP: add_ALL_SUP(input_data);
 		break;
@@ -338,7 +347,7 @@ bool JSON::is_type(std::string given_type) {
 inline size_t JSON::length() const {
 	// COMPLETE
 
-	return ( m_default_tag_list.size() + m_custom_tag_list.size() );
+	return ( m_default_container.size() + m_custom_tag_list.size() );
 }
 
 bool JSON::remove(std::string to_remove_tag) {
@@ -361,7 +370,7 @@ std::string JSON::serialize() {
 	// COMPLETE
 
 	std::string serailized_data = "{ " +  m_prefix;
-	for (auto each : m_default_tag_list) {
+	for (auto each : m_default_container) {
 		serailized_data += "\"" + each.first + "\":\"" + each.second + ", ";
 	}
 	for (auto each : m_custom_tag_list) {
@@ -375,7 +384,7 @@ std::list<std::string> JSON::tag_list() {
 	// COMPLETE
 
 	std::list<std::string> tag_list;
-	for (auto each : m_default_tag_list) {
+	for (auto each : m_default_container) {
 		tag_list.emplace_back(each.first);
 	}
 	for (auto each : m_custom_tag_list) {
@@ -391,18 +400,25 @@ std::string JSON::type() const { return m_type; }
 
 void JSON::add_ALL_ADM(std::string input_data) {
 	/*
-	* SAMPLE_DATA : "#ALL_ADM, count, 0:(BIDxxxxxxxxxx,Name,AID), 1:(BIDxxxxxxxxxx,Name,AID), ... n:(BIDxxxxxxxxxx,Name,AID)"
+	* SAMPLE_DATA : "#ALL_ADM, count:'xxxx', 00:(BIDxxxxxxxxxx,Name,AID), 01:(BIDxxxxxxxxxx,Name,AID), ... n:(BIDxxxxxxxxxx,Name,AID)"
 	*
 	* TAG_LIST
-	* 0:(BIDxxxxxxxxxx,Name,AID)
-	* 1:(BIDxxxxxxxxxx,Name,AID)
+	* 00:(BIDxxxxxxxxxx,Name,AID)
+	* 01:(BIDxxxxxxxxxx,Name,AID)
 	* ...
-	* 9:(BIDxxxxxxxxxx,Name,AID)
+	* 09:(BIDxxxxxxxxxx,Name,AID)
 	*/
 
-	std::string TAG = std::to_string(m_default_tag_list.size());
+	size_t size = m_default_container.size();
+	std::string TAG;
+
+	if (size < 10)
+		TAG = "0" + std::to_string(size);
+	else
+		TAG = std::to_string(size);
+
 	try {
-		m_default_tag_list[TAG] = input_data;
+		m_default_container[TAG] = input_data;
 	}
 	catch (...) {
 		// Handled any exception
@@ -410,49 +426,269 @@ void JSON::add_ALL_ADM(std::string input_data) {
 }
 void JSON::add_ALL_SUP(std::string input_data) {
 	/*
-	* SAMPLE_DATA : "#ALL_SUP, count, 0:(BIDxxxxxxxxxx,Name,SUP), 1:(BIDxxxxxxxxxx,Name,SUP), ... n:(BIDxxxxxxxxxx,Name,SUP)"
+	* SAMPLE_DATA : "#ALL_SUP, count:'xxxx', 00:(BIDxxxxxxxxxx,Name,SUP), 01:(BIDxxxxxxxxxx,Name,SUP), ... n:(BIDxxxxxxxxxx,Name,SUP)"
 	*
 	* TAG_LIST
-	* 0:(BIDxxxxxxxxxx,Name,SUP)
-	* 1:(BIDxxxxxxxxxx,Name,SUP)
+	* 00:(BIDxxxxxxxxxx,Name,SUP)
+	* 01:(BIDxxxxxxxxxx,Name,SUP)
 	* ...
-	* 9:(BIDxxxxxxxxxx,Name,SUP)
+	* 09:(BIDxxxxxxxxxx,Name,SUP)
 	*/
 
-	std::string TAG = std::to_string(m_default_tag_list.size());
+	size_t size = m_default_container.size();
+	std::string TAG;
+
+	if (size < 10)
+		TAG = "0" + std::to_string(size);
+	else
+		TAG = std::to_string(size);
+
 	try {
-		m_default_tag_list[TAG] = input_data;
+		m_default_container[TAG] = input_data;
 	}
 	catch (...) {
 		// Handled any exception
 	}
 }
-void JSON::add_ALL_MOD() {
-	// Do something good today. Before it's too late
+void JSON::add_ALL_MOD(std::string input_data) {
+	/*
+	* SAMPLE_DATA : "#ALL_MOD, count:'xxxx', 00:(BIDxxxxxxxxxx,Name,MOD), 01:(BIDxxxxxxxxxx,Name,MOD), ... n:(BIDxxxxxxxxxx,Name,MOD)"
+	*
+	* TAG_LIST
+	* 00:(BIDxxxxxxxxxx,Name,MOD)
+	* 01:(BIDxxxxxxxxxx,Name,MOD)
+	* ...
+	* 09:(BIDxxxxxxxxxx,Name,MOD)
+	*/
+
+	size_t size = m_default_container.size();
+	std::string TAG;
+
+	if (size < 10)
+		TAG = "0" + std::to_string(size);
+	else
+		TAG = std::to_string(size);
+
+	try {
+		m_default_container[TAG] = input_data;
+	}
+	catch (...) {
+		// Handled all exceptions.
+	}
 }
-void JSON::add_ALL_STU() {
-	// Do something good today. Before it's too late
+void JSON::add_ALL_STU(std::string input_data) {
+	/*
+	* SAMPLE_DATA : "#ALL_STU, count:'xxxx', 0:(BIDxxxxxxxxxx,Name,SID), 1:(BIDxxxxxxxxxx,Name,SID), ... n:(BIDxxxxxxxxxx,Name,SID)"
+	*
+	* TAG_LIST
+	* 00:(BIDxxxxxxxxxx,Name,SID)
+	* 01:(BIDxxxxxxxxxx,Name,SID)
+	* ...
+	* n:(BIDxxxxxxxxxx,Name,SID)
+	*/
+
+	size_t size = m_default_container.size();
+	std::string TAG;
+
+	if (size < 10)
+		TAG = "0" + std::to_string(size);
+	else
+		TAG = std::to_string(size);
+
+	try {
+		m_default_container[TAG] = input_data;
+	}
+	catch (...) {
+		// Handled all exceptions.
+	}
 }
-void JSON::add_ALL_EMP() {
-	// Do something good today. Before it's too late
+void JSON::add_ALL_EMP(std::string input_data) {
+	/*
+	* SAMPLE_DATA : "#ALL_EMP, count:'xxxx', 0:(BIDxxxxxxxxxx,Name,EID), 1:(BIDxxxxxxxxxx,Name,EID), ... n:(BIDxxxxxxxxxx,Name,EID)"
+	*
+	* TAG_LIST
+	* 00:(BIDxxxxxxxxxx,Name,EID)
+	* 01:(BIDxxxxxxxxxx,Name,EID)
+	* ...
+	* n:(BIDxxxxxxxxxx,Name,EID)
+	*/
+
+	size_t size = m_default_container.size();
+	std::string TAG;
+
+	if (size < 10)
+		TAG = "0" + std::to_string(size);
+	else
+		TAG = std::to_string(size);
+
+	try {
+		m_default_container[TAG] = input_data;
+	}
+	catch (...) {
+		// Handled all exceptions.
+	}
 }
-void JSON::add_ALL_GUE() {
-	// Do something good today. Before it's too late
+void JSON::add_ALL_GUE(std::string input_data) {
+	/*
+	* SAMPLE_DATA : "#ALL_EMP, count:'xxxx', 00:(BGIDxxxxxxxxxx,Name,Duration), 01:(BIDxxxxxxxxxx,Name,Duration), ... n:(BIDxxxxxxxxxx,Name,Duration)"
+	*
+	* TAG_LIST
+	* 00:(BGIDxxxxxxxxxx,Name,Duration)
+	* 01:(BGIDxxxxxxxxxx,Name,Duration)
+	* ...
+	* n:(BGIDxxxxxxxxxx,Name,Duration)
+	*/
+
+	size_t size = m_default_container.size();
+	std::string TAG;
+
+	if (size < 10)
+		TAG = "0" + std::to_string(size);
+	else
+		TAG = std::to_string(size);
+
+	try {
+		m_default_container[TAG] = input_data;
+	}
+	catch (...) {
+		// Handled all exceptions.
+	}
 }
-void JSON::add_ALL_NET() {
-	// Do something good today. Before it's too late
+void JSON::add_ALL_NET(std::string input_data) {
+	/*
+	* SAMPLE_DATA : "#ALL_NET, count:'xxxx', 00:(NETxxxx,Name,ORG,User_Count), 01:(NETxxxx,Name,ORG,User_Count), ... n:(NETxxxx,Name,ORG,User_Count)
+	*
+	* TAG_LIST
+	* 00:(NETxxxx,Name,ORG,User_Count)
+	* 01:(NETxxxx,Name,ORG,User_Count)
+	* ...
+	* n:(NETxxxx,Name,ORG,User_Count)
+	*/
+
+	size_t size = m_default_container.size();
+	std::string TAG;
+
+	if (size < 10)
+		TAG = "0" + std::to_string(size);
+	else
+		TAG = std::to_string(size);
+
+	try {
+		m_default_container[TAG] = input_data;
+	}
+	catch (...) {
+		// Handled all exceptions.
+	}
 }
-void JSON::add_ALL_STD() {
-	// Do something good today. Before it's too late
+void JSON::add_ALL_STD(std::string input_data) {
+	/*
+	* SAMPLE_DATA : "#ALL_STD, count:'xxxx', 00:'STDxxxxxxxxxx', 01:'STDxxxxxxxxxx', ... n:'STDxxxxxxxxxx'"
+	*
+	* TAG_LIST
+	* 00:'STDxxxxxxxxxx'
+	* 01:'STDxxxxxxxxxx'
+	* ...
+	* n:'STDxxxxxxxxxx'
+	*/
+
+	size_t size = m_default_container.size();
+	std::string TAG;
+
+	if (size < 10)
+		TAG = "0" + std::to_string(size);
+	else
+		TAG = std::to_string(size);
+
+	try {
+		m_default_container[TAG] = input_data;
+	}
+	catch (...) {
+		// Handled all exceptions.
+	}
 }
-void JSON::add_ALL_CYC() {
-	// Do something good today. Before it's too late
+void JSON::add_ALL_CYC(std::string input_data) {
+	/*
+	* SAMPLE_DATA : "#ALL_CYC, count:'xxxx', 00:'CYCxxxxxxxxxx', 01:'CYCxxxxxxxxxx', ... n:'CYCxxxxxxxxxx'"
+	*
+	* TAG_LIST
+	* 00:'CYCxxxxxxxxxx'
+	* 01:'CYCxxxxxxxxxx'
+	* ...
+	* n:'CYCxxxxxxxxxx'
+	*/
+
+	size_t size = m_default_container.size();
+	std::string TAG;
+
+	if (size < 10)
+		TAG = "0" + std::to_string(size);
+	else
+		TAG = std::to_string(size);
+
+	try {
+		m_default_container[TAG] = input_data;
+	}
+	catch (...) {
+		// Handled all exceptions.
+	}
 }
-void JSON::add_ALL_LCK() {
-	// Do something good today. Before it's too late
+void JSON::add_ALL_LCK(std::string input_data) {
+
+	// INCOMPLETE
+
+	/*
+	* SAMPLE_DATA : "#ALL_LCK, count:'xxxx', 0:(STDxxxxxxxxxx,LCKxxxxxxxxxx,...LCKxxxxxxxxxx), 1:(STDxxxxxxxxxx,LCKxxxxxxxxxx,...LCKxxxxxxxxxx), ... n:(STDxxxxxxxxxx,LCKxxxxxxxxxx,...LCKxxxxxxxxxx)"
+	*
+	* TAG_LIST
+	* STDxxxx:(LCKxxxxxxxxxx,...LCKxxxxxxxxxx)
+	* STDxxxx:(LCKxxxxxxxxxx,...LCKxxxxxxxxxx)
+	* ...
+	* STDxxxx:(LCKxxxxxxxxxx,...LCKxxxxxxxxxx)
+	*/
+
+	size_t size = m_default_container.size();
+	std::string TAG;
+
+	if (size < 10)
+		TAG = "0" + std::to_string(size);
+	else
+		TAG = std::to_string(size);
+
+	try {
+		m_default_container[TAG] = input_data;
+	}
+	catch (...) {
+		// Handled all exceptions.
+	}
 }
-void JSON::add_ALL_TXN() {
-	// Do something good today. Before it's too late
+void JSON::add_ALL_TXN(std::string input_data) {
+
+	// INCOMPLETE
+
+	/*
+	* SAMPLE_DATA : "#ALL_TXN, TIME:'00:00:00,DD/MMM/YYYY', count:'xxxx', 0:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY'), 1:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY'), ... n:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY')"
+	*
+	* TAG_LIST
+	* 00:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY')
+	* 01:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY')
+	* ...
+	* n:(TXNxxxxxxxxxx,BIDxxxxxxxxxx,issue or deposit,'00:00:00,DD/MMM/YYYY')
+	*/
+
+	size_t size = m_default_container.size();
+	std::string TAG;
+
+	if (size < 10)
+		TAG = "0" + std::to_string(size);
+	else
+		TAG = std::to_string(size);
+
+	try {
+		m_default_container[TAG] = input_data;
+	}
+	catch (...) {
+		// Handled all exceptions.
+	}
 }
 
 void JSON::add_ATR_ADM() {
