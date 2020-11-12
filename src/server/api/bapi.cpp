@@ -195,8 +195,7 @@ short BAPI::USER::logout(
 				return 2;
 			}
 			std::string type = user_data.type();
-			if (user_data.has_empty_tag() && type == "ATR_ADM" || type == "ATR_SUP"
-				||type == "ATR_MOD" || type == "ATR_STU" || type == "ATR_EMP") {
+			if (user_data.has_empty_tag() && type == "USR_DATA") {
 				if (write_to_disk(user_data)) {
 					return 0;
 				}

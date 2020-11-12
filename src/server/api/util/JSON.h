@@ -44,7 +44,7 @@ Network::network(JSON j_Network){
 class JSON {
 private:
 	// Private Variables
-	enum prefix_type {
+	enum class prefix_type {
 		_PTYPE_empty,
 		_PTYPE_ALL_ADM,
 		_PTYPE_ALL_SUP,
@@ -85,8 +85,16 @@ private:
 		_PTYPE_NET_STD_TXN,
 		_PTYPE_NET_CYC_TXN,
 	};
-
-	prefix_type m_prefix = _PTYPE_empty;
+	struct data_types {
+		const std::string ALL_DATA = "ALL_DATA";
+		const std::string USR_DATA = "USR_DATA";
+		const std::string NET_DATA = "NET_DATA";
+		const std::string STD_DATA = "STD_DATA";
+		const std::string CYC_DATA = "CYC_DATA";
+		const std::string LCK_DATA = "LCK_DATA";
+		const std::string TXN_DATA = "TXN_DATA";
+	};
+	prefix_type m_prefix = prefix_type::_PTYPE_empty;
 	std::string m_type = "empty";
 	//std::map<T, Y> m_default_tag_list;
 	//std::map<T, Y> m_custom_tag_list;
@@ -110,10 +118,7 @@ private:
 	*/
 private:
 	// Private Methods
-	JSON() {
-		// Default Constructor
-		// Declaring in private section so user is forced to user parameterized.
-	}
+	JSON();
 	void add_ALL_ADM(std::string input_data);
 	void add_ALL_SUP(std::string input_data);
 	void add_ALL_MOD(std::string input_data);
@@ -157,8 +162,9 @@ private:
 	void m_remove_tag(std::string tag_to_remove);
 
 public:
-	// Public Variables
-	enum Type{
+	// Public Wrapper Variables
+	data_types const _DATA_TYPE;
+	const enum class Type {
 		// Use if want to create JSON list of all Admins.
 		ALL_ADM,
 		// Use if want to create JSON list of all Support agents.
@@ -230,10 +236,12 @@ public:
 		// Use if want to create JSON for Cycle's Transaction data.
 		NET_CYC_TXN
 	};
+
 public:
 	// Public Methods
+
 	~JSON();
-	JSON(Type wrapper_type);
+	JSON(Type);
 
 	std::string at(std::string TAG) const;
 	void add(std::string custom_tag);

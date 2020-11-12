@@ -7,163 +7,163 @@ JSON::JSON(JSON::Type wrapper_type) {
 
 	switch (wrapper_type)
 	{
-	case JSON::ALL_ADM: {
-		m_prefix = _PTYPE_ALL_ADM;
-		m_type = "ALL_ADM";
+	case JSON::Type::ALL_ADM: {
+		m_prefix = JSON::prefix_type::_PTYPE_ALL_ADM;
+		m_type = _DATA_TYPE.ALL_DATA;
 	}
 		break;
-	case JSON::ALL_SUP: {
-		m_prefix = _PTYPE_ALL_SUP;
-		m_type = "ALL_SUP";
+	case JSON::Type::ALL_SUP: {
+		m_prefix = JSON::prefix_type::_PTYPE_ALL_SUP;
+		m_type = _DATA_TYPE.ALL_DATA;
 	}
 		break;
-	case JSON::ALL_MOD: {
-		m_prefix = _PTYPE_ALL_MOD;
-		m_type = "ALL_MOD";
+	case JSON::Type::ALL_MOD: {
+		m_prefix = JSON::prefix_type::_PTYPE_ALL_MOD;
+		m_type = _DATA_TYPE.ALL_DATA;
 	}
 		break;
-	case JSON::ALL_STU: {
-		m_prefix = _PTYPE_ALL_STU;
-		m_type = "ALL_STU";
+	case JSON::Type::ALL_STU: {
+		m_prefix = JSON::prefix_type::_PTYPE_ALL_STU;
+		m_type = _DATA_TYPE.ALL_DATA;
 	}
 		break;
-	case JSON::ALL_EMP: {
-		m_prefix = _PTYPE_ALL_EMP;
-		m_type = "ALL_EMP";
+	case JSON::Type::ALL_EMP: {
+		m_prefix = JSON::prefix_type::_PTYPE_ALL_EMP;
+		m_type = _DATA_TYPE.ALL_DATA;
 	}
 		break;
-	case JSON::ALL_GUE: {
-		m_prefix = _PTYPE_ALL_GUE;
-		m_type = "ALL_GUE";
+	case JSON::Type::ALL_GUE: {
+		m_prefix = JSON::prefix_type::_PTYPE_ALL_GUE;
+		m_type = _DATA_TYPE.ALL_DATA;
 	}
 		break;
-	case JSON::ALL_NET: {
-		m_prefix = _PTYPE_ALL_NET;
-		m_type = "ALL_NET";
+	case JSON::Type::ALL_NET: {
+		m_prefix = JSON::prefix_type::_PTYPE_ALL_NET;
+		m_type = _DATA_TYPE.ALL_DATA;;
 	}
 		break;
-	case JSON::ALL_STD: {
-		m_prefix = _PTYPE_ALL_STD;
-		m_type = "ALL_STD";
+	case JSON::Type::ALL_STD: {
+		m_prefix = JSON::prefix_type::_PTYPE_ALL_STD;
+		m_type = _DATA_TYPE.ALL_DATA;;
 	}
 		break;
-	case JSON::ALL_CYC: {
-		m_prefix = _PTYPE_ALL_CYC;
-		m_type = "ALL_CYC";
+	case JSON::Type::ALL_CYC: {
+		m_prefix = JSON::prefix_type::_PTYPE_ALL_CYC;
+		m_type = _DATA_TYPE.ALL_DATA;;
 	}
 		break;
-	case JSON::ALL_LCK: {
-		m_prefix = _PTYPE_ALL_LCK;
-		m_type = "ALL_LCK";
+	case JSON::Type::ALL_LCK: {
+		m_prefix = JSON::prefix_type::_PTYPE_ALL_LCK;
+		m_type = _DATA_TYPE.ALL_DATA;;
 	}
 		break;
-	case JSON::ALL_TXN: {
-		m_prefix = _PTYPE_ALL_TXN;
-		m_type = "ALL_TXN";
+	case JSON::Type::ALL_TXN: {
+		m_prefix = JSON::prefix_type::_PTYPE_ALL_TXN;
+		m_type = _DATA_TYPE.ALL_DATA;;
 	}
 		break;
-	case JSON::ATR_ADM: {
-		m_prefix = _PTYPE_ATR_ADM;
-		m_type = "ATR_ADM";
+	case JSON::Type::ATR_ADM: {
+		m_prefix = JSON::prefix_type::_PTYPE_ATR_ADM;
+		m_type = _DATA_TYPE.USR_DATA;
 	}
 		break;
-	case JSON::ATR_SUP: {
-		m_prefix = _PTYPE_ATR_SUP;
-		m_type = "ATR_SUP";
+	case JSON::Type::ATR_SUP: {
+		m_prefix = JSON::prefix_type::_PTYPE_ATR_SUP;
+		m_type = _DATA_TYPE.USR_DATA;
 	}
 		break;
-	case JSON::ATR_MOD: {
-		m_prefix = _PTYPE_ATR_MOD;
-		m_type = "ATR_MOD";
+	case JSON::Type::ATR_MOD: {
+		m_prefix = JSON::prefix_type::_PTYPE_ATR_MOD;
+		m_type = _DATA_TYPE.USR_DATA;
 	}
 		break;
-	case JSON::ATR_STU: {
-		m_prefix = _PTYPE_ATR_STU;
-		m_type = "ATR_STU";
+	case JSON::Type::ATR_STU: {
+		m_prefix = JSON::prefix_type::_PTYPE_ATR_STU;
+		m_type = _DATA_TYPE.USR_DATA;
 	}
 		break;
-	case JSON::ATR_EMP: {
-		m_prefix = _PTYPE_ATR_EMP;
-		m_type = "ATR_EMP";
+	case JSON::Type::ATR_EMP: {
+		m_prefix = JSON::prefix_type::_PTYPE_ATR_EMP;
+		m_type = _DATA_TYPE.USR_DATA;
 	}
 		break;
-	case JSON::ATR_GUE: {
-		m_prefix = _PTYPE_ATR_GUE;
-		m_type = "ATR_GUE";
+	case JSON::Type::ATR_GUE: {
+		m_prefix = JSON::prefix_type::_PTYPE_ATR_GUE;
+		m_type = _DATA_TYPE.USR_DATA;
 	}
 		break;
-	case JSON::NET_STAT: {
-		m_prefix = _PTYPE_NET_STAT;
-		m_type = "NET_STAT";
+	case JSON::Type::NET_STAT: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_STAT;
+		m_type = _DATA_TYPE.NET_DATA;
 	}
 		break;
-	case JSON::NET_ADMS: {
-		m_prefix = _PTYPE_NET_ADMS;
+	case JSON::Type::NET_ADMS: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_ADMS;
 		m_type = "NET_ADMS";
 	}
 		break;
-	case JSON::NET_OWN: {
-		m_prefix = _PTYPE_NET_OWN;
+	case JSON::Type::NET_OWN: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_OWN;
 		m_type = "NET_OWN";
 	}
 		break;
-	case JSON::NET_STD: {
-		m_prefix = _PTYPE_NET_STD;
+	case JSON::Type::NET_STD: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_STD;
 		m_type = "NET_STD";
 	}
 		break;
-	case JSON::NET_STD_STAT: {
-		m_prefix = _PTYPE_NET_STD_STAT;
+	case JSON::Type::NET_STD_STAT: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_STD_STAT;
 		m_type = "NET_STD_STAT";
 	}
 		break;
-	case JSON::NET_NEAR_STD: {
-		m_prefix = _PTYPE_NET_NEAR_STD;
+	case JSON::Type::NET_NEAR_STD: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_NEAR_STD;
 		m_type = "NET_NEAR_STD";
 	}
 		break;
-	case JSON::NET_STD_VACANT: {
-		m_prefix = _PTYPE_NET_STD_VACANT;
+	case JSON::Type::NET_STD_VACANT: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_STD_VACANT;
 		m_type = "NET_STD_VACANT";
 	}
 		break;
-	case JSON::NET_CYC: {
-		m_prefix = _PTYPE_NET_CYC;
+	case JSON::Type::NET_CYC: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_CYC;
 		m_type = "NET_CYC";
 	}
 		break;
-	case JSON::NET_CYC_FREE: {
-		m_prefix = _PTYPE_NET_CYC_FREE;
+	case JSON::Type::NET_CYC_FREE: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_CYC_FREE;
 		m_type = "NET_CYC_FREE";
 	}
 		break;
-	case JSON::NET_LCK: {
-		m_prefix = _PTYPE_NET_LCK;
+	case JSON::Type::NET_LCK: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_LCK;
 		m_type = "NET_LCK";
 	}
 		break;
-	case JSON::NET_LCK_STAT: {
-		m_prefix = _PTYPE_NET_LCK_STAT;
+	case JSON::Type::NET_LCK_STAT: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_LCK_STAT;
 		m_type = "NET_LCK_STAT";
 	}
 		break;
-	case JSON::TXN: {
-		m_prefix = _PTYPE_TXN;
+	case JSON::Type::TXN: {
+		m_prefix = JSON::prefix_type::_PTYPE_TXN;
 		m_type = "TXN";
 	}
 		break;
-	case JSON::NET_USR_TXN: {
-		m_prefix = _PTYPE_NET_USR_TXN;
+	case JSON::Type::NET_USR_TXN: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_USR_TXN;
 		m_type = "NET_USR_TXN";
 	}
 		break;
-	case JSON::NET_STD_TXN: {
-		m_prefix = _PTYPE_NET_STD_TXN;
+	case JSON::Type::NET_STD_TXN: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_STD_TXN;
 		m_type = "NET_STD_TXN";
 	}
 		break;
-	case JSON::NET_CYC_TXN: {
-		m_prefix = _PTYPE_NET_CYC_TXN;
+	case JSON::Type::NET_CYC_TXN: {
+		m_prefix = JSON::prefix_type::_PTYPE_NET_CYC_TXN;
 		m_type = "NET_CYC_TXN";
 	}
 		break;
@@ -261,79 +261,79 @@ void JSON::insert(std::string input_data) {
 	// INCOMPLETE
 	// TODO: Create a parser inside this function that'll verify and concatenate all the data received.
 	// TODO: This needs to be a variable input function.
-
+	
 	switch (m_prefix)
 	{
-	case JSON::_PTYPE_empty:	// At this case, no data will be inserted.
+	case JSON::JSON::prefix_type::_PTYPE_empty:	// At this case, no data will be inserted.
 		break;
-	case JSON::_PTYPE_ALL_ADM: {
+	case JSON::JSON::prefix_type::_PTYPE_ALL_ADM: {
 		// Add parsing, data consistency checking here.
 		// Upon success, create a concatenated input_data string that'll
 		// be passed to the function below.
 		add_ALL_ADM(input_data);
 	}
 		break;
-	case JSON::_PTYPE_ALL_SUP: add_ALL_SUP(input_data);
+	case JSON::prefix_type::_PTYPE_ALL_SUP: add_ALL_SUP(input_data);
 		break;
-	case JSON::_PTYPE_ALL_MOD:
+	case JSON::prefix_type::_PTYPE_ALL_MOD:
 		break;
-	case JSON::_PTYPE_ALL_STU:
+	case JSON::prefix_type::_PTYPE_ALL_STU:
 		break;
-	case JSON::_PTYPE_ALL_EMP:
+	case JSON::prefix_type::_PTYPE_ALL_EMP:
 		break;
-	case JSON::_PTYPE_ALL_GUE:
+	case JSON::prefix_type::_PTYPE_ALL_GUE:
 		break;
-	case JSON::_PTYPE_ALL_NET:
+	case JSON::prefix_type::_PTYPE_ALL_NET:
 		break;
-	case JSON::_PTYPE_ALL_STD:
+	case JSON::prefix_type::_PTYPE_ALL_STD:
 		break;
-	case JSON::_PTYPE_ALL_CYC:
+	case JSON::prefix_type::_PTYPE_ALL_CYC:
 		break;
-	case JSON::_PTYPE_ALL_LCK:
+	case JSON::prefix_type::_PTYPE_ALL_LCK:
 		break;
-	case JSON::_PTYPE_ALL_TXN:
+	case JSON::prefix_type::_PTYPE_ALL_TXN:
 		break;
-	case JSON::_PTYPE_ATR_ADM:
+	case JSON::prefix_type::_PTYPE_ATR_ADM:
 		break;
-	case JSON::_PTYPE_ATR_SUP:
+	case JSON::JSON::prefix_type::_PTYPE_ATR_SUP:
 		break;
-	case JSON::_PTYPE_ATR_MOD:
+	case JSON::prefix_type::_PTYPE_ATR_MOD:
 		break;
-	case JSON::_PTYPE_ATR_STU:
+	case JSON::prefix_type::_PTYPE_ATR_STU:
 		break;
-	case JSON::_PTYPE_ATR_EMP:
+	case JSON::prefix_type::_PTYPE_ATR_EMP:
 		break;
-	case JSON::_PTYPE_ATR_GUE:
+	case JSON::prefix_type::_PTYPE_ATR_GUE:
 		break;
-	case JSON::_PTYPE_NET_STAT:
+	case JSON::prefix_type::_PTYPE_NET_STAT:
 		break;
-	case JSON::_PTYPE_NET_ADMS:
+	case JSON::prefix_type::_PTYPE_NET_ADMS:
 		break;
-	case JSON::_PTYPE_NET_OWN:
+	case JSON::prefix_type::_PTYPE_NET_OWN:
 		break;
-	case JSON::_PTYPE_NET_STD:
+	case JSON::prefix_type::_PTYPE_NET_STD:
 		break;
-	case JSON::_PTYPE_NET_STD_STAT:
+	case JSON::prefix_type::_PTYPE_NET_STD_STAT:
 		break;
-	case JSON::_PTYPE_NET_NEAR_STD:
+	case JSON::prefix_type::_PTYPE_NET_NEAR_STD:
 		break;
-	case JSON::_PTYPE_NET_STD_VACANT:
+	case JSON::prefix_type::_PTYPE_NET_STD_VACANT:
 		break;
-	case JSON::_PTYPE_NET_CYC:
+	case JSON::prefix_type::_PTYPE_NET_CYC:
 		break;
-	case JSON::_PTYPE_NET_CYC_FREE:
+	case JSON::prefix_type::_PTYPE_NET_CYC_FREE:
 		break;
-	case JSON::_PTYPE_NET_LCK:
+	case JSON::prefix_type::_PTYPE_NET_LCK:
 		break;
-	case JSON::_PTYPE_NET_LCK_STAT:
+	case JSON::prefix_type::_PTYPE_NET_LCK_STAT:
 		break;
-	case JSON::_PTYPE_TXN:
+	case JSON::prefix_type::_PTYPE_TXN:
 		break;
-	case JSON::_PTYPE_NET_USR_TXN:
+	case JSON::prefix_type::_PTYPE_NET_USR_TXN:
 		break;
-	case JSON::_PTYPE_NET_STD_TXN:
+	case JSON::prefix_type::_PTYPE_NET_STD_TXN:
 		break;
-	case JSON::_PTYPE_NET_CYC_TXN:
+	case JSON::prefix_type::_PTYPE_NET_CYC_TXN:
 		break;
 	default:
 		break;
@@ -368,8 +368,7 @@ bool JSON::remove(std::string to_remove_tag) {
 
 std::string JSON::serialize() {
 	// COMPLETE
-
-	std::string serailized_data = "{ " +  m_prefix;
+	std::string serailized_data = "{ " + int(m_prefix);
 	for (auto each : m_default_container) {
 		serailized_data += "\"" + each.first + "\":\"" + each.second + ", ";
 	}
