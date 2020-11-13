@@ -19,6 +19,7 @@ public:
 	std::string giveAccess();
 	std::string giveSession();
 	std::string giveOTP();
+	std::string giveLOG();
 	void log();
 	Token();
 	~Token();

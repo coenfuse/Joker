@@ -59,7 +59,8 @@ namespace BAPI {
 			std::string session_code,
 			std::string BID,
 			std::string NET,
-			JSON user_data
+			JSON user_data,
+			JSON log_data
 		);
 
 		// The following are simple GET functions

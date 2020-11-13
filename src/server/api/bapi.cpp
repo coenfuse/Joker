@@ -127,7 +127,7 @@ std::string BAPI::USER::authorize_login(
 	* Return "1" if NET doesn't exist
 	* Return "2" if USERNAME doesn't exist inside a NET
 	* Return "3" if SALT is incorrect
-	* otherwise Return "SESSION_CODE: 'xxxxxxxxxx', BID: 'xxxxxx'"
+	* otherwise Return "LOG_CODE: 'xxxxxxxxxx', SESSION_CODE: 'xxxxxxxxxx', BID: 'xxxxxx'"
 	*/
 
 	if (token.checkAccess(access_code)) {
@@ -153,7 +153,7 @@ std::string BAPI::USER::authorize_login(
 					TEMP[BID] = USER_DATA;
 					Joker_DB[NET] = TEMP;
 
-					return "SESSION_CODE: '" + token.giveSession() + "', BID: '" + BID + "'";
+					return "LOG_CODE: '" + token.giveLOG() + "', SESSION_CODE: '" + token.giveSession() + "', BID: '" + BID + "'";
 				}
 				return "3";
 			}
@@ -169,7 +169,8 @@ short BAPI::USER::logout(
 	std::string session_code,
 	std::string BID,
 	std::string NET,
-	JSON user_data
+	JSON user_data,
+	JSON log_data
 ) {
 	// COMPLETE
 
@@ -197,6 +198,8 @@ short BAPI::USER::logout(
 			std::string type = user_data.type();
 			if (user_data.has_empty_tag() && type == "USR_DATA") {
 				if (write_to_disk(user_data)) {
+					std::string LOG_DATA = log_data.serialize();
+					// Write this data into LOG file. (Grouped by Network)
 					return 0;
 				}
 				return 4;

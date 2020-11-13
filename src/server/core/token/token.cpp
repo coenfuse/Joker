@@ -286,6 +286,10 @@ std::string Token::giveOTP() {
 	return otp;
 }
 
+std::string Token::giveLOG() {
+	return rndm(32);
+}
+
 std::string Token::rndm(int LEN) {
 	std::string str;
 	std::string symbols = "1234567890-=!@#$%^&*()_+qwertyuiopasdfghjklzxcvbnm,./QWERTYUIOPASDFGHJKLZXCVBNM<>?";
