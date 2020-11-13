@@ -292,7 +292,7 @@ std::string Token::giveLOG() {
 
 std::string Token::rndm(int LEN) {
 	std::string str;
-	std::string symbols = "1234567890-=!@#$%^&*()_+qwertyuiopasdfghjklzxcvbnm,./QWERTYUIOPASDFGHJKLZXCVBNM<>?";
+	std::string symbols = "1234567890-=!@#$%^&*()_+qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM<>?";
 	auto length = symbols.length() - 1;
 	srand((unsigned int)time(NULL));
 	for (int i = 0; i < LEN; i++) {
