@@ -23,7 +23,7 @@ Although Joker is implemented in C++, it tries to mimic a full-stack web-applica
 To read in detail about all the involved components included in this project. Kindly refer to the following list.
 
 **Disclaimer**: *Joker is still in active development thus some links given above might not work or would still have incomplete documentation that'll will be updated as soon as the development reaches appropriate stage.*
-- [BAPI]()
+- [BAPI](include/readme.md)
 - [Bots]()
 - [Client]()
 - [Data Caching]()
