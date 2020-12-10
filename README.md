@@ -1,4 +1,4 @@
-![Joker_Stinky_Illustration](docs/Joker_Stinky_Illustration_2.jpg)
+![Joker_Stinky_Illustration](docs/Joker_Stinky_Illustration_3.png)
 
 ***"An over-engineered masterpiece."***
 
