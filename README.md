@@ -68,6 +68,7 @@ Embarrasing to admit, it just does *nothing useful* as of now. The Client and Se
  - Implement Issue and Deposit system for single user.
  - Add realtime data updation.
  - ... *(this is a rabbit hole. The To-Do list will be updated later from here as deemed necessary.)*
+ - Add custom STL library
  - Remove unnecessary Graphics
  - Transfer database from text files to a DBMS system.
  - Complete this documentation.
