@@ -16,4 +16,4 @@ To understand more about the Client side of Joker. It is recommended for the use
 - [Session Manager Port]()
 - [User Interface]()
 
-**Disclaimer**: The above list of contents is currently incomplete and will be updated in future as soon as the development reaches an appropriate stage.
+**Disclaimer**: The above list of contents is currently incomplete and will be updated in future as soon as the development reaches the appropriate stage.
