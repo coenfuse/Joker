@@ -24,8 +24,8 @@ To read in detail about all the involved components included in this project. Ki
 
 **Disclaimer**: *Joker is still in active development thus some links given above might not work or would still have incomplete documentation that'll will be updated as soon as the development reaches appropriate stage.*
 - [BAPI](include/readme.md)
-- [Bots](src/client/sys/src/bots/readme.md)
-- [Client]()
+- [Bots](src/client/sys/src/bots/robot_readme.md)
+- [Client](src/client/client_readme.md)
 - [Data Caching]()
 - [Data Classification]()
 - [Data Indexing]()
@@ -50,30 +50,30 @@ It is uploaded as a Visual Studio project and the project file is included in th
 ## What Joker is currently capable of?
 Embarrasing to admit, it just does *nothing useful* as of now. The Client and Server components of this projects are far from complete and can be basically referred to as stubs. Currently the development is focused at creating the sub-components and setting up connections between them. For more nuanced information about the development refer to the commit history or read the Development section
 
-## Development
-- [x] Basic Graphics
-- [x] BAPI Headers
-- [x] Token System
-- [x] Basic Login System
-- [x] Data Storage Classification
-- [x] BAPI Connectivity
-- [x] Dummy Data
-- [ ] ***JSON Parser  <--- (Currently here)***
-- [ ] Complete Dummy data installation.
-- [ ] Test JSON parser
-- [ ] Construct interfaces for Client objects
-- [ ] Update Session manager and Login System.
-- [ ] Implement Issue and Deposit system for single user.
-- [ ] Add realtime data updation.
+### Development
+- **Basic Graphics**
+- **BAPI Headers**
+- **Token System**
+- **Basic Login System**
+- **Data Storage Classification**
+- **BAPI Connectivity**
+- **Dummy Data**
+- **JSON** --- (Currently here)
 
-- [ ] ***(this is a rabbit hole. The To-Do list will be updated later from here as deemed necessary.)***
-- [ ] Add custom STL library
-- [ ] Remove unnecessary Graphics
-- [ ] Transfer database from text files to a DBMS system.
-- [ ] Complete this documentation.
-- [ ] Elaborate more on how **Joker** is much more than just a weird C++ project
-
-## Road Map
+##### TO-DOs
+ - Complete Dummy data installation.
+ - Test JSON parser
+ - Construct interfaces for Client objects
+ - Update Session manager and Login System.
+ - Implement Issue and Deposit system for single user.
+ - Add realtime data updation.
+ - ... *(this is a rabbit hole. The To-Do list will be updated later from here as deemed necessary.)*
+ - Add custom STL library
+ - Remove unnecessary Graphics
+ - Transfer database from text files to a DBMS system.
+ - Complete this documentation.
+ - Elaborate more on how **Joker** is much more than just a weird C++ project
+##### Road Map
 - Add Incentive distribution system
 - Support / Moderators and Messaging system
 - Implement training data procurement system
