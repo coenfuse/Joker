@@ -27,19 +27,18 @@ To read in detail about all the involved components included in this project. Ki
 - [Bots](src/client/sys/src/bots/robot_readme.md)
 - [Client](src/client/client_readme.md)
 - [Data Caching](src/server/db/data_caching.md)
-- [Data Classification]()
-- [Data Indexing]()
-- [Data Storage Types]()
-- [Data Strcutures]()
-- [Dummy Data]()
-- [Graphics and other visuals]()
-- [Interfaces and frameworks]()
-- [JSON System]()
-- [Layered processing]()
-- [Process Manager]()
-- [Server]()
-- [Session Manager]()
-- [Token System]()
+- [Data Classification](src/server/db/data_classification.md)
+- [Data Indexing](src/server/db/data_indexing.md)
+- [Data Storage Types](data/testing/data_storage.md)
+- [Data Structures](deps/CTL/ds.md)
+- [Dummy Data](data/misc/MOCK_DATA.json)
+- [Graphics and other visuals](src/client/vfx/graphics_README.md)
+- [Interfaces and frameworks](src/client/util/class/class_README.md)
+- [JSON System](src/client/util/json/JSON_README.md)
+- [Multi-level Scheduling](src/server/core/MLS_README.md)
+- [Server](src/server/server_README.md)
+- [Session Manager](src/server/core/session_manager_README.md)
+- [Token System](https://github.com/coenfuse/Token)
 
 ## Dependencies
 Requires C++17 or higher in the running environment. That's it.
@@ -51,28 +50,30 @@ It is uploaded as a Visual Studio project and the project file is included in th
 Embarrasing to admit, it just does *nothing useful* as of now. The Client and Server components of this projects are far from complete and can be basically referred to as stubs. Currently the development is focused at creating the sub-components and setting up connections between them. For more nuanced information about the development refer to the commit history or read the Development section
 
 ### Development
-- **Basic Graphics**
-- **BAPI Headers**
-- **Token System**
-- **Basic Login System**
-- **Data Storage Classification**
-- **BAPI Connectivity**
-- **Dummy Data**
-- **JSON** --- (Currently here)
+- [x] **Basic Graphics**
+- [x] **BAPI Headers**
+- [x] **Token System**
+- [x] **Basic Login System**
+- [x] **Data Storage Classification**
+- [x] **BAPI Connectivity**
+- [x] **Dummy Data**
+- [ ] **JSON** --- (Currently here)
+- [ ] Complete Dummy data installation.
+- [ ] Test JSON parser
+- [ ] Construct interfaces for Client objects
+- [ ] Update Session manager and Login System.
+- [ ] Implement Issue and Deposit system for single user.
+- [ ] Add realtime data updation.
 
-##### TO-DOs
- - Complete Dummy data installation.
- - Test JSON parser
- - Construct interfaces for Client objects
- - Update Session manager and Login System.
- - Implement Issue and Deposit system for single user.
- - Add realtime data updation.
- - ... *(this is a rabbit hole. The To-Do list will be updated later from here as deemed necessary.)*
- - Add custom STL library
- - Remove unnecessary Graphics
- - Transfer database from text files to a DBMS system.
- - Complete this documentation.
- - Elaborate more on how **Joker** is much more than just a weird C++ project
+- ... *(this is a rabbit hole. The To-Do list will be updated later from here as deemed necessary.)*
+ 
+- [ ] Add custom STL library
+- [ ] Remove unnecessary Graphics
+- [ ] Transfer database from text files to a DBMS system.
+- [ ] Complete this documentation.
+- [ ] Elaborate more on how **Joker** is much more than just a weird C++ project.
+
+
 ##### Road Map
 - Add Incentive distribution system
 - Support / Moderators and Messaging system
