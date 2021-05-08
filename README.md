@@ -2,7 +2,7 @@
 
 ***"An over-engineered masterpiece."***
 
-Joker is a prototype build for an upcoming web application **Bi**. Written completely in C++, Joker currently presents itself as an experimenting field for its developer who are still brainstorming on the initial feature set of Bi.
+Joker is a prototype build for an upcoming full-stack application called **Bi**. Written completely in C++, Joker currently presents itself as an experimenting field for its developer who are still brainstorming on the initial feature set of Bi. Eventually, taking cues from Joker. Bi will later be developed using the [Django framework](https://www.djangoproject.com/)
 
 ## What is Bi?
 Technically a superset of Joker. Once developed **Bi** will be a ready to deploy piece of software than would enable any interested organization to enable 'one click' bicycle issuing and deposit facility within their campus. Bi will be a fully automated system providing an interface so simple that anyone without any technical intimacy will be able to use it. Bi seperates itself from other existing Bicycle rental or similar solutions by the wide array of features it provides. To name a few:
